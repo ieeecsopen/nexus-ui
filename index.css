@@ -1,4 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GT-Walsheim-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GT-Walsheim-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GT-Walsheim-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GT-Walsheim-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
 
 :root {
     --glass-border: rgba(255, 255, 255, 0.08);
@@ -10,7 +36,7 @@ body {
     background-color: #050505;
     color: #e4e4e7;
     /* zinc-200 */
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'GT Walsheim', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
