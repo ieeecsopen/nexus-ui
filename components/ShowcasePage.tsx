@@ -18,7 +18,7 @@ const ShowcasePage: React.FC = () => {
                         <span>Made with Nexus</span>
                     </div>
 
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6">
+                    <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
                         Built by the Community.
                     </h1>
 
@@ -55,7 +55,7 @@ const ShowcasePage: React.FC = () => {
                             <div className="p-6">
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
-                                        <h3 className="text-lg font-bold text-white tracking-tight">{item.title}</h3>
+                                        <h3 className="text-lg font-medium text-white tracking-tight">{item.title}</h3>
                                         <p className="text-xs text-zinc-500 font-medium">by {item.author}</p>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@ const ShowcasePage: React.FC = () => {
                     <div className="border border-zinc-800 bg-black/50 rounded-xl p-12 text-center relative overflow-hidden">
                         <div className="absolute inset-0 bg-grid-white/[0.02] pointer-events-none"></div>
                         <div className="relative z-10 max-w-2xl mx-auto">
-                            <h2 className="text-3xl font-bold text-white tracking-tighter mb-4">Built something cool?</h2>
+                            <h2 className="text-3xl font-medium text-white tracking-tighter mb-4">Built something cool?</h2>
                             <p className="text-zinc-400 mb-8">
                                 Submit your project to be featured in our showcase. We love seeing what you build with Nexus UI.
                             </p>

@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             Nexus UI v2.0
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+          <h1 className="text-6xl md:text-8xl font-medium tracking-tighter mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
             Build your <br />
             component library.
           </h1>

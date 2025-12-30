@@ -12,7 +12,7 @@ export const FeaturesSection = () => {
         <div className="py-24 bg-black border-b border-white/[0.08]">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tighter mb-6">
+                    <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tighter mb-6">
                         Everything you need <br />
                         <span className="text-zinc-500">to build great interfaces.</span>
                     </h2>
@@ -29,7 +29,7 @@ export const FeaturesSection = () => {
                             <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6">
                                 <Shield size={20} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">TypeScript Ready</h3>
+                            <h3 className="text-xl font-medium text-white mb-2">TypeScript Ready</h3>
                             <p className="text-zinc-400">
                                 Fully typed components. Catch errors early and get excellent autocomplete in your IDE.
                             </p>
@@ -65,7 +65,7 @@ export const FeaturesSection = () => {
                         <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-6">
                             <Moon size={20} />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2">Dark Mode Info</h3>
+                        <h3 className="text-xl font-medium text-white mb-2">Dark Mode Info</h3>
                         <p className="text-zinc-400 mb-auto">
                             Automatic dark mode support via Tailwind CSS. Toggle it with one class.
                         </p>
@@ -81,7 +81,7 @@ export const FeaturesSection = () => {
                         <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6">
                             <Check size={20} />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2">Accessible</h3>
+                        <h3 className="text-xl font-medium text-white mb-2">Accessible</h3>
                         <p className="text-zinc-400">
                             Follows WAI-ARIA patterns. Keyboard navigation and screen reader support built-in.
                         </p>
@@ -93,7 +93,7 @@ export const FeaturesSection = () => {
                             <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 mb-6">
                                 <Smartphone size={20} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-2">Responsive Design</h3>
+                            <h3 className="text-xl font-medium text-white mb-2">Responsive Design</h3>
                             <p className="text-zinc-400">
                                 Mobile-first architecture. Components look great on any device, from phones to dedicated desktops.
                             </p>
@@ -141,7 +141,7 @@ export const CTASection = () => {
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
 
             <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-                <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-8">
+                <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter mb-8">
                     Build your next idea <br />
                     <span className="text-zinc-500">even faster.</span>
                 </h2>

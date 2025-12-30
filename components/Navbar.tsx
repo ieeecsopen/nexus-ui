@@ -40,7 +40,7 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
             <div className="w-8 h-8 bg-gradient-to-tr from-zinc-200 to-white rounded-full flex items-center justify-center text-black shadow-lg group-hover:scale-105 transition-transform">
               <Command size={14} strokeWidth={3} />
             </div>
-            <span className="font-bold text-white tracking-tight hidden sm:block text-sm">Nexus UI</span>
+            <span className="font-medium text-white tracking-tight hidden sm:block text-sm">Nexus UI</span>
           </div>
 
           {/* Desktop Links */}
@@ -51,8 +51,8 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.label)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${link.active
-                    ? 'text-white bg-white/10'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                  ? 'text-white bg-white/10'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
               >
                 {link.label}
@@ -65,7 +65,7 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
             <button className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors">
               <Github size={18} />
             </button>
-            <button className="bg-white text-black px-5 py-2 rounded-full text-xs font-bold hover:bg-zinc-200 transition-colors">
+            <button className="bg-white text-black px-5 py-2 rounded-full text-xs font-medium hover:bg-zinc-200 transition-colors">
               Get Started
             </button>
             <button
@@ -87,7 +87,7 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.label)}
-                className="text-2xl font-bold text-zinc-400 hover:text-white"
+                className="text-2xl font-medium text-zinc-400 hover:text-white"
               >
                 {link.label}
               </a>

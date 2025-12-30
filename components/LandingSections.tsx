@@ -53,7 +53,7 @@ export const TagsSection = () => (
          </div>
 
          <div className="text-center mt-8">
-            <h2 className="text-3xl font-bold text-white mb-2">Browse by Tags</h2>
+            <h2 className="text-3xl font-medium text-white mb-2">Browse by Tags</h2>
          </div>
       </div>
    </div>
@@ -71,7 +71,7 @@ export const CommunityGridSection = () => (
             <div className="p-8 border border-zinc-800 bg-black/50 rounded-xl flex flex-col justify-between h-[200px]">
                <Grid className="text-zinc-500 mb-auto" size={24} />
                <div>
-                  <div className="text-4xl font-bold text-white tracking-tighter">7,000+</div>
+                  <div className="text-4xl font-medium text-white tracking-tighter">7,000+</div>
                   <div className="text-sm text-zinc-500 font-medium mt-1">Components</div>
                </div>
             </div>
@@ -80,7 +80,7 @@ export const CommunityGridSection = () => (
             <div className="p-8 border border-zinc-800 bg-black/50 rounded-xl flex flex-col justify-between h-[200px]">
                <Users className="text-zinc-500 mb-auto" size={24} />
                <div>
-                  <div className="text-4xl font-bold text-white tracking-tighter">260k+</div>
+                  <div className="text-4xl font-medium text-white tracking-tighter">260k+</div>
                   <div className="text-sm text-zinc-500 font-medium mt-1">Community Members</div>
                </div>
             </div>
@@ -92,7 +92,7 @@ export const CommunityGridSection = () => (
                   <ArrowRight className="text-zinc-700 group-hover:text-indigo-400 -rotate-45 group-hover:rotate-0 transition-transform duration-300" size={20} />
                </div>
                <div>
-                  <div className="text-xl font-bold text-white mb-1">Discord</div>
+                  <div className="text-xl font-medium text-white mb-1">Discord</div>
                   <div className="text-sm text-zinc-500">Join the discussion</div>
                </div>
             </div>
@@ -103,7 +103,7 @@ export const CommunityGridSection = () => (
             {/* Main Feature: Figma */}
             <div className="border border-zinc-800 bg-black/50 rounded-xl overflow-hidden min-h-[400px] flex flex-col">
                <div className="p-8 pb-0">
-                  <h3 className="text-2xl font-bold text-white tracking-tight mb-2">Figma Kit</h3>
+                  <h3 className="text-2xl font-medium text-white tracking-tight mb-2">Figma Kit</h3>
                   <p className="text-zinc-400">Every component, meticulously recreated in Figma.</p>
                </div>
                <div className="flex-1 mt-8 bg-zinc-900/50 border-t border-r border-zinc-800 rounded-tr-3xl relative overflow-hidden">
@@ -125,7 +125,7 @@ export const CommunityGridSection = () => (
             {/* Main Feature: GitHub */}
             <div className="border border-zinc-800 bg-black/50 rounded-xl overflow-hidden min-h-[400px] flex flex-col">
                <div className="p-8 pb-0">
-                  <h3 className="text-2xl font-bold text-white tracking-tight mb-2">Open Source</h3>
+                  <h3 className="text-2xl font-medium text-white tracking-tight mb-2">Open Source</h3>
                   <p className="text-zinc-400">Powered by the community. MIT Licensed.</p>
                </div>
                <div className="flex-1 mt-8 relative flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800/30 to-transparent">

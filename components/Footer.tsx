@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-blue-600"></div>
-              <span className="text-lg font-bold text-white">NexusUI</span>
+              <span className="text-lg font-medium text-white">NexusUI</span>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed">
               Premium UI library for React developers. Built with Tailwind CSS and Framer Motion.

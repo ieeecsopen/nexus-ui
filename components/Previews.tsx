@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Sparkles, ChevronLeft, Layers, Command, MousePointer2, Star, Plus, Minus, X, MoreHorizontal, Layout, Search } from 'lucide-react';
+import { motion, useAnimation, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { Sparkles, ChevronLeft, Layers, Command, MousePointer2, Star, Plus, Minus, X, MoreHorizontal, Layout, Search, ArrowRight } from 'lucide-react';
 import { ComponentItem } from '../types';
 
 interface PreviewProps {
@@ -8,66 +8,35 @@ interface PreviewProps {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                               Existing Previews                            */
+/*                               Updated Previews                             */
 /* -------------------------------------------------------------------------- */
 
 export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
-    const ref = useRef<HTMLDivElement>(null);
-    const [rotateX, setRotateX] = useState(0);
-    const [rotateY, setRotateY] = useState(0);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
-        const rect = ref.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const mouseX = e.clientX - centerX;
-        const mouseY = e.clientY - centerY;
-
-        const rotateXValue = ((mouseY / (rect.height / 2)) * -15);
-        const rotateYValue = ((mouseX / (rect.width / 2)) * 15);
-
-        setRotateX(rotateXValue);
-        setRotateY(rotateYValue);
-    };
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [-100, 100], [30, -30]);
+    const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     return (
-        <div
-            className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[1000px] relative overflow-hidden ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={() => { setRotateX(0); setRotateY(0); }}
-        >
+        <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative overflow-hidden ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
-
-            <motion.div
-                ref={ref}
-                animate={{ rotateX, rotateY }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                style={{ transformStyle: 'preserve-3d' }}
-                className={`${small ? 'w-56 h-72 p-5' : 'w-80 h-[420px] p-8'} bg-zinc-900/90 backdrop-blur-xl rounded-[30px] border border-white/10 flex flex-col justify-between relative group cursor-default shadow-2xl`}
-            >
-                <div
-                    className="absolute inset-0 rounded-[30px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                        background: 'linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.05) 40%, transparent 60%)'
-                    }}
-                />
-
-                <div className="relative z-10" style={{ transform: 'translateZ(40px)' }}>
-                    <div className={`${small ? 'w-10 h-10 mb-6' : 'w-14 h-14 mb-8'} rounded-2xl bg-gradient-to-tr from-rose-500 to-orange-500 shadow-lg flex items-center justify-center`}>
-                        <Sparkles className="text-white" size={small ? 18 : 24} />
+            <div style={{ perspective: 2000 }}>
+                <motion.div
+                    style={{ x, y, rotateX, rotateY, z: 100 }}
+                    drag
+                    dragElastic={0.16}
+                    dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                    whileTap={{ cursor: "grabbing" }}
+                    className={`${small ? 'w-48 h-64' : 'w-72 h-96'} bg-zinc-900 border border-white/10 rounded-2xl p-6 flex flex-col justify-between shadow-2xl cursor-grab`}
+                >
+                    <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg"></div>
+                    <div>
+                        <div className="h-2 w-20 bg-zinc-700 rounded mb-2"></div>
+                        <div className="h-1.5 w-3/4 bg-zinc-800 rounded"></div>
                     </div>
-                    <h3 className={`${small ? 'text-xl' : 'text-3xl'} font-bold text-white mb-2`}>Nexus</h3>
-                </div>
-
-                <div className="relative z-10" style={{ transform: 'translateZ(30px)' }}>
-                    <div className="flex gap-2 mb-4">
-                        <div className="h-1.5 w-12 bg-zinc-700 rounded-full"></div>
-                        <div className="h-1.5 w-6 bg-zinc-800 rounded-full"></div>
-                    </div>
-                </div>
-            </motion.div>
+                </motion.div>
+            </div>
+            <div className="absolute bottom-4 text-xs text-zinc-600 font-mono">Drag me</div>
         </div>
     );
 };
@@ -76,41 +45,72 @@ export const AnimatedGradientPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
             <motion.div
-                className="absolute -inset-[50%] opacity-40 blur-[120px]"
+                className="absolute -inset-[50%] opacity-50 blur-[100px]"
                 animate={{
                     rotate: [0, 360],
-                    scale: [0.8, 1.1, 0.9, 1.2, 0.8],
+                    scale: [0.8, 1.2, 0.8],
                 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear", times: [0, 0.2, 0.5, 0.8, 1] }}
-                style={{ background: 'conic-gradient(from 0deg, #4f46e5, #06b6d4, #0ea5e9, #4f46e5)' }}
+                transition={{
+                    duration: 10,
+                    repeat: Infinity,
+                    ease: "linear"
+                }}
+                style={{
+                    background: 'conic-gradient(from 0deg, #4f46e5, #06b6d4, #4f46e5)',
+                }}
             />
-            <div className="absolute inset-0 bg-zinc-950/20 backdrop-blur-3xl" />
-            <div className={`relative z-10 ${small ? 'p-6 max-w-[200px]' : 'p-10 max-w-sm'} bg-zinc-900/40 backdrop-blur-md border border-white/10 rounded-3xl shadow-2xl text-center`}>
-                <Sparkles className="text-white mx-auto mb-2" size={small ? 24 : 32} />
-            </div>
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-3xl" />
+            <span className="relative z-10 text-white font-medium text-xl mix-blend-overlay">Gradient</span>
         </div>
     );
 };
 
 export const GlassyButtonPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} bg-[url('https://grainy-gradients.vercel.app/noise.svg')]`}>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[80px]" />
-            <div className={`relative z-10 flex flex-col ${small ? 'gap-3 scale-90' : 'gap-6'}`}>
-                <motion.button className={`group relative px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl text-white font-semibold shadow-2xl overflow-hidden`}>
-                    <span className="relative z-10 flex items-center gap-2">Glass Button</span>
-                </motion.button>
-            </div>
+        <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent"></div>
+            <button
+                className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 
+                   rounded-xl text-white font-medium hover:bg-white/20 
+                   transition-all shadow-lg active:scale-95 flex items-center gap-2"
+            >
+                Glass Button <ArrowRight size={16} className="text-white/70" />
+            </button>
         </div>
     );
 };
 
 export const TypewriterPreview: React.FC<PreviewProps> = ({ small }) => {
+    const [text, setText] = useState('');
+    const words = ['websites', 'apps', 'experiences'];
+    const [wordIndex, setWordIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const currentWord = words[wordIndex];
+        const timeout = setTimeout(() => {
+            if (!isDeleting) {
+                setText(currentWord.slice(0, text.length + 1));
+                if (text.length === currentWord.length) {
+                    setTimeout(() => setIsDeleting(true), 1500);
+                }
+            } else {
+                setText(currentWord.slice(0, text.length - 1));
+                if (text.length === 0) {
+                    setIsDeleting(false);
+                    setWordIndex((prev) => (prev + 1) % words.length);
+                }
+            }
+        }, isDeleting ? 50 : 150);
+        return () => clearTimeout(timeout);
+    }, [text, isDeleting, wordIndex]);
+
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="relative z-10 flex items-center gap-1 font-mono text-white">
-                <span className={`${small ? 'text-xl' : 'text-3xl'} font-bold`}>We build</span>
-                <span className={`${small ? 'text-xl' : 'text-3xl'} font-bold text-indigo-400 border-r-4 border-indigo-500 pr-1 animate-pulse`}>AI</span>
+            <div className="relative z-10 font-mono text-white text-center px-4">
+                <span className={`${small ? 'text-lg' : 'text-2xl'} text-zinc-500`}>We build </span>
+                <span className={`${small ? 'text-lg' : 'text-2xl'} font-medium text-white`}>{text}</span>
+                <span className="animate-pulse border-r-2 border-indigo-500 ml-1 h-5 inline-block align-middle"></span>
             </div>
         </div>
     );
@@ -118,19 +118,22 @@ export const TypewriterPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const CommandPalettePreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden`}>
-            <div className={`${small ? 'w-56' : 'w-80'} bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden`}>
-                <div className="p-3 border-b border-white/5 flex items-center gap-2">
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
+            <div className={`${small ? 'w-64' : 'w-80'} bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col`}>
+                <div className="p-3 border-b border-white/5 flex items-center gap-2 bg-zinc-900/50">
                     <Search size={14} className="text-zinc-500" />
-                    <div className="h-3 w-20 bg-zinc-800 rounded animate-pulse"></div>
+                    <span className="text-xs text-zinc-500">Search commands...</span>
+                    <span className="ml-auto text-[10px] bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">⌘K</span>
                 </div>
                 <div className="p-2 space-y-1">
-                    {[1, 2].map(i => (
-                        <div key={i} className={`flex items-center gap-2 p-2 rounded-lg ${i === 1 ? 'bg-white/5' : ''}`}>
-                            <div className="w-3 h-3 rounded bg-zinc-800"></div>
-                            <div className="h-2 w-24 bg-zinc-800 rounded"></div>
-                        </div>
-                    ))}
+                    <div className="flex items-center gap-3 p-2 rounded-lg bg-indigo-600/20 text-indigo-200">
+                        <Layout size={14} />
+                        <span className="text-xs font-medium">Dashboard</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-2 rounded-lg text-zinc-400 hover:bg-white/5">
+                        <Command size={14} />
+                        <span className="text-xs">Settings</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,42 +143,56 @@ export const CommandPalettePreview: React.FC<PreviewProps> = ({ small }) => {
 export const BentoGridPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden`}>
-            <div className={`grid grid-cols-3 gap-2 ${small ? 'w-56 h-32' : 'w-80 h-48'}`}>
-                <div className="col-span-2 row-span-2 bg-zinc-800/50 border border-white/5 rounded-xl"></div>
-                <div className="bg-zinc-800/30 border border-white/5 rounded-xl"></div>
-                <div className="bg-zinc-800/30 border border-white/5 rounded-xl"></div>
+            <div className={`grid grid-cols-4 gap-2 ${small ? 'w-56 h-36' : 'w-80 h-52'}`}>
+                <div className="col-span-2 row-span-2 bg-zinc-800 border border-white/5 rounded-xl flex flex-col p-3">
+                    <div className="w-8 h-8 rounded-full bg-zinc-700 mb-auto"></div>
+                    <div className="h-2 w-16 bg-zinc-700 rounded"></div>
+                </div>
+                <div className="col-span-2 bg-zinc-900 border border-white/5 rounded-xl"></div>
+                <div className="bg-zinc-900 border border-white/5 rounded-xl"></div>
+                <div className="bg-zinc-900 border border-white/5 rounded-xl"></div>
             </div>
         </div>
     );
 };
 
 export const GlowHoverPreview: React.FC<PreviewProps> = ({ small }) => {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!divRef.current) return;
+        const rect = divRef.current.getBoundingClientRect();
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden group`}>
-            <div className={`relative ${small ? 'w-48 h-32' : 'w-80 h-48'} bg-zinc-900 border border-white/10 rounded-2xl flex items-center justify-center overflow-hidden`}>
-                <div className="absolute w-24 h-24 bg-blue-500/30 blur-2xl rounded-full pointer-events-none translate-x-10 translate-y-10"></div>
-                <MousePointer2 className="text-white relative z-10" size={24} />
+        <div
+            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden`}
+            onMouseMove={handleMouseMove}
+        >
+            <div
+                ref={divRef}
+                className={`relative ${small ? 'w-48 h-32' : 'w-80 h-48'} bg-zinc-900 border border-white/10 rounded-2xl flex items-center justify-center overflow-hidden group`}
+            >
+                <div
+                    className="pointer-events-none absolute -inset-px transition duration-300 opacity-0 group-hover:opacity-100"
+                    style={{
+                        background: `radial-gradient(300px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.1), transparent 40%)`
+                    }}
+                />
+                <span className="text-sm font-medium text-zinc-400 z-10">Hover me</span>
             </div>
         </div>
     );
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                New Previews                                */
-/* -------------------------------------------------------------------------- */
-
 export const TextRevealPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="space-y-2 text-center">
-                <motion.div
-                    initial={{ opacity: 0.2 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
-                    className={`${small ? 'text-2xl' : 'text-4xl'} font-bold text-white`}
-                >
-                    Reveal.
-                </motion.div>
+            <div className="space-y-1 text-center font-medium text-white text-2xl">
+                <motion.div initial={{ opacity: 0.1 }} animate={{ opacity: 1 }} transition={{ duration: 1, repeat: Infinity, repeatType: 'reverse', repeatDelay: 0.5 }}>Hello</motion.div>
+                <motion.div initial={{ opacity: 0.1 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2, repeat: Infinity, repeatType: 'reverse', repeatDelay: 0.5 }}>World</motion.div>
             </div>
         </div>
     );
@@ -184,22 +201,12 @@ export const TextRevealPreview: React.FC<PreviewProps> = ({ small }) => {
 export const SparklesPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="relative">
-                <span className={`${small ? 'text-2xl' : 'text-4xl'} font-bold text-white relative z-10`}>Magic</span>
-                <motion.div
-                    animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute -top-4 -right-4 text-yellow-400"
-                >
-                    <Sparkles size={20} />
-                </motion.div>
-                <motion.div
-                    animate={{ scale: [1, 1.2, 1], rotate: [0, -180, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                    className="absolute -bottom-2 -left-4 text-yellow-400"
-                >
-                    <Sparkles size={16} />
-                </motion.div>
+            <div className="relative group cursor-default">
+                <span className={`${small ? 'text-2xl' : 'text-4xl'} font-medium text-white`}>Sparkles</span>
+                {/* Simulated sparkles */}
+                <motion.div animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.5, 1] }} className="absolute -top-2 -right-3 text-yellow-300"><Sparkles size={16} /></motion.div>
+                <motion.div animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.5, delay: 0.5, repeat: Infinity, times: [0, 0.5, 1] }} className="absolute -bottom-2 -left-3 text-yellow-300"><Sparkles size={12} /></motion.div>
+                <motion.div animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.5, delay: 1.0, repeat: Infinity, times: [0, 0.5, 1] }} className="absolute top-1/2 -right-5 text-yellow-300"><Sparkles size={10} /></motion.div>
             </div>
         </div>
     );
@@ -208,21 +215,22 @@ export const SparklesPreview: React.FC<PreviewProps> = ({ small }) => {
 export const ConfettiPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full text-white font-bold text-sm shadow-lg transform active:scale-95 transition-transform">
-                Pop!
-            </button>
-            <div className="absolute inset-0 pointer-events-none">
-                {[...Array(6)].map((_, i) => (
+            <div className="relative">
+                <button className="px-5 py-2 bg-white text-black font-medium rounded-full text-sm">
+                    Celebrate
+                </button>
+                {[...Array(12)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute left-1/2 top-1/2 w-2 h-2 rounded-full"
-                        style={{ backgroundColor: ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'][i] }}
+                        className="absolute left-1/2 top-1/2 w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: ['#FFC107', '#2196F3', '#E91E63', '#4CAF50'][i % 4] }}
                         animate={{
-                            x: Math.cos(i * 60 * (Math.PI / 180)) * 60,
-                            y: Math.sin(i * 60 * (Math.PI / 180)) * 60,
+                            x: Math.cos(i * 30 * (Math.PI / 180)) * 50,
+                            y: Math.sin(i * 30 * (Math.PI / 180)) * 50,
+                            scale: [0, 1, 0],
                             opacity: [1, 0]
                         }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "circOut", delay: Math.random() }}
                     />
                 ))}
             </div>
@@ -233,24 +241,43 @@ export const ConfettiPreview: React.FC<PreviewProps> = ({ small }) => {
 export const ParallaxPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden`}>
-            <div className="space-y-4 opacity-50">
-                <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity }} className="w-32 h-20 bg-zinc-800 rounded-lg mx-auto"></motion.div>
-                <motion.div animate={{ y: [0, -40, 0] }} transition={{ duration: 4, repeat: Infinity }} className="w-40 h-24 bg-zinc-700 rounded-lg mx-auto"></motion.div>
-                <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }} className="w-32 h-20 bg-zinc-800 rounded-lg mx-auto"></motion.div>
+            <div className="absolute inset-x-0 h-[200%] top-[-50%] flex flex-col gap-4 items-center justify-center opacity-30">
+                <motion.div animate={{ y: [-20, 20] }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }} className="w-32 h-20 bg-zinc-800 rounded-lg"></motion.div>
+                <motion.div animate={{ y: [-40, 40] }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }} className="w-48 h-28 bg-zinc-700 rounded-lg"></motion.div>
+                <motion.div animate={{ y: [-15, 15] }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }} className="w-32 h-20 bg-zinc-800 rounded-lg"></motion.div>
             </div>
+            <div className="z-10 bg-zinc-950/50 px-3 py-1 rounded border border-white/10 text-xs text-white">Scroll</div>
         </div>
     );
 }
 
 export const MagneticButtonPreview: React.FC<PreviewProps> = ({ small }) => {
+    const ref = useRef<HTMLButtonElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouse = (e: React.MouseEvent) => {
+        if (!ref.current) return;
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = ref.current.getBoundingClientRect();
+        const x = clientX - (left + width / 2);
+        const y = clientY - (top + height / 2);
+        setPosition({ x, y });
+    };
+
+    const reset = () => setPosition({ x: 0, y: 0 });
+
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="relative group">
-                <div className="absolute -inset-4 bg-white/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <button className="relative px-6 py-2 bg-white text-black font-bold rounded-full transform group-hover:-translate-y-1 transition-transform">
-                    Hover
-                </button>
-            </div>
+            <motion.button
+                ref={ref}
+                animate={{ x: position.x * 0.5, y: position.y * 0.5 }}
+                onMouseMove={handleMouse}
+                onMouseLeave={reset}
+                transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+                className="px-6 py-2 bg-indigo-600 text-white rounded-full font-medium shadow-[0_0_20px_rgba(79,70,229,0.5)]"
+            >
+                Magnetic
+            </motion.button>
         </div>
     );
 }
@@ -259,9 +286,9 @@ export const MovingBorderPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
             <div className="relative p-[1px] overflow-hidden rounded-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent w-[200%] animate-[spin_3s_linear_infinite]" />
-                <div className="relative px-6 py-2 bg-zinc-950 rounded-full text-white text-sm font-medium">
-                    Border
+                <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)] animate-[spin_2s_linear_infinite]" />
+                <div className="relative px-6 py-2 bg-slate-950 rounded-full text-white text-sm font-medium backdrop-blur-3xl">
+                    Moving Border
                 </div>
             </div>
         </div>
@@ -269,23 +296,49 @@ export const MovingBorderPreview: React.FC<PreviewProps> = ({ small }) => {
 }
 
 export const SpotlightCardPreview: React.FC<PreviewProps> = ({ small }) => {
+    const divRef = useRef<HTMLDivElement>(null);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!divRef.current) return;
+        const rect = divRef.current.getBoundingClientRect();
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="w-48 h-32 bg-zinc-900 border border-white/10 rounded-xl relative overflow-hidden flex items-center justify-center">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent_70%)]"></div>
-                <span className="text-zinc-500 text-sm">Spotlight</span>
+        <div
+            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}
+            onMouseMove={handleMouseMove}
+        >
+            <div
+                ref={divRef}
+                className="relative w-48 h-32 bg-zinc-900 border border-white/10 rounded-xl overflow-hidden flex items-center justify-center group"
+            >
+                <div
+                    className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                    style={{
+                        background: `radial-gradient(150px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.15), transparent 80%)`
+                    }}
+                />
+                <span className="text-zinc-500 text-sm z-10">Spotlight</span>
             </div>
         </div>
     );
 }
 
 export const RatingStarsPreview: React.FC<PreviewProps> = ({ small }) => {
+    const [rating, setRating] = useState(3);
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
             <div className="flex gap-1">
-                {[1, 2, 3].map(i => <Star key={i} size={small ? 20 : 24} className="fill-yellow-500 text-yellow-500" />)}
-                <Star size={small ? 20 : 24} className="text-zinc-700" />
-                <Star size={small ? 20 : 24} className="text-zinc-700" />
+                {[1, 2, 3, 4, 5].map(i => (
+                    <Star
+                        key={i}
+                        size={small ? 20 : 24}
+                        className={`cursor-pointer transition-colors ${i <= rating ? 'fill-yellow-500 text-yellow-500' : 'text-zinc-700 hover:text-yellow-500'}`}
+                        onClick={(e) => { e.stopPropagation(); setRating(i); }}
+                    />
+                ))}
             </div>
         </div>
     );
@@ -294,34 +347,46 @@ export const RatingStarsPreview: React.FC<PreviewProps> = ({ small }) => {
 export const InfiniteScrollPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'} overflow-hidden`}>
-            <div className="flex flex-col gap-2 opacity-50 w-32">
+            <div className="absolute inset-0 bg-transparent z-10 border-y-[32px] border-zinc-950"></div>
+            <div className="flex flex-col gap-3 w-40 opacity-70">
                 {[1, 2, 3, 1, 2, 3].map((i, idx) => (
                     <motion.div
                         key={idx}
                         animate={{ y: [-100, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                        className="h-12 w-full bg-zinc-800 rounded-lg border border-white/5"
-                    />
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                        className="h-10 w-full bg-zinc-900 rounded border border-white/5 flex items-center px-3"
+                    >
+                        <div className="w-1/2 h-2 bg-zinc-800 rounded"></div>
+                    </motion.div>
                 ))}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-transparent to-zinc-950 z-10"></div>
         </div>
     );
 }
 
 export const AccordionPreview: React.FC<PreviewProps> = ({ small }) => {
+    const [isOpen, setIsOpen] = useState(true);
+    useEffect(() => {
+        const interval = setInterval(() => setIsOpen(p => !p), 2000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="w-48 space-y-2">
-                <div className="bg-zinc-900 border border-white/10 rounded-lg p-3">
-                    <div className="h-2 w-20 bg-zinc-700 rounded mb-2"></div>
-                    <div className="h-1 w-full bg-zinc-800 rounded"></div>
-                    <div className="h-1 w-2/3 bg-zinc-800 rounded mt-1"></div>
+            <div className={`w-48 bg-zinc-900 border border-white/10 rounded-lg overflow-hidden transition-all duration-300`}>
+                <div className="p-3 flex justify-between items-center bg-white/5">
+                    <div className="h-2 w-16 bg-zinc-500 rounded"></div>
+                    <ChevronLeft size={14} className={`text-zinc-500 transition-transform ${isOpen ? '-rotate-90' : ''}`} />
                 </div>
-                <div className="bg-zinc-900 border border-white/10 rounded-lg p-3 flex justify-between items-center opacity-50">
-                    <div className="h-2 w-20 bg-zinc-700 rounded"></div>
-                    <Plus size={12} className="text-zinc-500" />
-                </div>
+                <motion.div
+                    animate={{ height: isOpen ? 60 : 0 }}
+                    className="overflow-hidden bg-black/20"
+                >
+                    <div className="p-3 space-y-2">
+                        <div className="h-1.5 w-full bg-zinc-800 rounded"></div>
+                        <div className="h-1.5 w-2/3 bg-zinc-800 rounded"></div>
+                    </div>
+                </motion.div>
             </div>
         </div>
     );
@@ -330,12 +395,14 @@ export const AccordionPreview: React.FC<PreviewProps> = ({ small }) => {
 export const StickyScrollPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="flex gap-4 w-48 h-32">
-                <div className="w-1/3 h-full pt-4">
-                    <div className="w-full h-8 bg-indigo-500 rounded mb-2 sticky top-0"></div>
+            <div className="flex gap-4 w-48 h-32 overflow-hidden bg-zinc-900/50 rounded-lg p-2 border border-white/5">
+                <div className="w-8 shrink-0">
+                    <div className="w-full h-8 bg-indigo-500 rounded mb-20"></div>
                 </div>
-                <div className="w-2/3 h-full space-y-4 overflow-hidden mask-linear-fade">
-                    {[1, 2, 3, 4].map(i => <div key={i} className="w-full h-16 bg-zinc-800 rounded"></div>)}
+                <div className="flex-1 space-y-2">
+                    <motion.div animate={{ y: [-60, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} className="space-y-4">
+                        {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-full h-16 bg-zinc-800 rounded"></div>)}
+                    </motion.div>
                 </div>
             </div>
         </div>
@@ -345,43 +412,59 @@ export const StickyScrollPreview: React.FC<PreviewProps> = ({ small }) => {
 export const ModalPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
-            <div className="relative w-40 bg-zinc-900 border border-white/10 rounded-xl p-4 shadow-2xl transform scale-90">
-                <div className="flex justify-between items-center mb-3">
-                    <div className="h-2 w-12 bg-zinc-700 rounded"></div>
-                    <X size={10} className="text-zinc-600" />
-                </div>
-                <div className="space-y-2">
+            <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
+            <motion.div
+                animate={{ scale: [0.9, 1, 0.9] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="relative w-40 bg-zinc-900 border border-white/10 rounded-xl p-4 shadow-2xl"
+            >
+                <div className="h-2 w-10 bg-zinc-600 rounded mb-3"></div>
+                <div className="space-y-2 mb-4">
                     <div className="h-1.5 w-full bg-zinc-800 rounded"></div>
                     <div className="h-1.5 w-2/3 bg-zinc-800 rounded"></div>
                 </div>
-                <div className="mt-3 flex justify-end gap-2">
-                    <div className="h-4 w-10 bg-zinc-800 rounded"></div>
-                    <div className="h-4 w-10 bg-white rounded"></div>
+                <div className="flex justify-end gap-2">
+                    <div className="h-3 w-8 bg-zinc-800 rounded"></div>
+                    <div className="h-3 w-8 bg-white rounded"></div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
 
 export const AnimatedTabsPreview: React.FC<PreviewProps> = ({ small }) => {
+    const [active, setActive] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => setActive(p => (p + 1) % 2), 2000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="bg-zinc-900/50 p-1 rounded-full flex gap-1 border border-white/5">
-                <div className="px-3 py-1 bg-zinc-800 rounded-full text-[10px] text-white">Item</div>
-                <div className="px-3 py-1 rounded-full text-[10px] text-zinc-500">Item</div>
+            <div className="bg-zinc-900 p-1 rounded-full flex relative border border-white/5">
+                <motion.div
+                    animate={{ x: active === 0 ? 0 : '100%' }}
+                    className="absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-white rounded-full mix-blend-difference z-10"
+                />
+                <div className="px-4 py-1.5 rounded-full text-xs text-zinc-400 font-medium">Monthly</div>
+                <div className="px-4 py-1.5 rounded-full text-xs text-zinc-400 font-medium">Yearly</div>
             </div>
         </div>
     );
 }
 
 export const FloatingDockPreview: React.FC<PreviewProps> = ({ small }) => {
+    const dockItems = [1, 2, 3, 4];
     return (
         <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'min-h-[240px]' : 'min-h-[500px]'}`}>
-            <div className="flex items-end gap-2 px-3 pb-2 pt-2 bg-white/5 backdrop-blur-md rounded-xl border border-white/5">
-                <div className="w-6 h-6 bg-red-500 rounded-lg"></div>
-                <div className="w-8 h-8 bg-yellow-500 rounded-lg mb-2"></div>
-                <div className="w-6 h-6 bg-green-500 rounded-lg"></div>
+            <div className="flex items-end gap-2 px-3 pb-2 pt-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
+                {dockItems.map(i => (
+                    <motion.div
+                        key={i}
+                        whileHover={{ scale: 1.5, translateY: -10 }}
+                        className="w-8 h-8 rounded-lg bg-gradient-to-t from-gray-700 to-gray-600 border-t border-white/20 shadow-lg cursor-pointer"
+                    />
+                ))}
             </div>
         </div>
     );
@@ -409,7 +492,6 @@ export const ComponentPreview: React.FC<{ item: ComponentItem; small?: boolean }
         case 'Command Palette': return <CommandPalettePreview small={small} />;
         case 'Bento Grid': return <BentoGridPreview small={small} />;
         case 'Glow Hover': return <GlowHoverPreview small={small} />;
-        // New mappings
         case 'Text Reveal': return <TextRevealPreview small={small} />;
         case 'Sparkles': return <SparklesPreview small={small} />;
         case 'Confetti Explosion': return <ConfettiPreview small={small} />;
