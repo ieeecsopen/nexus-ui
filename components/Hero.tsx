@@ -50,39 +50,47 @@ const TypewriterInput = () => {
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative pt-48 pb-20 bg-black flex flex-col items-center overflow-hidden">
+    <div className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-black flex flex-col items-center overflow-hidden border-b border-white/[0.08]">
 
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[bottom_1px_center] [mask-image:linear-gradient(to_bottom,transparent,black)] pointer-events-none select-none"></div>
 
       <div className="w-full max-w-[1400px] mx-auto px-6 relative z-10">
 
         {/* Main Content */}
-        <div className="max-w-4xl mx-auto text-center w-full">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-zinc-400 mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            v2.0 is now live
+        <div className="max-w-5xl mx-auto text-center w-full">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 mb-8 hover:border-zinc-700 transition-colors">
+            <span className="w-2 h-2 rounded-full bg-white"></span>
+            Nexus UI v2.0
           </div>
 
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white mb-8 leading-[0.9] font-walsheim">
-            Build better,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">ship faster.</span>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+            Build your <br />
+            component library.
           </h1>
 
-          <p className="text-lg md:text-xl text-zinc-500 mb-12 max-w-xl mx-auto font-normal leading-relaxed">
-            The ultimate collection of copy-paste components for your next React project.
+          <p className="text-xl text-zinc-400 mb-10 max-w-lg mx-auto leading-relaxed">
+            Beautifully designed components that you can copy and paste into your apps. Accessible. Customizable. Open Source.
           </p>
 
-          <div className="max-w-xl mx-auto relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity"></div>
-            <div className="relative bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center p-2 transition-all group-hover:border-zinc-700">
-              <Search className="ml-3 text-zinc-500" size={20} />
-              {/* Typewriter Input */}
-              <TypewriterInput />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <button className="h-11 px-8 rounded-md bg-white text-black font-medium text-sm hover:bg-zinc-200 transition-colors w-full sm:w-auto">
+              Get Started
+            </button>
+            <button className="h-11 px-8 rounded-md bg-zinc-900 border border-zinc-800 text-white font-medium text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
+              GitHub
+            </button>
+          </div>
 
-              <div className="hidden md:flex gap-2 text-[10px] font-mono text-zinc-600 border-l border-zinc-800 pl-3">
-                <span className="px-1.5 py-1 rounded bg-zinc-800">⌘</span>
-                <span className="px-1.5 py-1 rounded bg-zinc-800">K</span>
+          {/* Cmd+K Search Trigger */}
+          <div className="max-w-md mx-auto relative group">
+            <div className="relative bg-black border border-zinc-800 rounded-xl flex items-center p-3 transition-all group-hover:border-zinc-700 shadow-sm">
+              <Search className="ml-2 text-zinc-500" size={18} />
+              <div className="ml-3 flex-1 flex items-center">
+                <TypewriterInput />
+              </div>
+              <div className="hidden md:flex gap-1 text-[10px] font-medium text-zinc-500 bg-zinc-900 border border-zinc-800 rounded px-1.5 py-0.5 items-center">
+                <span className="text-xs">⌘</span> K
               </div>
             </div>
           </div>
