@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ComponentGrid from './components/ComponentGrid';
@@ -11,18 +11,41 @@ import ShowcasePage from './components/ShowcasePage';
 import PricingPage from './components/PricingPage';
 import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
+import SearchModal from './components/SearchModal';
+import DocumentationPage from './components/DocumentationPage';
+import RoadmapPage from './components/RoadmapPage';
+import CommunityPage from './components/CommunityPage';
+import HelpCenterPage from './components/HelpCenterPage';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage';
+import TermsOfServicePage from './components/TermsOfServicePage';
+import LicensePage from './components/LicensePage';
 import { StatsSection, TagsSection, CommunityGridSection } from './components/LandingSections';
 import { FeaturesSection, CTASection } from './components/MoreSections';
 import { ComponentItem, TemplateItem } from './types';
 import { COMPONENT_ITEMS } from './constants';
 import { ArrowRight } from 'lucide-react';
 
+export type ViewType = 'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about' | 'docs' | 'roadmap' | 'community' | 'help' | 'privacy' | 'terms' | 'license';
+
 function App() {
   const [selectedComponent, setSelectedComponent] = useState<ComponentItem | null>(null);
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateItem | null>(null);
   const [isTemplateDemoMode, setIsTemplateDemoMode] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const [view, setView] = useState<'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about'>('home');
+  const [view, setView] = useState<ViewType>('home');
+
+  // Global keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleSelectComponent = (item: ComponentItem) => {
     setSelectedComponent(item);
@@ -36,7 +59,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavigate = (page: 'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about') => {
+  const handleNavigate = (page: ViewType) => {
     setView(page);
     setSelectedComponent(null);
     setSelectedTemplate(null);
@@ -62,7 +85,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
-      <Navbar onNavigate={handleNavigate} />
+      <Navbar onNavigate={handleNavigate} onOpenSearch={() => setIsSearchOpen(true)} />
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onNavigate={handleNavigate}
+        onSelectComponent={handleSelectComponent}
+        onSelectTemplate={handleSelectTemplate}
+      />
 
       <main className="relative z-10">
 
@@ -85,10 +117,10 @@ function App() {
 
         {/* VIEW: LISTINGS */}
         {!selectedComponent && !selectedTemplate && (
-          <React.Fragment> {/* Replaced motion.div with Fragment to avoid huge diff, using AnimatePresence in internal components might be cleaner but trying to stick to request */}
+          <React.Fragment>
             {view === 'home' && (
               <div className="animate-in fade-in duration-500">
-                <Hero />
+                <Hero onOpenSearch={() => setIsSearchOpen(true)} onNavigate={handleNavigate} />
                 <StatsSection />
                 <TagsSection />
                 <CommunityGridSection />
@@ -178,11 +210,53 @@ function App() {
                 <AboutPage />
               </div>
             )}
+
+            {view === 'docs' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <DocumentationPage />
+              </div>
+            )}
+
+            {view === 'roadmap' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <RoadmapPage />
+              </div>
+            )}
+
+            {view === 'community' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <CommunityPage />
+              </div>
+            )}
+
+            {view === 'help' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <HelpCenterPage />
+              </div>
+            )}
+
+            {view === 'privacy' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <PrivacyPolicyPage />
+              </div>
+            )}
+
+            {view === 'terms' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <TermsOfServicePage />
+              </div>
+            )}
+
+            {view === 'license' && (
+              <div className="animate-in fade-in duration-500 slide-in-from-bottom-4">
+                <LicensePage />
+              </div>
+            )}
           </React.Fragment>
         )}
       </main>
 
-      {!isTemplateDemoMode && <Footer />}
+      {!isTemplateDemoMode && <Footer onNavigate={handleNavigate} />}
     </div>
   );
 }
