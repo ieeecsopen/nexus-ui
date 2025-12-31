@@ -75,7 +75,7 @@ const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-900/50 border border-white/10 backdrop-blur-md text-sm font-medium text-zinc-300 mb-8 hover:bg-zinc-900/80 hover:border-indigo-500/30 transition-all cursor-default shadow-lg shadow-indigo-500/10"
+          className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-zinc-900/50 border border-white/10 backdrop-blur-md text-xs md:text-sm font-medium text-zinc-300 mb-6 md:mb-8 hover:bg-zinc-900/80 hover:border-indigo-500/30 transition-all cursor-default shadow-lg shadow-indigo-500/10"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
@@ -90,7 +90,7 @@ const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-medium tracking-tight mb-6 text-white relative z-20"
+          className="text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight mb-6 text-white relative z-20"
         >
           Build components <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-indigo-300 animate-gradient-x bg-[length:200%_auto]">
@@ -103,7 +103,7 @@ const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
+          className="text-base sm:text-lg md:text-xl text-zinc-400 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-normal px-4"
         >
           Beautifully designed, accessible components. <br className="hidden md:block" />
           Copy and paste into your apps. Open Source.

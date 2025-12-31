@@ -68,21 +68,21 @@ export const TagsSection = () => (
 /*                           Community Grid Section                           */
 /* -------------------------------------------------------------------------- */
 export const CommunityGridSection = () => (
-   <div className="py-32 bg-black border-b border-white/[0.08] relative">
+   <div className="py-16 md:py-32 bg-black border-b border-white/[0.08] relative">
 
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-indigo-900/10 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[600px] bg-indigo-900/10 blur-[80px] md:blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-         <div className="text-center mb-16">
+         <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 tracking-tight">Community Driven</h2>
-            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto">
                Join a growing community of developers building the future of web interfaces.
             </p>
          </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
             {/* Stat Card 1 */}
             <div className="p-8 border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[220px] hover:border-white/10 transition-all group">
                <div className="bg-zinc-900/50 w-12 h-12 rounded-xl flex items-center justify-center mb-auto border border-white/5 group-hover:scale-110 transition-transform">
