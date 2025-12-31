@@ -9,7 +9,7 @@ import {
 /*                                Stats Section                               */
 /* -------------------------------------------------------------------------- */
 export const StatsSection = () => (
-   <div className="border-y border-white/5 bg-zinc-950/50 backdrop-blur-sm relative z-20">
+   <div className="border-b border-white/5 bg-black relative z-20">
       <div className="max-w-[1800px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
          {[
             { label: 'Weekly Downloads', value: '12k+' },
@@ -38,6 +38,7 @@ const TAGS = [
 
 export const TagsSection = () => (
    <div className="py-24 bg-black border-b border-white/5 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
       <div className="w-full relative">
 
          {/* Gradient Masks */}
@@ -55,7 +56,7 @@ export const TagsSection = () => (
                {[...TAGS, ...TAGS].map((tag, i) => (
                   <span
                      key={`tag-1-${i}`}
-                     className="whitespace-nowrap px-6 py-3 border border-white/10 text-white text-lg font-light uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-default"
+                     className="whitespace-nowrap px-6 py-3 border border-white/10 text-white text-lg font-light uppercase tracking-widest hover:bg-white/5 transition-all cursor-default"
                   >
                      {tag}
                   </span>
@@ -71,9 +72,10 @@ export const TagsSection = () => (
 /*                           Community Grid Section                           */
 /* -------------------------------------------------------------------------- */
 export const CommunityGridSection = () => (
-   <div className="py-32 bg-black border-b border-white/[0.08] relative overflow-hidden">
+   <div className="py-32 bg-black border-b border-white/5 relative overflow-hidden">
 
-      {/* Background Glow */}
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-900/10 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
@@ -90,11 +92,11 @@ export const CommunityGridSection = () => (
                   Join a growing collective of designers and developers building the future of web interfaces together.
                </p>
                <div className="flex flex-col gap-4">
-                  <button className="h-14 px-8 border border-white/20 hover:bg-white hover:text-black hover:border-transparent text-white transition-all flex items-center justify-between group">
+                  <button className="h-14 px-8 border border-white/10 hover:bg-white/5 hover:text-white hover:border-white/20 text-zinc-300 transition-all flex items-center justify-between group backdrop-blur-md bg-zinc-900/30">
                      <span className="text-lg">Join Discord</span>
                      <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
-                  <button className="h-14 px-8 border border-white/20 hover:bg-white hover:text-black hover:border-transparent text-white transition-all flex items-center justify-between group">
+                  <button className="h-14 px-8 border border-white/10 hover:bg-white/5 hover:text-white hover:border-white/20 text-zinc-300 transition-all flex items-center justify-between group backdrop-blur-md bg-zinc-900/30">
                      <span className="text-lg">Follow Twitter</span>
                      <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </button>
@@ -106,15 +108,15 @@ export const CommunityGridSection = () => (
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-[300px]">
 
                   {/* Figma Kit - Tall */}
-                  <div className="md:row-span-2 bg-zinc-900/20 border border-white/10 backdrop-blur-sm p-10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
+                  <div className="md:row-span-2 rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
                      <div className="relative z-10">
-                        <div className="w-12 h-12 bg-white/10 flex items-center justify-center mb-6">
-                           <PenTool size={24} className="text-white" />
+                        <div className="w-12 h-12 bg-white/5 flex items-center justify-center mb-6 rounded-2xl border border-white/10 text-white">
+                           <PenTool size={24} />
                         </div>
                         <h3 className="text-3xl font-light text-white mb-2">Figma Kit</h3>
                         <p className="text-zinc-500 max-w-xs">Pixel perfect components ready for your design system.</p>
                      </div>
-                     <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-zinc-800 rounded-tl-3xl border-t border-l border-white/10 opacity-50 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500">
+                     <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-zinc-800 rounded-tl-3xl border-t border-l border-white/10 opacity-30 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500 grayscale group-hover:grayscale-0">
                         {/* Abstract mock */}
                         <div className="p-6 grid gap-4 opacity-50">
                            <div className="h-4 w-1/2 bg-zinc-600 rounded-full" />
@@ -124,7 +126,7 @@ export const CommunityGridSection = () => (
                   </div>
 
                   {/* GitHub - Square */}
-                  <div className="bg-zinc-900/20 border border-white/10 backdrop-blur-sm p-10 flex flex-col justify-between group hover:border-white/20 transition-all">
+                  <div className="rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-10 flex flex-col justify-between group hover:border-white/20 transition-all">
                      <div className="flex justify-between items-start">
                         <Github size={40} className="text-zinc-500 group-hover:text-white transition-colors" />
                         <span className="px-3 py-1 border border-white/10 text-xs uppercase tracking-widest text-zinc-500 rounded-full">Open Source</span>
@@ -136,7 +138,7 @@ export const CommunityGridSection = () => (
                   </div>
 
                   {/* Contributors - Square */}
-                  <div className="bg-white text-black p-10 flex flex-col justify-between group hover:bg-zinc-200 transition-all">
+                  <div className="rounded-3xl bg-white text-black p-10 flex flex-col justify-between group hover:bg-zinc-200 transition-all border border-transparent">
                      <div className="flex justify-between items-start">
                         <Users size={40} />
                         <ArrowUpRight />

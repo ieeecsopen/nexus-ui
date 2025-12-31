@@ -9,8 +9,12 @@ import {
 /* -------------------------------------------------------------------------- */
 export const FeaturesSection = () => {
     return (
-        <div className="py-24 bg-black border-y border-white/5">
-            <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+        <div className="py-32 bg-black border-y border-white/5 relative">
+
+            {/* Background Ambience */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
+
+            <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
                     <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-[0.9]">
@@ -28,19 +32,19 @@ export const FeaturesSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[350px]">
 
                     {/* Feature 1: TypeScript (Large) */}
-                    <div className="col-span-1 lg:col-span-2 p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
+                    <div className="col-span-1 lg:col-span-2 p-10 rounded-3xl border border-white/10 bg-zinc-900/40 backdrop-blur-xl flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
                         <div className="relative z-10 flex justify-between items-start">
                             <div>
                                 <h3 className="text-3xl font-light text-white mb-2">TypeScript First</h3>
                                 <p className="text-zinc-500 max-w-md">World-class autocompletion and type safety out of the box.</p>
                             </div>
-                            <div className="w-12 h-12 bg-blue-500/10 flex items-center justify-center text-blue-500 rounded-full border border-blue-500/20">
+                            <div className="w-12 h-12 bg-blue-500/10 flex items-center justify-center text-blue-500 rounded-2xl border border-blue-500/20">
                                 <Code size={24} />
                             </div>
                         </div>
 
                         {/* Code Mock */}
-                        <div className="mt-8 font-mono text-sm text-zinc-400 bg-black/50 p-6 rounded-lg border border-white/5 relative z-10 group-hover:border-white/10 transition-colors">
+                        <div className="mt-8 font-mono text-sm text-zinc-400 bg-black/50 p-6 rounded-xl border border-white/5 relative z-10 group-hover:border-white/10 transition-colors">
                             <div className="flex gap-2 mb-2">
                                 <span className="text-purple-400">interface</span>
                                 <span className="text-yellow-200">ButtonProps</span>
@@ -58,31 +62,31 @@ export const FeaturesSection = () => {
                     </div>
 
                     {/* Feature 2: Dark Mode */}
-                    <div className="p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
-                        <div className="w-20 h-20 bg-zinc-800 rounded-full flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500">
-                            <Moon size={32} className="text-white fill-white" />
+                    <div className="p-10 rounded-3xl border border-white/10 bg-zinc-900/40 backdrop-blur-xl flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
+                        <div className="w-20 h-20 bg-zinc-800 rounded-3xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500 text-white">
+                            <Moon size={32} />
                         </div>
                         <h3 className="text-2xl font-light text-white mb-2">Dark Mode</h3>
                         <p className="text-zinc-500">Automatic switching. Zero config.</p>
                     </div>
 
                     {/* Feature 3: Accessible */}
-                    <div className="p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
-                        <div className="w-20 h-20 bg-zinc-800 rounded-full flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500">
-                            <Check size={32} className="text-emerald-500" />
+                    <div className="p-10 rounded-3xl border border-white/10 bg-zinc-900/40 backdrop-blur-xl flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
+                        <div className="w-20 h-20 bg-zinc-800 rounded-3xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500 text-emerald-400">
+                            <Check size={32} />
                         </div>
                         <h3 className="text-2xl font-light text-white mb-2">Accessible</h3>
                         <p className="text-zinc-500">WAI-ARIA compliant compliant. Always.</p>
                     </div>
 
                     {/* Feature 4: Responsive (Large) */}
-                    <div className="col-span-1 lg:col-span-2 p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col justify-between group hover:border-white/20 transition-all relative">
+                    <div className="col-span-1 lg:col-span-2 p-10 rounded-3xl border border-white/10 bg-zinc-900/40 backdrop-blur-xl flex flex-col justify-between group hover:border-white/20 transition-all relative">
                         <div className="relative z-10 flex justify-between items-start">
                             <div>
                                 <h3 className="text-3xl font-light text-white mb-2">Responsive</h3>
                                 <p className="text-zinc-500 max-w-md">Fluid layouts that adapt to any screen size instantly.</p>
                             </div>
-                            <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center text-purple-500 rounded-full border border-purple-500/20">
+                            <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center text-purple-500 rounded-2xl border border-purple-500/20">
                                 <Smartphone size={24} />
                             </div>
                         </div>
@@ -108,6 +112,8 @@ export const FeaturesSection = () => {
 export const CTASection = () => {
     return (
         <div className="py-40 bg-black relative overflow-hidden">
+            {/* Background Ambience */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
 
             <div className="max-w-[1800px] mx-auto px-6 text-center relative z-10">
                 <h2 className="text-8xl md:text-[10rem] font-light text-white tracking-tighter leading-[0.8] mb-12 mix-blend-difference">
