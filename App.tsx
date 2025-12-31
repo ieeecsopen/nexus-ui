@@ -23,6 +23,7 @@ import { StatsSection, TagsSection, CommunityGridSection } from './components/La
 import { FeaturesSection, CTASection } from './components/MoreSections';
 import { ComponentItem, TemplateItem } from './types';
 import { COMPONENT_ITEMS } from './constants';
+import { TEMPLATE_ITEMS } from './data/templates';
 import { ArrowRight } from 'lucide-react';
 
 export type ViewType = 'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about' | 'docs' | 'roadmap' | 'community' | 'help' | 'privacy' | 'terms' | 'license';
@@ -32,8 +33,51 @@ function App() {
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateItem | null>(null);
   const [isTemplateDemoMode, setIsTemplateDemoMode] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-
   const [view, setView] = useState<ViewType>('home');
+
+  // Helper to update URL
+  const updateUrl = (newView: ViewType, componentId?: string, templateId?: string) => {
+    const params = new URLSearchParams();
+    if (newView !== 'home') params.set('view', newView);
+    if (componentId) params.set('component', componentId);
+    if (templateId) params.set('template', templateId);
+
+    const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.pushState({}, '', newUrl);
+  };
+
+  // 1. Initialize State from URL on Mount
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const viewParam = (params.get('view') as ViewType) || 'home';
+      const componentParam = params.get('component');
+      const templateParam = params.get('template');
+
+      setView(viewParam);
+
+      if (componentParam) {
+        const comp = COMPONENT_ITEMS.find(c => c.id === componentParam);
+        if (comp) setSelectedComponent(comp);
+      } else {
+        setSelectedComponent(null);
+      }
+
+      if (templateParam) {
+        const temp = TEMPLATE_ITEMS.find(t => t.id === templateParam);
+        if (temp) setSelectedTemplate(temp);
+      } else {
+        setSelectedTemplate(null);
+      }
+    };
+
+    // Initial load
+    handlePopState();
+
+    // Listen for back/forward navigation
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Global keyboard shortcut for search
   useEffect(() => {
@@ -49,13 +93,21 @@ function App() {
 
   const handleSelectComponent = (item: ComponentItem) => {
     setSelectedComponent(item);
+    updateUrl('components', item.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBack = () => {
+    // If we were exploring a component, go back to components list
+    // If we were exploring a template, go back to templates list
+    const fallbackView = selectedComponent ? 'components' : selectedTemplate ? 'templates' : 'home';
+
     setSelectedComponent(null);
     setSelectedTemplate(null);
     setIsTemplateDemoMode(false);
+    setView(fallbackView);
+
+    updateUrl(fallbackView);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -64,18 +116,24 @@ function App() {
     setSelectedComponent(null);
     setSelectedTemplate(null);
     setIsTemplateDemoMode(false);
+
+    updateUrl(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectTemplate = (item: TemplateItem) => {
     setSelectedTemplate(item);
     setIsTemplateDemoMode(false);
+    updateUrl('templates', undefined, item.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleViewTemplateDemo = (item: TemplateItem) => {
     setSelectedTemplate(item);
     setIsTemplateDemoMode(true);
+    // Demo mode might not need a unique URL, or could be ?template=id&demo=true
+    // For now, treat same as selecting template
+    updateUrl('templates', undefined, item.id);
   };
 
   // If in demo mode, render just the demo component (on top of everything)
