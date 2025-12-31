@@ -38,7 +38,7 @@ const TAGS = [
 
 export const TagsSection = () => (
    <div className="py-24 bg-black border-b border-white/5 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
+
       <div className="w-full relative">
 
          {/* Gradient Masks */}
@@ -56,7 +56,7 @@ export const TagsSection = () => (
                {[...TAGS, ...TAGS].map((tag, i) => (
                   <span
                      key={`tag-1-${i}`}
-                     className="whitespace-nowrap px-6 py-3 border border-white/10 text-white text-lg font-light uppercase tracking-widest hover:bg-white/5 transition-all cursor-default"
+                     className="whitespace-nowrap px-6 py-3 border border-white/10 text-white text-lg font-light uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-default"
                   >
                      {tag}
                   </span>
@@ -73,10 +73,6 @@ export const TagsSection = () => (
 /* -------------------------------------------------------------------------- */
 export const CommunityGridSection = () => (
    <div className="py-32 bg-black border-b border-white/5 relative overflow-hidden">
-
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-900/10 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
 

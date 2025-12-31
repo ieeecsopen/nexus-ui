@@ -11,9 +11,6 @@ export const FeaturesSection = () => {
     return (
         <div className="py-32 bg-black border-y border-white/5 relative">
 
-            {/* Background Ambience */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
-
             <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
@@ -112,8 +109,6 @@ export const FeaturesSection = () => {
 export const CTASection = () => {
     return (
         <div className="py-40 bg-black relative overflow-hidden">
-            {/* Background Ambience */}
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none"></div>
 
             <div className="max-w-[1800px] mx-auto px-6 text-center relative z-10">
                 <h2 className="text-8xl md:text-[10rem] font-light text-white tracking-tighter leading-[0.8] mb-12 mix-blend-difference">
