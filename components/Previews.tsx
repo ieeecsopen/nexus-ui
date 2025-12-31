@@ -18,16 +18,16 @@ export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     return (
-        <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative ${small ? 'h-full overflow-hidden' : 'min-h-[500px]'}`}>
+        <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative ${small ? 'h-full overflow-hidden' : ''}`}>
             <div className="absolute inset-0 bg-white/5 opacity-20 pointer-events-none" />
-            <div style={{ perspective: 2000 }}>
+            <div style={{ perspective: 2000 }} className="w-full flex justify-center p-4">
                 <motion.div
                     style={{ x, y, rotateX, rotateY, z: 100 }}
                     drag
                     dragElastic={0.16}
                     dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
                     whileTap={{ cursor: "grabbing" }}
-                    className={`${small ? 'w-48 h-64' : 'w-72 h-96'} bg-zinc-900 border border-white/10 rounded-2xl p-6 flex flex-col justify-between shadow-2xl cursor-grab`}
+                    className={`${small ? 'w-48 h-64' : 'w-full max-w-[18rem] md:max-w-xs aspect-[3/4]'} bg-zinc-900 border border-white/10 rounded-2xl p-6 flex flex-col justify-between shadow-2xl cursor-grab`}
                 >
                     <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg"></div>
                     <div>
@@ -43,7 +43,7 @@ export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const AnimatedGradientPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <motion.div
                 className="absolute -inset-[50%] opacity-50 blur-[100px]"
                 animate={{
@@ -67,7 +67,7 @@ export const AnimatedGradientPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const GlassyButtonPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full overflow-hidden' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full overflow-hidden' : ''}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent"></div>
             <button
                 className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 
@@ -106,10 +106,10 @@ export const TypewriterPreview: React.FC<PreviewProps> = ({ small }) => {
     }, [text, isDeleting, wordIndex]);
 
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="relative z-10 font-mono text-white text-center px-4">
-                <span className={`${small ? 'text-lg' : 'text-2xl'} text-zinc-500`}>We build </span>
-                <span className={`${small ? 'text-lg' : 'text-2xl'} font-medium text-white`}>{text}</span>
+                <span className={`${small ? 'text-lg' : 'text-xl md:text-2xl'} text-zinc-500`}>We build </span>
+                <span className={`${small ? 'text-lg' : 'text-xl md:text-2xl'} font-medium text-white`}>{text}</span>
                 <span className="animate-pulse border-r-2 border-indigo-500 ml-1 h-5 inline-block align-middle"></span>
             </div>
         </div>
@@ -118,8 +118,8 @@ export const TypewriterPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const CommandPalettePreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
-            <div className={`${small ? 'w-64' : 'w-80'} bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} p-4`}>
+            <div className={`${small ? 'w-64' : 'w-full max-w-sm'} bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden flex flex-col`}>
                 <div className="p-3 border-b border-white/5 flex items-center gap-2 bg-zinc-900/50">
                     <Search size={14} className="text-zinc-500" />
                     <span className="text-xs text-zinc-500">Search commands...</span>
@@ -142,8 +142,8 @@ export const CommandPalettePreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const BentoGridPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'} overflow-hidden`}>
-            <div className={`grid grid-cols-4 gap-2 ${small ? 'w-56 h-36' : 'w-80 h-52'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} overflow-hidden p-4`}>
+            <div className={`grid grid-cols-4 gap-2 ${small ? 'w-56 h-36' : 'w-full max-w-sm aspect-[16/10]'}`}>
                 <div className="col-span-2 row-span-2 bg-zinc-800 border border-white/5 rounded-xl flex flex-col p-3">
                     <div className="w-8 h-8 rounded-full bg-zinc-700 mb-auto"></div>
                     <div className="h-2 w-16 bg-zinc-700 rounded"></div>
@@ -168,12 +168,12 @@ export const GlowHoverPreview: React.FC<PreviewProps> = ({ small }) => {
 
     return (
         <div
-            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'} overflow-hidden`}
+            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} overflow-hidden p-4`}
             onMouseMove={handleMouseMove}
         >
             <div
                 ref={divRef}
-                className={`relative ${small ? 'w-48 h-32' : 'w-80 h-48'} bg-zinc-900 border border-white/10 rounded-2xl flex items-center justify-center overflow-hidden group`}
+                className={`relative ${small ? 'w-48 h-32' : 'w-full max-w-sm aspect-video'} bg-zinc-900 border border-white/10 rounded-2xl flex items-center justify-center overflow-hidden group`}
             >
                 <div
                     className="pointer-events-none absolute -inset-px transition duration-300 opacity-0 group-hover:opacity-100"
@@ -189,20 +189,20 @@ export const GlowHoverPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const TextRevealPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="space-y-1 text-center font-medium text-white text-2xl">
                 <motion.div initial={{ opacity: 0.1 }} animate={{ opacity: 1 }} transition={{ duration: 1, repeat: Infinity, repeatType: 'reverse', repeatDelay: 0.5 }}>Hello</motion.div>
                 <motion.div initial={{ opacity: 0.1 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2, repeat: Infinity, repeatType: 'reverse', repeatDelay: 0.5 }}>World</motion.div>
             </div>
         </div>
     );
-}
+};
 
 export const SparklesPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="relative group cursor-default">
-                <span className={`${small ? 'text-2xl' : 'text-4xl'} font-medium text-white`}>Sparkles</span>
+                <span className={`${small ? 'text-2xl' : 'text-3xl md:text-4xl'} font-medium text-white`}>Sparkles</span>
                 {/* Simulated sparkles */}
                 <motion.div animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.5, 1] }} className="absolute -top-2 -right-3 text-yellow-300"><Sparkles size={16} /></motion.div>
                 <motion.div animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }} transition={{ duration: 1.5, delay: 0.5, repeat: Infinity, times: [0, 0.5, 1] }} className="absolute -bottom-2 -left-3 text-yellow-300"><Sparkles size={12} /></motion.div>
@@ -210,11 +210,11 @@ export const SparklesPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const ConfettiPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="relative">
                 <button className="px-5 py-2 bg-white text-black font-medium rounded-full text-sm">
                     Celebrate
@@ -236,11 +236,11 @@ export const ConfettiPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const ParallaxPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'} overflow-hidden`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} overflow-hidden`}>
             <div className="absolute inset-x-0 h-[200%] top-[-50%] flex flex-col gap-4 items-center justify-center opacity-30">
                 <motion.div animate={{ y: [-20, 20] }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }} className="w-32 h-20 bg-zinc-800 rounded-lg"></motion.div>
                 <motion.div animate={{ y: [-40, 40] }} transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }} className="w-48 h-28 bg-zinc-700 rounded-lg"></motion.div>
@@ -249,7 +249,7 @@ export const ParallaxPreview: React.FC<PreviewProps> = ({ small }) => {
             <div className="z-10 bg-zinc-950/50 px-3 py-1 rounded border border-white/10 text-xs text-white">Scroll</div>
         </div>
     );
-}
+};
 
 export const MagneticButtonPreview: React.FC<PreviewProps> = ({ small }) => {
     const ref = useRef<HTMLButtonElement>(null);
@@ -267,7 +267,7 @@ export const MagneticButtonPreview: React.FC<PreviewProps> = ({ small }) => {
     const reset = () => setPosition({ x: 0, y: 0 });
 
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <motion.button
                 ref={ref}
                 animate={{ x: position.x * 0.5, y: position.y * 0.5 }}
@@ -280,11 +280,11 @@ export const MagneticButtonPreview: React.FC<PreviewProps> = ({ small }) => {
             </motion.button>
         </div>
     );
-}
+};
 
 export const MovingBorderPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="relative p-[1px] overflow-hidden rounded-full">
                 <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)] animate-[spin_2s_linear_infinite]" />
                 <div className="relative px-6 py-2 bg-slate-950 rounded-full text-white text-sm font-medium backdrop-blur-3xl">
@@ -293,7 +293,7 @@ export const MovingBorderPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const SpotlightCardPreview: React.FC<PreviewProps> = ({ small }) => {
     const divRef = useRef<HTMLDivElement>(null);
@@ -307,12 +307,12 @@ export const SpotlightCardPreview: React.FC<PreviewProps> = ({ small }) => {
 
     return (
         <div
-            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}
+            className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} p-4`}
             onMouseMove={handleMouseMove}
         >
             <div
                 ref={divRef}
-                className="relative w-48 h-32 bg-zinc-900 border border-white/10 rounded-xl overflow-hidden flex items-center justify-center group"
+                className="relative w-full max-w-[12rem] md:max-w-[16rem] aspect-video bg-zinc-900 border border-white/10 rounded-xl overflow-hidden flex items-center justify-center group"
             >
                 <div
                     className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
@@ -324,12 +324,12 @@ export const SpotlightCardPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const RatingStarsPreview: React.FC<PreviewProps> = ({ small }) => {
     const [rating, setRating] = useState(3);
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map(i => (
                     <Star
@@ -342,11 +342,11 @@ export const RatingStarsPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const InfiniteScrollPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'} overflow-hidden`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} overflow-hidden`}>
             <div className="absolute inset-0 bg-transparent z-10 border-y-[32px] border-zinc-950"></div>
             <div className="flex flex-col gap-3 w-40 opacity-70">
                 {[1, 2, 3, 1, 2, 3].map((i, idx) => (
@@ -362,7 +362,7 @@ export const InfiniteScrollPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const AccordionPreview: React.FC<PreviewProps> = ({ small }) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -372,8 +372,8 @@ export const AccordionPreview: React.FC<PreviewProps> = ({ small }) => {
     }, []);
 
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
-            <div className={`w-48 bg-zinc-900 border border-white/10 rounded-lg overflow-hidden transition-all duration-300`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} p-4`}>
+            <div className={`w-full max-w-[12rem] bg-zinc-900 border border-white/10 rounded-lg overflow-hidden transition-all duration-300`}>
                 <div className="p-3 flex justify-between items-center bg-white/5">
                     <div className="h-2 w-16 bg-zinc-500 rounded"></div>
                     <ChevronLeft size={14} className={`text-zinc-500 transition-transform ${isOpen ? '-rotate-90' : ''}`} />
@@ -390,12 +390,12 @@ export const AccordionPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const StickyScrollPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
-            <div className="flex gap-4 w-48 h-32 overflow-hidden bg-zinc-900/50 rounded-lg p-2 border border-white/5">
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} p-4`}>
+            <div className="flex gap-4 w-full max-w-[12rem] h-32 overflow-hidden bg-zinc-900/50 rounded-lg p-2 border border-white/5">
                 <div className="w-8 shrink-0">
                     <div className="w-full h-8 bg-indigo-500 rounded mb-20"></div>
                 </div>
@@ -407,16 +407,16 @@ export const StickyScrollPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const ModalPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} p-4`}>
             <div className="absolute inset-0 bg-black/50 backdrop-blur-[1px]"></div>
             <motion.div
                 animate={{ scale: [0.9, 1, 0.9] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="relative w-40 bg-zinc-900 border border-white/10 rounded-xl p-4 shadow-2xl"
+                className="relative w-full max-w-[10rem] bg-zinc-900 border border-white/10 rounded-xl p-4 shadow-2xl"
             >
                 <div className="h-2 w-10 bg-zinc-600 rounded mb-3"></div>
                 <div className="space-y-2 mb-4">
@@ -430,7 +430,7 @@ export const ModalPreview: React.FC<PreviewProps> = ({ small }) => {
             </motion.div>
         </div>
     );
-}
+};
 
 export const AnimatedTabsPreview: React.FC<PreviewProps> = ({ small }) => {
     const [active, setActive] = useState(0);
@@ -440,7 +440,7 @@ export const AnimatedTabsPreview: React.FC<PreviewProps> = ({ small }) => {
     }, []);
 
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="bg-zinc-900 p-1 rounded-full flex relative border border-white/5">
                 <motion.div
                     animate={{ x: active === 0 ? 0 : '100%' }}
@@ -451,12 +451,12 @@ export const AnimatedTabsPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const FloatingDockPreview: React.FC<PreviewProps> = ({ small }) => {
     const dockItems = [1, 2, 3, 4];
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''}`}>
             <div className="flex items-end gap-2 px-3 pb-2 pt-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/10">
                 {dockItems.map(i => (
                     <motion.div
@@ -468,11 +468,11 @@ export const FloatingDockPreview: React.FC<PreviewProps> = ({ small }) => {
             </div>
         </div>
     );
-}
+};
 
 export const DefaultPreview: React.FC<{ item: ComponentItem; small?: boolean }> = ({ item, small }) => {
     return (
-        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'} border border-white/10`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : ''} border border-white/10`}>
             <div className={`absolute inset-0 bg-gradient-to-br ${item.imageGradient} opacity-10`} />
             <div className="relative z-10 text-center">
                 <div className={`${small ? 'w-12 h-12' : 'w-16 h-16'} mx-auto mb-2 rounded-xl bg-gradient-to-br ${item.imageGradient} flex items-center justify-center shadow-lg`}>

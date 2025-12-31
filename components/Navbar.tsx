@@ -27,10 +27,8 @@ const Navbar: React.FC<Props> = ({ onNavigate, onOpenSearch, currentView }) => {
             className="flex items-center gap-3 cursor-pointer group mr-8"
             onClick={() => onNavigate('home')}
           >
-            <div className="w-8 h-8 bg-gradient-to-tr from-zinc-200 to-white rounded-full flex items-center justify-center text-black shadow-lg group-hover:scale-105 transition-transform">
-              <Command size={14} strokeWidth={3} />
-            </div>
-            <span className="font-medium text-white tracking-tight hidden sm:block text-sm">Nexus UI</span>
+            {/* Glowing Text Logo */}
+            <span className="font-primary text-xl font-medium text-white tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">NexusUI</span>
           </div>
 
           {/* Desktop Links */}
