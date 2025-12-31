@@ -82,41 +82,41 @@ export const CommunityGridSection = () => (
             </p>
          </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
+         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 mb-4 md:mb-6">
             {/* Stat Card 1 */}
-            <div className="p-8 border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[220px] hover:border-white/10 transition-all group">
-               <div className="bg-zinc-900/50 w-12 h-12 rounded-xl flex items-center justify-center mb-auto border border-white/5 group-hover:scale-110 transition-transform">
-                  <Grid className="text-indigo-400" size={24} />
+            <div className="p-4 md:p-8 border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[180px] md:h-[220px] hover:border-white/10 transition-all group">
+               <div className="bg-zinc-900/50 w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center mb-auto border border-white/5 group-hover:scale-110 transition-transform">
+                  <Grid className="text-indigo-400" size={20} />
                </div>
                <div>
-                  <div className="text-4xl font-semibold text-white tracking-tight mb-2">7k+</div>
-                  <div className="text-sm text-zinc-400 font-medium">Components Created</div>
+                  <div className="text-2xl md:text-4xl font-semibold text-white tracking-tight mb-1 md:mb-2">7k+</div>
+                  <div className="text-xs md:text-sm text-zinc-400 font-medium leading-tight">Components Created</div>
                </div>
             </div>
 
             {/* Stat Card 2 */}
-            <div className="p-8 border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[220px] hover:border-white/10 transition-all group">
-               <div className="bg-zinc-900/50 w-12 h-12 rounded-xl flex items-center justify-center mb-auto border border-white/5 group-hover:scale-110 transition-transform">
-                  <Users className="text-purple-400" size={24} />
+            <div className="p-4 md:p-8 border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[180px] md:h-[220px] hover:border-white/10 transition-all group">
+               <div className="bg-zinc-900/50 w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center mb-auto border border-white/5 group-hover:scale-110 transition-transform">
+                  <Users className="text-purple-400" size={20} />
                </div>
                <div>
-                  <div className="text-4xl font-semibold text-white tracking-tight mb-2">260k+</div>
-                  <div className="text-sm text-zinc-400 font-medium">Community Members</div>
+                  <div className="text-2xl md:text-4xl font-semibold text-white tracking-tight mb-1 md:mb-2">260k+</div>
+                  <div className="text-xs md:text-sm text-zinc-400 font-medium leading-tight">Community Members</div>
                </div>
             </div>
 
             {/* Discord Card */}
-            <div className="p-8 border border-white/5 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[220px] group cursor-pointer hover:border-indigo-500/30 transition-all relative overflow-hidden">
+            <div className="col-span-2 md:col-span-1 p-4 md:p-8 border border-white/5 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 backdrop-blur-md rounded-2xl flex flex-col justify-between h-[180px] md:h-[220px] group cursor-pointer hover:border-indigo-500/30 transition-all relative overflow-hidden">
                <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                <div className="flex justify-between items-start mb-auto relative z-10">
-                  <MessageSquare className="text-white group-hover:text-indigo-300 transition-colors" size={24} />
+                  <MessageSquare className="text-white group-hover:text-indigo-300 transition-colors" size={20} />
                   <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                      <ArrowRight className="text-white -rotate-45 group-hover:rotate-0 transition-transform duration-300" size={16} />
                   </div>
                </div>
                <div className="relative z-10">
-                  <div className="text-2xl font-semibold text-white mb-1">Discord</div>
-                  <div className="text-sm text-indigo-300/80">Join the discussion &rarr;</div>
+                  <div className="text-xl md:text-2xl font-semibold text-white mb-1">Discord</div>
+                  <div className="text-xs md:text-sm text-indigo-300/80">Join the discussion &rarr;</div>
                </div>
             </div>
          </div>
