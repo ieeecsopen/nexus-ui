@@ -16,7 +16,7 @@ export interface ComponentItem {
   id: string;
   title: string;
   description: string;
-  category: 'animation' | 'layout' | 'input' | 'feedback' | 'navigation';
+  category: string;
   price: 'free' | 'pro';
   imageGradient: string; // CSS gradient class or value
   isNew?: boolean;

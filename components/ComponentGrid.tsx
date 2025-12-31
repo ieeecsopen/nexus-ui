@@ -9,22 +9,39 @@ interface Props {
 }
 
 const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
-  // Group categories for sidebar (Mocking a cleaner list based on typical UI libs)
+  const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
+
+  // Filter components
+  const filteredComponents = React.useMemo(() => {
+    if (selectedCategory === 'All') return COMPONENT_ITEMS;
+    return COMPONENT_ITEMS.filter(item => item.category === selectedCategory);
+  }, [selectedCategory]);
+
+  // Derived counts
+  const categoryCounts = React.useMemo(() => {
+    const counts: Record<string, number> = {};
+    COMPONENT_ITEMS.forEach(item => {
+      counts[item.category] = (counts[item.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
   const sidebarLinks = [
-    { name: 'Accordions', count: 6 },
-    { name: 'Alerts', count: 35 },
-    { name: 'Avatars', count: 12 },
-    { name: 'Badges', count: 12 },
-    { name: 'Buttons', count: 132 },
-    { name: 'Breadcrumbs', count: 6 },
-    { name: 'Cards', count: 13 },
-    { name: 'Checkboxes', count: 6 },
-    { name: 'Dropdowns', count: 8 },
-    { name: 'Footers', count: 12, new: true },
-    { name: 'Input Groups', count: 18 },
-    { name: 'Layouts', count: 4 },
-    { name: 'Modals', count: 12 },
-    { name: 'Navbars', count: 8, new: true },
+    { name: 'All Components', count: COMPONENT_ITEMS.length, id: 'All' },
+    { name: 'Accordions', count: categoryCounts['Accordions'] || 0 },
+    { name: 'Alerts', count: categoryCounts['Alerts'] || 0 },
+    { name: 'Avatars', count: categoryCounts['Avatars'] || 0 },
+    { name: 'Badges', count: categoryCounts['Badges'] || 0 },
+    { name: 'Buttons', count: categoryCounts['Buttons'] || 0 },
+    { name: 'Breadcrumbs', count: categoryCounts['Breadcrumbs'] || 0 },
+    { name: 'Cards', count: categoryCounts['Cards'] || 0 },
+    { name: 'Checkboxes', count: categoryCounts['Checkboxes'] || 0 },
+    { name: 'Dropdowns', count: categoryCounts['Dropdowns'] || 0 },
+    { name: 'Footers', count: categoryCounts['Footers'] || 0 },
+    { name: 'Input Groups', count: categoryCounts['Input Groups'] || 0 },
+    { name: 'Layouts', count: categoryCounts['Layouts'] || 0 },
+    { name: 'Modals', count: categoryCounts['Modals'] || 0 },
+    { name: 'Navbars', count: categoryCounts['Navbars'] || 0 },
   ];
 
   return (
@@ -32,7 +49,7 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
 
       <div className="flex flex-col lg:flex-row gap-16">
 
-        {/* Sticky Sidebar - WindUI Style */}
+        {/* Sticky Sidebar */}
         <aside className="hidden lg:block w-64 flex-shrink-0">
           <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2 space-y-8 custom-scrollbar">
             <div>
@@ -40,14 +57,12 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
               <ul className="space-y-1">
                 {sidebarLinks.map((link) => (
                   <li key={link.name}>
-                    <button className="w-full text-left px-3 py-2 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors flex items-center justify-between group">
+                    <button
+                      onClick={() => setSelectedCategory(link.name === 'All Components' ? 'All' : link.name)}
+                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${selectedCategory === (link.name === 'All Components' ? 'All' : link.name) ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white hover:bg-zinc-900'}`}
+                    >
                       <span>{link.name}</span>
-                      {link.new ? (
-                        <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded uppercase">New</span>
-                      ) : (
-                        // <span className="text-[10px] text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity">{link.count}</span>
-                        null
-                      )}
+                      <span className="text-[10px] text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity">{link.count}</span>
                     </button>
                   </li>
                 ))}
@@ -75,7 +90,7 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {COMPONENT_ITEMS.map((item) => (
+            {filteredComponents.map((item) => (
               <ComponentCard
                 key={item.id}
                 item={item}
@@ -87,9 +102,11 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
 
           {/* Load More */}
           <div className="mt-20 flex justify-center">
-            <button className="px-8 py-4 rounded-full border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium text-white shadow-xl">
-              Load more components
-            </button>
+            {filteredComponents.length > 12 && (
+              <button className="px-8 py-4 rounded-full border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium text-white shadow-xl">
+                Load more components
+              </button>
+            )}
           </div>
         </div>
 

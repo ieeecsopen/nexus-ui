@@ -2,6 +2,7 @@ import { animationComponents } from './animations';
 import { inputComponents } from './inputs';
 import { layoutComponents } from './layouts';
 import { navigationComponents } from './navigation';
+import { expandedComponents } from './expanded_items';
 import { ComponentItem } from '../../types';
 
 export const ALL_COMPONENTS: ComponentItem[] = [
@@ -9,4 +10,7 @@ export const ALL_COMPONENTS: ComponentItem[] = [
   ...inputComponents,
   ...layoutComponents,
   ...navigationComponents,
-].sort((a, b) => parseInt(a.id) - parseInt(b.id));
+  ...expandedComponents,
+].sort((a, b) => {
+  return a.title.localeCompare(b.title);
+});
