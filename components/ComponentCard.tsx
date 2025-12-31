@@ -31,7 +31,7 @@ const ComponentCard: React.FC<Props> = ({ item, className = '', onClick }) => {
       {/* Preview Area (Folder style) */}
       <div className="p-6 flex-1 flex items-center justify-center bg-[#050505] relative min-h-[220px]">
         {/* Background Accent Gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${item.imageGradient || 'from-indigo-900/10 to-purple-900/10'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+        {/* Background Accent Gradient Removed as per user request */}
 
         {/* Actual Preview */}
         <div className="relative z-10 scale-90 group-hover:scale-100 transition-transform duration-300">
