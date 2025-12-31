@@ -27,7 +27,18 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 pt-8">
+        {/* Navigation */}
+        <button
+          onClick={onBack}
+          className="group flex items-center gap-2 text-zinc-400 hover:text-white mb-8 transition-colors"
+        >
+          <div className="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center group-hover:border-zinc-600 bg-zinc-900">
+            <ChevronLeft size={16} />
+          </div>
+          <span className="text-sm font-medium">Back to components</span>
+        </button>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 pt-0">
           {/* LEFT COLUMN - Preview */}
           <div className="lg:col-span-8">
             <div className="rounded-3xl border border-zinc-800 bg-[#050505] relative aspect-[4/3] group">
