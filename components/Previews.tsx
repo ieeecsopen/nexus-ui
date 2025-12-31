@@ -19,7 +19,7 @@ export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
 
     return (
         <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative overflow-hidden ${small ? 'h-full' : 'min-h-[500px]'}`}>
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
+            <div className="absolute inset-0 bg-white/5 opacity-20 pointer-events-none" />
             <div style={{ perspective: 2000 }}>
                 <motion.div
                     style={{ x, y, rotateX, rotateY, z: 100 }}
@@ -36,7 +36,7 @@ export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
                     </div>
                 </motion.div>
             </div>
-            <div className="absolute bottom-4 text-xs text-zinc-600 font-mono">Drag me</div>
+
         </div>
     );
 };
