@@ -13,36 +13,31 @@ interface Props {
 const ComponentCard: React.FC<Props> = ({ item, className = '', onClick }) => {
   return (
     <motion.div
-      className={`group bg-[#09090b] hover:bg-[#111113] border border-white/5 rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-all duration-300 ${className}`}
+      className={`group bg-black border border-white/10 rounded-2xl overflow-hidden flex flex-col cursor-pointer hover:border-white/25 transition-colors duration-500 ${className}`}
       onClick={onClick}
-      whileHover={{ y: -4, borderColor: "rgba(255,255,255,0.1)" }}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.4 }}
     >
       {/* Header */}
-      <div className="p-5 flex items-center justify-between border-b border-white/5">
-        <h3 className="text-base font-semibold text-zinc-100 group-hover:text-white transition-colors">
+      <div className="p-6 flex items-center justify-between border-b border-white/5">
+        <h3 className="text-lg font-light text-white tracking-tight group-hover:text-white transition-colors">
           {item.title}
         </h3>
-        <ArrowRight
-          size={16}
-          className="text-zinc-600 group-hover:text-zinc-300 transition-colors transform group-hover:translate-x-1"
-        />
-      </div>
-
-      {/* Preview Area (Folder style) */}
-      <div className="p-6 flex-1 flex items-center justify-center bg-[#050505] relative min-h-[220px]">
-        {/* Background Accent Gradient */}
-        {/* Background Accent Gradient Removed as per user request */}
-
-        {/* Actual Preview */}
-        <div className="relative z-10 scale-90 group-hover:scale-100 transition-transform duration-300">
-          <ComponentPreview item={item} small />
+        <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-zinc-500 group-hover:border-white/30 group-hover:text-white transition-all duration-500">
+          <ArrowRight size={14} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
         </div>
       </div>
 
-      {/* Footer Info (Optional - variations count mock) */}
-      {/* <div className="px-5 py-3 border-t border-white/5 bg-zinc-900/50">
-         <span className="text-[10px] uppercase tracking-wider text-zinc-600 font-medium">3 Variations</span>
-      </div> */}
+      {/* Preview Area (Folder style) */}
+      <div className="p-8 flex-1 flex items-center justify-center bg-zinc-900/20 relative min-h-[240px]">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px_16px]" />
+
+        {/* Actual Preview */}
+        <div className="relative z-10 scale-90 group-hover:scale-100 transition-transform duration-500 ease-out">
+          <ComponentPreview item={item} small />
+        </div>
+      </div>
     </motion.div>
   );
 };

@@ -52,97 +52,116 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
   };
 
   return (
-    <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-12" id="components">
+    <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-20 bg-black min-h-screen text-white" id="components">
 
       <div className="flex flex-col lg:flex-row gap-16">
 
-        {/* Sticky Sidebar (Desktop) */}
-        <aside className="hidden lg:block w-64 flex-shrink-0">
-          <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2 space-y-8 custom-scrollbar">
+        {/* Sticky Sidebar (Desktop) - Minimalist Redesign */}
+        <aside className="hidden lg:block w-72 flex-shrink-0">
+          <div className="sticky top-32 max-h-[calc(100vh-8rem)] overflow-y-auto pr-6 space-y-12 custom-scrollbar">
             <div>
-              <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-6 px-3">Components</h4>
-              <ul className="space-y-1">
-                {sidebarLinks.map((link) => (
-                  <li key={link.name}>
-                    <button
-                      onClick={() => handleCategorySelect(link.name)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center justify-between group ${selectedCategory === (link.name === 'All Components' ? 'All' : link.name) ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white hover:bg-zinc-900'}`}
-                    >
-                      <span>{link.name}</span>
-                      <span className="text-[10px] text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity">{link.count}</span>
-                    </button>
-                  </li>
-                ))}
+              <h4 className="text-xs font-semibold text-white uppercase tracking-widest mb-8">Categories</h4>
+              <ul className="space-y-4 border-l border-zinc-800 ml-1">
+                {sidebarLinks.map((link) => {
+                  const isActive = selectedCategory === (link.name === 'All Components' ? 'All' : link.name);
+                  return (
+                    <li key={link.name} className="relative pl-6">
+                      {/* Active Indicator Line */}
+                      {isActive && (
+                        <div className="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-white transition-all duration-300" />
+                      )}
+                      <button
+                        onClick={() => handleCategorySelect(link.name)}
+                        className={`w-full text-left text-sm transition-all duration-300 flex items-center justify-between group ${isActive
+                            ? 'text-white font-medium'
+                            : 'text-zinc-500 hover:text-white'
+                          }`}
+                      >
+                        <span className="tracking-wide">{link.name}</span>
+                        <span className={`text-[10px] tabular-nums transition-opacity duration-300 ${isActive ? 'text-zinc-400 opacity-100' : 'text-zinc-600 opacity-0 group-hover:opacity-100'}`}>
+                          {link.count}
+                        </span>
+                      </button>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
 
-            <div className="p-4 rounded-xl bg-zinc-900/50 border border-zinc-800">
-              <p className="text-xs text-zinc-400 mb-3">Can't find what you're looking for?</p>
-              <button className="text-xs font-bold text-white flex items-center gap-1 hover:text-indigo-400 transition-colors">
-                Request a Component <ArrowRight size={12} />
+            <div className="p-6 rounded-none border border-white/10 bg-zinc-900/20 backdrop-blur-sm">
+              <p className="text-sm font-light text-zinc-400 mb-4 leading-relaxed">Missing a component?</p>
+              <button className="text-sm font-medium text-white flex items-center gap-2 hover:gap-3 transition-all">
+                Request it <ArrowRight size={14} />
               </button>
             </div>
           </div>
         </aside>
 
-        {/* Mobile Filter Drawer */}
+        {/* Mobile Filter Drawer - Matched Aesthetic */}
         {isMobileFiltersOpen && (
           <div className="lg:hidden fixed inset-0 z-[100] flex justify-end">
-            {/* Backdrop */}
             <div
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in"
+              className="absolute inset-0 bg-black/90 backdrop-blur-md animate-in fade-in duration-300"
               onClick={() => setIsMobileFiltersOpen(false)}
             />
-
-            {/* Drawer Content */}
-            <div className="relative w-[300px] h-full bg-zinc-950 border-l border-white/10 p-6 overflow-y-auto animate-in slide-in-from-right duration-300">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-light text-white">Categories</h3>
+            <div className="relative w-[320px] h-full bg-black border-l border-white/10 p-8 overflow-y-auto animate-in slide-in-from-right duration-300">
+              <div className="flex items-center justify-between mb-12">
+                <h3 className="text-2xl font-light text-white tracking-tight">Categories</h3>
                 <button
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-full transition-colors"
+                  className="p-2 text-zinc-400 hover:text-white rounded-full transition-colors border border-transparent hover:border-white/10"
                 >
-                  <X size={20} />
+                  <X size={24} strokeWidth={1} />
                 </button>
               </div>
 
-              <div className="space-y-1">
-                {sidebarLinks.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => handleCategorySelect(link.name)}
-                    className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-colors flex items-center justify-between ${selectedCategory === (link.name === 'All Components' ? 'All' : link.name) ? 'bg-white text-black' : 'text-zinc-400 hover:text-white hover:bg-white/5'}`}
-                  >
-                    <span>{link.name}</span>
-                    <span className={`text-[10px] ${selectedCategory === (link.name === 'All Components' ? 'All' : link.name) ? 'text-zinc-500' : 'text-zinc-600'}`}>{link.count}</span>
-                  </button>
-                ))}
+              <div className="space-y-4 border-l border-zinc-800 ml-1">
+                {sidebarLinks.map((link) => {
+                  const isActive = selectedCategory === (link.name === 'All Components' ? 'All' : link.name);
+                  return (
+                    <button
+                      key={link.name}
+                      onClick={() => handleCategorySelect(link.name)}
+                      className={`w-full text-left pl-6 py-1 relative text-lg font-light transition-colors flex items-center justify-between ${isActive ? 'text-white font-normal' : 'text-zinc-500'}`}
+                    >
+                      {isActive && (
+                        <div className="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-white" />
+                      )}
+                      <span>{link.name}</span>
+                      <span className={`text-xs ${isActive ? 'text-zinc-500' : 'text-zinc-700'}`}>{link.count}</span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
           </div>
         )}
 
         {/* Main Content */}
-        <div className="flex-1">
-          {/* Header */}
-          <div className="mb-16 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Nexus UI Components</h1>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto lg:mx-0 mb-8">
-              Explore the whole collection of responsive, accessible components built with React and Tailwind ready to be used on your website or app.
+        <div className="flex-1 min-w-0">
+          {/* Header - Editorial Style */}
+          <div className="mb-24 text-center lg:text-left">
+            <h1 className="text-6xl md:text-8xl font-light text-white mb-8 tracking-tighter leading-[0.85]">
+              Nexus UI <br />
+              <span className="text-zinc-600">Components.</span>
+            </h1>
+            <p className="text-zinc-400 text-xl font-light max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+              Meticulously crafted, accessible, and performant. <br className="hidden md:block" />
+              Ready for your next ambitious project.
             </p>
 
             {/* Inline Mobile Filter Button */}
             <button
               onClick={() => setIsMobileFiltersOpen(true)}
-              className="lg:hidden inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-800 bg-zinc-900 text-white hover:bg-zinc-800 transition-colors font-medium"
+              className="lg:hidden inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/10 bg-zinc-900/50 text-white hover:bg-white hover:text-black transition-all duration-300 font-medium tracking-wide"
             >
               <Filter size={18} />
               Filter Components
             </button>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Grid - Clean Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredComponents.map((item) => (
               <ComponentCard
                 key={item.id}
@@ -154,9 +173,9 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
           </div>
 
           {/* Load More */}
-          <div className="mt-20 flex justify-center">
+          <div className="mt-32 flex justify-center">
             {filteredComponents.length > 12 && (
-              <button className="px-8 py-4 rounded-full border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 hover:border-zinc-700 transition-all text-sm font-medium text-white shadow-xl">
+              <button className="px-10 py-5 rounded-full border border-white/10 text-white hover:bg-white hover:text-black transition-all duration-500 text-sm font-medium tracking-widest uppercase">
                 Load more components
               </button>
             )}
