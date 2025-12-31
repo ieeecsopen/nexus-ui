@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
-import { Menu, X, Command, Github } from 'lucide-react';
-import { NAV_LINKS } from '../constants';
+import { Menu, X, Command, Github, Search } from 'lucide-react';
+import { NAV_LINKS, SOCIAL_LINKS, ViewType } from '../constants';
 
 interface Props {
-  onNavigate: (view: 'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about') => void;
+  onNavigate: (view: ViewType) => void;
+  onOpenSearch?: () => void;
 }
 
-const Navbar: React.FC<Props> = ({ onNavigate }) => {
+const Navbar: React.FC<Props> = ({ onNavigate, onOpenSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleLinkClick = (e: React.MouseEvent, label: string) => {
+  const handleLinkClick = (e: React.MouseEvent, view: ViewType) => {
     e.preventDefault();
-    if (label === 'Components') {
-      onNavigate('components');
-    } else if (label === 'Templates') {
-      onNavigate('templates');
-    } else if (label === 'Showcase') {
-      onNavigate('showcase');
-    } else if (label === 'Pricing') {
-      onNavigate('pricing');
-    } else if (label === 'About') {
-      onNavigate('about');
-    } else if (label === 'Home') {
-      onNavigate('home');
-    }
+    onNavigate(view);
     setIsMobileMenuOpen(false);
   };
 
@@ -49,7 +38,7 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.label)}
+                onClick={(e) => handleLinkClick(e, link.view)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${link.active
                   ? 'text-white bg-white/10'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
@@ -62,12 +51,33 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <button className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors">
+            {/* Search Button */}
+            {onOpenSearch && (
+              <button
+                onClick={onOpenSearch}
+                className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+                title="Search (⌘K)"
+              >
+                <Search size={18} />
+              </button>
+            )}
+            {/* GitHub Button */}
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex w-9 h-9 items-center justify-center rounded-full text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+            >
               <Github size={18} />
-            </button>
-            <button className="bg-white text-black px-5 py-2 rounded-full text-xs font-medium hover:bg-zinc-200 transition-colors">
+            </a>
+            {/* Get Started Button */}
+            <button
+              onClick={() => onNavigate('docs')}
+              className="bg-white text-black px-5 py-2 rounded-full text-xs font-medium hover:bg-zinc-200 transition-colors"
+            >
               Get Started
             </button>
+            {/* Mobile Menu Toggle */}
             <button
               className="md:hidden w-9 h-9 flex items-center justify-center rounded-full text-zinc-400 hover:text-white hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -86,12 +96,20 @@ const Navbar: React.FC<Props> = ({ onNavigate }) => {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleLinkClick(e, link.label)}
+                onClick={(e) => handleLinkClick(e, link.view)}
                 className="text-2xl font-medium text-zinc-400 hover:text-white"
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl font-medium text-zinc-400 hover:text-white flex items-center gap-2"
+            >
+              <Github size={24} /> GitHub
+            </a>
           </div>
         </div>
       )}

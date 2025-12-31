@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Github } from 'lucide-react';
+import { SOCIAL_LINKS, ViewType } from '../constants';
 
-const TypewriterInput = () => {
+interface Props {
+  onOpenSearch?: () => void;
+  onNavigate?: (page: ViewType) => void;
+}
+
+const TypewriterInput: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
   const placeholders = [
     "Search components...",
     "Search animations...",
@@ -43,12 +49,14 @@ const TypewriterInput = () => {
     <input
       type="text"
       placeholder={currentPlaceholder}
-      className="w-full bg-transparent border-none py-2 px-4 text-white placeholder-zinc-500 focus:outline-none focus:ring-0 text-base"
+      onClick={onClick}
+      readOnly
+      className="w-full bg-transparent border-none py-2 px-4 text-white placeholder-zinc-500 focus:outline-none focus:ring-0 text-base cursor-pointer"
     />
   );
 };
 
-const Hero: React.FC = () => {
+const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
   return (
     <div className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-black flex flex-col items-center overflow-hidden border-b border-white/[0.08]">
 
@@ -74,20 +82,29 @@ const Hero: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <button className="h-11 px-8 rounded-md bg-white text-black font-medium text-sm hover:bg-zinc-200 transition-colors w-full sm:w-auto">
+            <button
+              onClick={() => onNavigate?.('docs')}
+              className="h-11 px-8 rounded-md bg-white text-black font-medium text-sm hover:bg-zinc-200 transition-colors w-full sm:w-auto"
+            >
               Get Started
             </button>
-            <button className="h-11 px-8 rounded-md bg-zinc-900 border border-zinc-800 text-white font-medium text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto">
+            <a
+              href={SOCIAL_LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-11 px-8 rounded-md bg-zinc-900 border border-zinc-800 text-white font-medium text-sm hover:bg-zinc-800 transition-colors w-full sm:w-auto flex items-center justify-center gap-2"
+            >
+              <Github size={16} />
               GitHub
-            </button>
+            </a>
           </div>
 
           {/* Cmd+K Search Trigger */}
-          <div className="max-w-md mx-auto relative group">
-            <div className="relative bg-black border border-zinc-800 rounded-xl flex items-center p-3 transition-all group-hover:border-zinc-700 shadow-sm">
+          <div className="max-w-md mx-auto relative group" onClick={onOpenSearch}>
+            <div className="relative bg-black border border-zinc-800 rounded-xl flex items-center p-3 transition-all group-hover:border-zinc-700 shadow-sm cursor-pointer">
               <Search className="ml-2 text-zinc-500" size={18} />
               <div className="ml-3 flex-1 flex items-center">
-                <TypewriterInput />
+                <TypewriterInput onClick={onOpenSearch} />
               </div>
               <div className="hidden md:flex gap-1 text-[10px] font-medium text-zinc-500 bg-zinc-900 border border-zinc-800 rounded px-1.5 py-0.5 items-center">
                 <span className="text-xs">⌘</span> K
