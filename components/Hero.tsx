@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Github, ArrowRight, Sparkles, Command } from 'lucide-react';
+import { Search, Github, ArrowRight, Sparkles, Command, ArrowUpRight, Zap, Layers, Box } from 'lucide-react';
 import { SOCIAL_LINKS, ViewType } from '../constants';
 import { motion } from 'framer-motion';
 
@@ -8,158 +8,152 @@ interface Props {
   onNavigate?: (page: ViewType) => void;
 }
 
-const TypewriterInput: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
-  const placeholders = [
-    "Search components...",
-    "Search animations...",
-    "Search templates...",
-    "Search buttons...",
-    "Search navbars..."
-  ];
-  const [currentPlaceholder, setCurrentPlaceholder] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      const currentText = placeholders[currentIndex];
-
-      if (!isDeleting && charIndex < currentText.length) {
-        // Typing
-        setCurrentPlaceholder(currentText.substring(0, charIndex + 1));
-        setCharIndex(prev => prev + 1);
-      } else if (isDeleting && charIndex > 0) {
-        // Deleting
-        setCurrentPlaceholder(currentText.substring(0, charIndex - 1));
-        setCharIndex(prev => prev - 1);
-      } else if (!isDeleting && charIndex === currentText.length) {
-        // Pause at end
-        setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && charIndex === 0) {
-        // Move to next word
-        setIsDeleting(false);
-        setCurrentIndex((prev) => (prev + 1) % placeholders.length);
-      }
-    }, isDeleting ? 50 : 100);
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, currentIndex]);
-
-  return (
-    <input
-      type="text"
-      placeholder={currentPlaceholder}
-      onClick={onClick}
-      readOnly
-      className="w-full bg-transparent border-none py-3 px-4 text-white placeholder-zinc-500 focus:outline-none focus:ring-0 text-lg cursor-pointer font-medium"
-    />
-  );
-};
-
 const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
   return (
-    <div className="relative min-h-[90vh] flex flex-col items-center justify-center pt-20 overflow-hidden bg-black selection:bg-indigo-500/30">
+    <div className="relative min-h-screen flex flex-col justify-center pt-20 bg-black selection:bg-indigo-500/30 overflow-hidden">
 
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] pointer-events-none"></div>
+      {/* Background Ambience */}
+      <div className="absolute top-[-20%] right-[-10%] w-[1000px] h-[1000px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
 
-      {/* Spotlight / Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-500/20 blur-[120px] rounded-full pointer-events-none opacity-50 mix-blend-screen"></div>
-      <div className="absolute bottom-0 left-1/4 w-[800px] h-[400px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none opacity-30"></div>
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10 w-full">
 
-      <div className="w-full max-w-[1400px] mx-auto px-6 relative z-10 text-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
 
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-zinc-900/50 border border-white/10 backdrop-blur-md text-xs md:text-sm font-medium text-zinc-300 mb-6 md:mb-8 hover:bg-zinc-900/80 hover:border-indigo-500/30 transition-all cursor-default shadow-lg shadow-indigo-500/10"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-          </span>
-          Nexus UI v2.0 is now live
-          <ArrowRight size={14} className="ml-1 text-zinc-500" />
-        </motion.div>
+          {/* Left Column: Typography & Search */}
+          <div className="lg:col-span-7">
 
-        {/* Main Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-medium tracking-tight mb-6 text-white relative z-20"
-        >
-          Build components <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-indigo-300 animate-gradient-x bg-[length:200%_auto]">
-            super fast.
-          </span>
-        </motion.h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-sm text-zinc-300 mb-12"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              v2.0 is now live
+            </motion.div>
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base sm:text-lg md:text-xl text-zinc-400 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-normal px-4"
-        >
-          Beautifully designed, accessible components. <br className="hidden md:block" />
-          Copy and paste into your apps. Open Source.
-        </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-7xl md:text-8xl lg:text-[7rem] font-light tracking-tighter text-white leading-[0.9] mb-12"
+            >
+              Ship faster.<br />
+              <span className="text-zinc-500">Look better.</span>
+            </motion.h1>
 
-        {/* Search Bar - Main CTA */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="max-w-xl mx-auto mb-16 relative z-30 group"
-          onClick={onOpenSearch}
-        >
-          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl opacity-30 blur-lg group-hover:opacity-60 transition duration-500"></div>
-          <div className="relative bg-zinc-950/80 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center p-2 pl-4 transition-all group-hover:bg-zinc-900/90 group-hover:border-white/20 shadow-2xl">
-            <Search className="text-zinc-400" size={24} />
-            <div className="flex-1">
-              <TypewriterInput onClick={onOpenSearch} />
-            </div>
-            <div className="hidden md:flex gap-2 items-center pr-3">
-              <kbd className="hidden md:inline-flex h-6 items-center gap-1 rounded border border-zinc-700 bg-zinc-800 px-2 font-mono text-[10px] font-medium text-zinc-400 opacity-100">
-                <span className="text-xs">⌘</span>K
-              </kbd>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-2xl text-zinc-400 font-light max-w-xl mb-16 leading-relaxed"
+            >
+              A premium collection of high-performance, accessible components.
+              Copy, paste, and ship your next breakthrough.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 items-start"
+            >
+              <div
+                onClick={onOpenSearch}
+                className="group relative w-full max-w-md h-16 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 backdrop-blur-3xl rounded-2xl flex items-center px-6 cursor-pointer transition-all duration-300"
+              >
+                <Search className="text-zinc-500 group-hover:text-white transition-colors mr-4" size={24} />
+                <span className="text-zinc-500 text-lg font-light group-hover:text-zinc-300 transition-colors">Search anything...</span>
+                <div className="ml-auto hidden md:flex items-center gap-2">
+                  <kbd className="h-8 px-3 rounded-lg bg-black/40 border border-white/10 text-xs text-zinc-500 font-mono flex items-center justify-center">⌘K</kbd>
+                </div>
+              </div>
+
+              <button
+                onClick={() => onNavigate?.('components')}
+                className="h-16 px-8 rounded-2xl bg-white text-black font-medium text-lg hover:bg-zinc-200 transition-colors flex items-center gap-2 shrink-0"
+              >
+                Browse Library <ArrowRight size={20} />
+              </button>
+            </motion.div>
+
+          </div>
+
+          {/* Right Column: Bento Grid of Glass Cards */}
+          <div className="lg:col-span-5 relative">
+            <div className="grid grid-cols-2 gap-4 auto-rows-[180px]">
+
+              {/* Card 1: Components Count (Tall) */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="row-span-2 rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 flex flex-col justify-between group hover:border-white/20 transition-all"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/20 group-hover:scale-110 transition-transform duration-500">
+                  <Box size={24} />
+                </div>
+                <div>
+                  <div className="text-6xl font-light text-white mb-2 tracking-tighter">500+</div>
+                  <div className="text-zinc-500 font-medium uppercase tracking-widest text-sm">Components</div>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Templates (Square) */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                onClick={() => onNavigate?.('templates')}
+                className="rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 flex flex-col justify-between cursor-pointer hover:bg-white/5 transition-all group"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center border border-pink-500/20">
+                    <Layers size={20} />
+                  </div>
+                  <ArrowUpRight className="text-zinc-600 group-hover:text-white transition-colors" />
+                </div>
+                <div>
+                  <div className="text-3xl font-light text-white mb-1">Templates</div>
+                  <div className="text-zinc-500 text-sm">Full layouts ready to ship</div>
+                </div>
+              </motion.div>
+
+              {/* Card 3: GitHub (Square) */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-8 flex flex-col justify-between group hover:border-white/20 transition-all"
+              >
+                <div className="w-10 h-10 rounded-xl bg-zinc-800 text-white flex items-center justify-center border border-white/10">
+                  <Github size={20} />
+                </div>
+                <div>
+                  <div className="text-3xl font-light text-white mb-1">Open Source</div>
+                  <div className="text-zinc-500 text-sm">Join the revolution</div>
+                </div>
+              </motion.div>
+
             </div>
           </div>
-        </motion.div>
 
-        {/* Secondary Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6"
-        >
-          <button
-            onClick={() => onNavigate?.('components')}
-            className="group h-12 px-8 rounded-full bg-white text-black font-semibold text-sm hover:bg-zinc-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
-          >
-            Browse Components
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <a
-            href={SOCIAL_LINKS.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="h-12 px-8 rounded-full bg-black border border-zinc-800 text-zinc-300 font-semibold text-sm hover:text-white hover:bg-zinc-900 hover:border-zinc-700 transition-all flex items-center gap-2"
-          >
-            <Github size={18} />
-            Star on GitHub
-          </a>
-        </motion.div>
+        </div>
 
       </div>
 
-      {/* Decorative Bottom Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+      {/* Decorative Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+      >
+        <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent" />
+      </motion.div>
+
     </div>
   );
 };
