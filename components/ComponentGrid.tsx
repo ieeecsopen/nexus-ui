@@ -85,19 +85,9 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
           </div>
         </aside>
 
-        {/* Mobile Filter Button */}
-        <div className="lg:hidden fixed bottom-6 right-6 z-[100]">
-          <button
-            onClick={() => setIsMobileFiltersOpen(true)}
-            className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium shadow-2xl hover:bg-zinc-200 transition-colors"
-          >
-            <Filter size={18} /> Filters
-          </button>
-        </div>
-
         {/* Mobile Filter Drawer */}
         {isMobileFiltersOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 flex justify-end">
+          <div className="lg:hidden fixed inset-0 z-[100] flex justify-end">
             {/* Backdrop */}
             <div
               className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-in fade-in"
@@ -137,9 +127,18 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
           {/* Header */}
           <div className="mb-16 text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Nexus UI Components</h1>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto lg:mx-0">
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto lg:mx-0 mb-8">
               Explore the whole collection of responsive, accessible components built with React and Tailwind ready to be used on your website or app.
             </p>
+
+            {/* Inline Mobile Filter Button */}
+            <button
+              onClick={() => setIsMobileFiltersOpen(true)}
+              className="lg:hidden inline-flex items-center gap-2 px-6 py-3 rounded-full border border-zinc-800 bg-zinc-900 text-white hover:bg-zinc-800 transition-colors font-medium"
+            >
+              <Filter size={18} />
+              Filter Components
+            </button>
           </div>
 
           {/* Grid */}
