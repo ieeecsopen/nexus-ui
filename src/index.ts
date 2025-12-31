@@ -24,7 +24,7 @@ export * from './components/Checkbox';
 export * from './components/Alert';
 export * from './components/Breadcrumb';
 
-// New Components
+// Batch 1 New Components
 export * from './components/BentoGrid';
 export * from './components/Masonry';
 export * from './components/Skeleton';
@@ -47,3 +47,25 @@ export * from './components/Footer';
 export * from './components/Tooltip';
 export * from './components/HoverCard';
 export * from './components/Progress';
+
+// Batch 2 New Components
+export * from './components/Command';
+export * from './components/Pagination';
+export * from './components/Table';
+export * from './components/AvatarGroup';
+export * from './components/Toggle';
+export * from './components/ToggleGroup';
+export * from './components/AspectRatio';
+export * from './components/ScrollArea';
+export * from './components/Collapsible';
+export * from './components/Carousel';
+export * from './components/Drawer';
+export * from './components/Toast';
+export * from './components/Timeline';
+export * from './components/StepWizard';
+export * from './components/Statistic';
+export * from './components/Kbd';
+export * from './components/CodeBlock';
+export * from './components/HeroHighlight';
+export * from './components/WavyBackground';
+export * from './components/InfiniteScroll';

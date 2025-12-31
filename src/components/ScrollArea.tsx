@@ -1,0 +1,18 @@
+import * as React from "react"
+import { cn } from "../lib/utils"
+
+export const ScrollArea = React.forwardRef<
+    HTMLDivElement,
+    React.HTMLAttributes<HTMLDivElement>
+>(({ className, children, ...props }, ref) => (
+    <div
+        ref={ref}
+        className={cn("relative overflow-hidden", className)}
+        {...props}
+    >
+        <div className="h-full w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+            {children}
+        </div>
+    </div>
+))
+ScrollArea.displayName = "ScrollArea"
