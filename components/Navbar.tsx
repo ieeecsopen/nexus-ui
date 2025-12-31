@@ -5,9 +5,10 @@ import { NAV_LINKS, SOCIAL_LINKS, ViewType } from '../constants';
 interface Props {
   onNavigate: (view: ViewType) => void;
   onOpenSearch?: () => void;
+  currentView: ViewType;
 }
 
-const Navbar: React.FC<Props> = ({ onNavigate, onOpenSearch }) => {
+const Navbar: React.FC<Props> = ({ onNavigate, onOpenSearch, currentView }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLinkClick = (e: React.MouseEvent, view: ViewType) => {
@@ -39,7 +40,7 @@ const Navbar: React.FC<Props> = ({ onNavigate, onOpenSearch }) => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.view)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${link.active
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${link.view === currentView
                   ? 'text-white bg-white/10'
                   : 'text-zinc-400 hover:text-white hover:bg-white/5'
                   }`}
