@@ -30,7 +30,7 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 pt-8">
           {/* LEFT COLUMN - Preview */}
           <div className="lg:col-span-8">
-            <div className="rounded-3xl border border-zinc-800 bg-[#050505] overflow-hidden relative aspect-[4/3] group">
+            <div className="rounded-3xl border border-zinc-800 bg-[#050505] relative aspect-[4/3] group">
               <div className="absolute top-6 right-6 z-20 flex gap-2">
                 <button
                   onClick={() => setActiveTab('preview')}
@@ -241,9 +241,9 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
                 <div key={i} className="group cursor-pointer">
                   <div className="aspect-video rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden relative mb-4 group-hover:border-zinc-700 transition-colors">
                     <div className={`absolute inset-0 bg-gradient-to-br ${i === 1 ? 'from-purple-900/50 to-blue-900/30' :
-                        i === 2 ? 'from-emerald-900/50 to-teal-900/30' :
-                          i === 3 ? 'from-orange-900/50 to-red-900/30' :
-                            'from-pink-900/50 to-rose-900/30'
+                      i === 2 ? 'from-emerald-900/50 to-teal-900/30' :
+                        i === 3 ? 'from-orange-900/50 to-red-900/30' :
+                          'from-pink-900/50 to-rose-900/30'
                       }`}></div>
                     {/* Mock UI Elements */}
                     <div className="absolute inset-0 flex items-center justify-center p-6">
@@ -287,9 +287,9 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
                 <div key={i} className="group cursor-pointer">
                   <div className="aspect-video rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden relative mb-4 group-hover:border-zinc-700 transition-colors">
                     <div className={`absolute inset-0 bg-gradient-to-br ${i === 5 ? 'from-indigo-900/50 to-purple-900/30' :
-                        i === 6 ? 'from-blue-900/50 to-cyan-900/30' :
-                          i === 7 ? 'from-green-900/50 to-lime-900/30' :
-                            'from-yellow-900/50 to-orange-900/30'
+                      i === 6 ? 'from-blue-900/50 to-cyan-900/30' :
+                        i === 7 ? 'from-green-900/50 to-lime-900/30' :
+                          'from-yellow-900/50 to-orange-900/30'
                       }`}></div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-zinc-600 font-mono text-xs tracking-widest uppercase">Preview</div>

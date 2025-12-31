@@ -18,7 +18,7 @@ export const TiltCardPreview: React.FC<PreviewProps> = ({ small }) => {
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     return (
-        <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative overflow-hidden ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`w-full h-full flex items-center justify-center bg-zinc-950 perspective-[2000px] relative ${small ? 'h-full overflow-hidden' : 'min-h-[500px]'}`}>
             <div className="absolute inset-0 bg-white/5 opacity-20 pointer-events-none" />
             <div style={{ perspective: 2000 }}>
                 <motion.div
@@ -67,7 +67,7 @@ export const AnimatedGradientPreview: React.FC<PreviewProps> = ({ small }) => {
 
 export const GlassyButtonPreview: React.FC<PreviewProps> = ({ small }) => {
     return (
-        <div className={`relative w-full h-full overflow-hidden bg-zinc-950 flex items-center justify-center ${small ? 'h-full' : 'min-h-[500px]'}`}>
+        <div className={`relative w-full h-full bg-zinc-950 flex items-center justify-center ${small ? 'h-full overflow-hidden' : 'min-h-[500px]'}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent"></div>
             <button
                 className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 
