@@ -90,7 +90,7 @@ const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-7xl md:text-9xl font-bold tracking-tighter mb-8 text-white relative z-20"
+          className="text-5xl md:text-7xl font-medium tracking-tight mb-6 text-white relative z-20"
         >
           Build components <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-white to-indigo-300 animate-gradient-x bg-[length:200%_auto]">
@@ -103,7 +103,7 @@ const Hero: React.FC<Props> = ({ onOpenSearch, onNavigate }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl md:text-2xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
         >
           Beautifully designed, accessible components. <br className="hidden md:block" />
           Copy and paste into your apps. Open Source.

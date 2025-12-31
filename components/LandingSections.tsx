@@ -30,7 +30,7 @@ export const TagsSection = () => (
 
          <div className="text-center mb-10">
             <span className="text-sm font-medium text-indigo-400 uppercase tracking-widest">Explore</span>
-            <h2 className="text-3xl font-bold text-white mt-2">Filter by Tags</h2>
+            <h2 className="text-3xl font-medium text-white mt-2">Filter by Tags</h2>
          </div>
 
          {/* Scrolling Marquee - Row 1 */}
@@ -76,8 +76,8 @@ export const CommunityGridSection = () => (
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Community Driven</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-medium text-white mb-4 tracking-tight">Community Driven</h2>
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
                Join a growing community of developers building the future of web interfaces.
             </p>
          </div>
@@ -89,7 +89,7 @@ export const CommunityGridSection = () => (
                   <Grid className="text-indigo-400" size={24} />
                </div>
                <div>
-                  <div className="text-5xl font-bold text-white tracking-tighter mb-2">7k+</div>
+                  <div className="text-4xl font-semibold text-white tracking-tight mb-2">7k+</div>
                   <div className="text-sm text-zinc-400 font-medium">Components Created</div>
                </div>
             </div>
@@ -100,7 +100,7 @@ export const CommunityGridSection = () => (
                   <Users className="text-purple-400" size={24} />
                </div>
                <div>
-                  <div className="text-5xl font-bold text-white tracking-tighter mb-2">260k+</div>
+                  <div className="text-4xl font-semibold text-white tracking-tight mb-2">260k+</div>
                   <div className="text-sm text-zinc-400 font-medium">Community Members</div>
                </div>
             </div>
@@ -115,7 +115,7 @@ export const CommunityGridSection = () => (
                   </div>
                </div>
                <div className="relative z-10">
-                  <div className="text-2xl font-bold text-white mb-1">Discord</div>
+                  <div className="text-2xl font-semibold text-white mb-1">Discord</div>
                   <div className="text-sm text-indigo-300/80">Join the discussion &rarr;</div>
                </div>
             </div>
@@ -126,8 +126,8 @@ export const CommunityGridSection = () => (
             {/* Main Feature: Figma */}
             <div className="group border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl overflow-hidden min-h-[400px] flex flex-col hover:border-white/10 transition-all relative">
                <div className="p-10 pb-0 relative z-10">
-                  <h3 className="text-3xl font-bold text-white tracking-tight mb-3">Figma Kit</h3>
-                  <p className="text-zinc-400 text-lg">Every component, meticulously recreated in Figma for your design team.</p>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-3">Figma Kit</h3>
+                  <p className="text-zinc-400 text-base">Every component, meticulously recreated in Figma for your design team.</p>
                </div>
                <div className="flex-1 mt-10 ml-10 bg-[#1e1e1e] border-t border-l border-zinc-700 rounded-tl-3xl shadow-2xl relative overflow-hidden group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
                   {/* Abstract UI Mocks - Figma Style */}
@@ -152,8 +152,8 @@ export const CommunityGridSection = () => (
             {/* Main Feature: GitHub */}
             <div className="group border border-white/5 bg-zinc-900/20 backdrop-blur-md rounded-2xl overflow-hidden min-h-[400px] flex flex-col hover:border-white/10 transition-all">
                <div className="p-10 pb-0">
-                  <h3 className="text-3xl font-bold text-white tracking-tight mb-3">Open Source</h3>
-                  <p className="text-zinc-400 text-lg">Powered by the community. MIT Licensed. Free forever.</p>
+                  <h3 className="text-2xl font-semibold text-white tracking-tight mb-3">Open Source</h3>
+                  <p className="text-zinc-400 text-base">Powered by the community. MIT Licensed. Free forever.</p>
                </div>
                <div className="flex-1 mt-8 relative flex items-center justify-center">
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10"></div>
