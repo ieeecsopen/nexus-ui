@@ -89,46 +89,41 @@ We will respond to your inquiry within 30 days.`,
     ];
 
     return (
-        <div className="min-h-screen pt-24 pb-16 bg-black relative">
-            {/* Grid Background */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+        <div className="min-h-screen pt-32 pb-20 bg-black text-white selection:bg-white selection:text-black font-sans">
 
-            <div className="max-w-5xl mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-16 text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-6">
-                        <Shield size={12} />
-                        Legal
+                <div className="mb-24">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-8">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <span className="text-xs font-medium text-white uppercase tracking-wider">Legal</span>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-6">
+                    <h1 className="text-5xl md:text-7xl font-light tracking-tighter text-white mb-8">
                         Privacy Policy
                     </h1>
-                    <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-sm">
+                    <div className="flex items-center gap-3 text-zinc-500 text-sm font-mono border-l border-zinc-800 pl-4">
                         <Calendar size={14} />
                         Last updated: December 31, 2024
                     </div>
                 </div>
 
                 {/* Introduction */}
-                <div className="bg-black/50 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
-                    <p className="text-zinc-300 leading-relaxed text-lg">
+                <div className="border border-white/10 rounded-3xl p-10 mb-20 bg-zinc-900/20">
+                    <p className="text-zinc-300 leading-relaxed text-lg font-light">
                         At Nexus UI, we take your privacy seriously. This Privacy Policy explains how we collect,
                         use, disclose, and safeguard your information when you use our website and services.
-                        Please read this policy carefully to understand our practices regarding your personal data.
                     </p>
                 </div>
 
                 {/* Sections */}
-                <div className="space-y-12">
+                <div className="space-y-16">
                     {sections.map((section, index) => (
-                        <section key={index} className="scroll-mt-24" id={section.title.toLowerCase().replace(/\s+/g, '-')}>
-                            <h2 className="text-2xl font-medium tracking-tight text-white mb-6 flex items-center gap-3">
-                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 text-sm text-zinc-400 font-mono">
-                                    {index + 1}
-                                </span>
+                        <section key={index} className="scroll-mt-32" id={section.title.toLowerCase().replace(/\s+/g, '-')}>
+                            <h2 className="text-2xl font-light tracking-tight text-white mb-6 flex items-baseline gap-4">
+                                <span className="text-sm font-mono text-zinc-600">0{index + 1}</span>
                                 {section.title}
                             </h2>
-                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line pl-11">
+                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line pl-10 md:pl-12 font-light border-l border-white/5">
                                 {section.content}
                             </div>
                         </section>

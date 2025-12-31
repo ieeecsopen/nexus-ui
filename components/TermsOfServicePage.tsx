@@ -129,60 +129,58 @@ We aim to respond to all inquiries within 5 business days.`,
     ];
 
     return (
-        <div className="min-h-screen pt-24 pb-16 bg-black relative">
-            {/* Grid Background */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+        <div className="min-h-screen pt-32 pb-20 bg-black text-white selection:bg-white selection:text-black font-sans">
 
-            <div className="max-w-5xl mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-16 text-center md:text-left">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-6">
-                        <FileText size={12} />
-                        Legal
+                <div className="mb-24">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-8">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <span className="text-xs font-medium text-white uppercase tracking-wider">Legal</span>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-6">
+                    <h1 className="text-5xl md:text-7xl font-light tracking-tighter text-white mb-8">
                         Terms of Service
                     </h1>
-                    <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-sm">
+                    <div className="flex items-center gap-3 text-zinc-500 text-sm font-mono border-l border-zinc-800 pl-4">
                         <Calendar size={14} />
                         Last updated: December 31, 2024
                     </div>
                 </div>
 
                 {/* Introduction */}
-                <div className="bg-black/50 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
-                    <p className="text-zinc-300 leading-relaxed text-lg">
+                <div className="border border-white/10 rounded-3xl p-10 mb-20 bg-zinc-900/20">
+                    <p className="text-zinc-300 leading-relaxed text-lg font-light">
                         Welcome to Nexus UI. These Terms of Service govern your use of our website, products,
-                        and services. By using Nexus UI, you agree to these terms. Please read them carefully
-                        before using our Service.
+                        and services. By using Nexus UI, you agree to these terms.
                     </p>
                 </div>
 
-                {/* Table of Contents */}
-                <div className="bg-zinc-900/30 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
-                    <h3 className="text-white font-medium mb-6">Table of Contents</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* TOC */}
+                <div className="mb-20">
+                    <h3 className="text-white font-medium mb-8 border-b border-white/10 pb-4 inline-block">Table of Contents</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12">
                         {sections.map((section, index) => (
                             <a
                                 key={index}
                                 href={`#section-${index + 1}`}
-                                className="text-sm text-zinc-400 hover:text-indigo-400 transition-colors flex items-center gap-2 group"
+                                className="text-sm text-zinc-500 hover:text-white transition-colors flex items-center gap-3 group"
                             >
-                                <span className="w-1.5 h-1.5 rounded-full bg-zinc-700 group-hover:bg-indigo-400 transition-colors" />
-                                {section.title}
+                                <span className="text-xs font-mono text-zinc-700 group-hover:text-zinc-500">0{index + 1}</span>
+                                {section.title.split('. ')[1]}
                             </a>
                         ))}
                     </div>
                 </div>
 
                 {/* Sections */}
-                <div className="space-y-12">
+                <div className="space-y-16">
                     {sections.map((section, index) => (
-                        <section key={index} id={`section-${index + 1}`} className="scroll-mt-24">
-                            <h2 className="text-2xl font-medium tracking-tight text-white mb-6">
-                                {section.title}
+                        <section key={index} id={`section-${index + 1}`} className="scroll-mt-32">
+                            <h2 className="text-2xl font-light tracking-tight text-white mb-6 flex items-baseline gap-4">
+                                <span className="text-sm font-mono text-zinc-600">0{index + 1}</span>
+                                {section.title.split('. ')[1]}
                             </h2>
-                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line border-l-2 border-zinc-800 pl-6">
+                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line border-l border-white/5 pl-6 md:pl-12 font-light">
                                 {section.content}
                             </div>
                         </section>
