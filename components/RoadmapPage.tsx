@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rocket, CheckCircle2, Clock, Circle, Calendar, Sparkles } from 'lucide-react';
+import { Rocket, CheckCircle2, Circle, Clock, Sparkles, ArrowRight } from 'lucide-react';
 
 interface RoadmapItem {
     title: string;
@@ -72,110 +72,101 @@ const RoadmapPage: React.FC = () => {
     const getStatusIcon = (status: RoadmapItem['status']) => {
         switch (status) {
             case 'completed':
-                return <CheckCircle2 size={18} className="text-green-400" />;
+                return <CheckCircle2 size={20} className="text-white" />;
             case 'in-progress':
-                return <Clock size={18} className="text-amber-400" />;
+                return <Clock size={20} className="text-zinc-400" />;
             case 'planned':
-                return <Circle size={18} className="text-zinc-500" />;
+                return <Circle size={20} className="text-zinc-600" />;
         }
     };
 
-    const getStatusBadge = (status: RoadmapItem['status']) => {
-        const styles = {
-            completed: 'bg-green-500/10 text-green-400 border-green-500/20',
-            'in-progress': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-            planned: 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20',
-        };
-        const labels = {
-            completed: 'Completed',
-            'in-progress': 'In Progress',
-            planned: 'Planned',
-        };
-        return (
-            <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-medium border uppercase tracking-wider ${styles[status]}`}>
-                {labels[status]}
-            </span>
-        );
+    const getStatusText = (status: RoadmapItem['status']) => {
+        switch (status) {
+            case 'completed': return 'Completed';
+            case 'in-progress': return 'In Progress';
+            case 'planned': return 'Planned';
+        }
     };
 
     return (
-        <div className="min-h-screen pt-24 pb-16 bg-black relative">
-            {/* Grid Background */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+        <div className="min-h-screen pt-32 pb-20 bg-black text-white selection:bg-white selection:text-black font-sans">
 
-            <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="max-w-5xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="text-center mb-20">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-6">
-                        <Rocket size={12} />
-                        Roadmap
+                <div className="text-center mb-24 max-w-3xl mx-auto">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 mb-8">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <span className="text-xs font-medium text-white uppercase tracking-wider">Roadmap</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-medium tracking-tighter text-white mb-6">
-                        What's next for Nexus UI
+                    <h1 className="text-6xl md:text-8xl font-light tracking-tighter text-white mb-8">
+                        The future.
                     </h1>
-                    <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light">
                         Follow our journey as we build the most comprehensive React UI library.
+                        Transparent and community-driven.
                     </p>
                 </div>
 
-                {/* Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-                    <div className="bg-black/50 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center backdrop-blur-sm">
-                        <div className="text-4xl font-medium tracking-tighter text-green-400 mb-2">
-                            {roadmapItems.filter(i => i.status === 'completed').length}
+                {/* Simplified Stats */}
+                <div className="grid grid-cols-3 gap-px bg-zinc-800 border border-zinc-800 rounded-2xl overflow-hidden mb-32 max-w-3xl mx-auto">
+                    {['completed', 'in-progress', 'planned'].map((status) => (
+                        <div key={status} className="bg-black p-6 flex flex-col items-center justify-center group hover:bg-zinc-900 transition-colors">
+                            <div className="text-4xl font-light tracking-tighter text-white mb-1 group-hover:scale-110 transition-transform">
+                                {roadmapItems.filter(i => i.status === status).length}
+                            </div>
+                            <div className="text-xs font-medium text-zinc-500 uppercase tracking-widest">
+                                {status.replace('-', ' ')}
+                            </div>
                         </div>
-                        <div className="text-sm font-medium text-zinc-500 uppercase tracking-wider">Completed</div>
-                    </div>
-                    <div className="bg-black/50 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center backdrop-blur-sm">
-                        <div className="text-4xl font-medium tracking-tighter text-amber-400 mb-2">
-                            {roadmapItems.filter(i => i.status === 'in-progress').length}
-                        </div>
-                        <div className="text-sm font-medium text-zinc-500 uppercase tracking-wider">In Progress</div>
-                    </div>
-                    <div className="bg-black/50 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center backdrop-blur-sm">
-                        <div className="text-4xl font-medium tracking-tighter text-zinc-400 mb-2">
-                            {roadmapItems.filter(i => i.status === 'planned').length}
-                        </div>
-                        <div className="text-sm font-medium text-zinc-500 uppercase tracking-wider">Planned</div>
-                    </div>
+                    ))}
                 </div>
 
                 {/* Timeline */}
-                <div className="relative">
-                    {/* Timeline line */}
-                    <div className="absolute left-[27px] top-4 bottom-0 w-px bg-gradient-to-b from-green-500/50 via-amber-500/50 to-zinc-800" />
+                <div className="relative max-w-4xl mx-auto">
+                    {/* Vertical Line */}
+                    <div className="absolute left-[23px] top-6 bottom-6 w-px bg-zinc-900" />
 
                     <div className="space-y-12">
                         {roadmapItems.map((item, index) => (
-                            <div key={index} className="relative flex gap-8 group">
-                                {/* Icon */}
-                                <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-2xl bg-black border border-zinc-800 flex items-center justify-center shadow-xl group-hover:border-zinc-700 transition-colors">
+                            <div key={index} className="relative pl-16 group">
+                                {/* Dot on timeline */}
+                                <div className={`absolute left-0 top-6 w-12 h-12 rounded-full border flex items-center justify-center transition-colors z-10 bg-black ${item.status === 'completed' ? 'border-white text-white' :
+                                        item.status === 'in-progress' ? 'border-zinc-700 text-zinc-400' : 'border-zinc-800 text-zinc-600'
+                                    }`}>
                                     {getStatusIcon(item.status)}
                                 </div>
 
-                                {/* Content */}
-                                <div className="flex-1 bg-black/50 border border-zinc-800 rounded-2xl p-8 hover:border-zinc-700 hover:bg-zinc-900/30 transition-all backdrop-blur-sm">
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                {/* Content Card */}
+                                <div className="p-8 border border-white/10 rounded-3xl bg-black hover:bg-white hover:text-black transition-all duration-300 group-hover:border-transparent">
+                                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6">
                                         <div>
-                                            <h3 className="text-xl font-medium text-white mb-1 group-hover:text-indigo-400 transition-colors">{item.title}</h3>
-                                            <div className="flex items-center gap-3 text-xs text-zinc-500">
-                                                {item.version && (
-                                                    <span className="flex items-center gap-1.5 bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800">
-                                                        <Sparkles size={12} />
-                                                        {item.version}
-                                                    </span>
-                                                )}
-                                                {item.date && (
-                                                    <span className="flex items-center gap-1.5 bg-zinc-900/50 px-2 py-0.5 rounded border border-zinc-800">
-                                                        <Calendar size={12} />
-                                                        {item.date}
+                                            <div className="flex items-center gap-3 mb-2">
+                                                <h3 className="text-2xl font-light">{item.title}</h3>
+                                                {item.status === 'in-progress' && (
+                                                    <span className="px-2 py-0.5 rounded-full border border-current text-[10px] uppercase tracking-wider opacity-60">
+                                                        Active
                                                     </span>
                                                 )}
                                             </div>
+
+                                            <div className="flex items-center gap-4 text-sm opacity-60 font-mono">
+                                                <span className="flex items-center gap-2">
+                                                    <Sparkles size={12} />
+                                                    {item.version || 'TBD'}
+                                                </span>
+                                                <span className="w-1 h-1 rounded-full bg-current" />
+                                                <span>{item.date || 'TBD'}</span>
+                                            </div>
                                         </div>
-                                        {getStatusBadge(item.status)}
+
+                                        <div className="px-3 py-1 rounded-full border border-current text-xs font-medium uppercase tracking-wider opacity-50 whitespace-nowrap">
+                                            {getStatusText(item.status)}
+                                        </div>
                                     </div>
-                                    <p className="text-zinc-400 leading-relaxed text-sm">{item.description}</p>
+
+                                    <p className="text-lg opacity-70 font-light leading-relaxed max-w-2xl">
+                                        {item.description}
+                                    </p>
                                 </div>
                             </div>
                         ))}
@@ -183,17 +174,17 @@ const RoadmapPage: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="mt-24 text-center">
-                    <div className="bg-gradient-to-r from-indigo-500/5 via-purple-500/5 to-pink-500/5 border border-indigo-500/10 rounded-2xl p-10 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none"></div>
-                        <h3 className="text-2xl font-medium text-white mb-3 relative z-10">Have a feature request?</h3>
-                        <p className="text-zinc-400 mb-8 relative z-10">
-                            We'd love to hear your ideas! Submit a feature request on GitHub.
+                <div className="mt-32 text-center md:text-left border border-white/10 p-12 rounded-[3rem] bg-zinc-900/10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div>
+                        <h3 className="text-3xl font-light text-white mb-2">Have a feature request?</h3>
+                        <p className="text-zinc-400 font-light text-lg">
+                            We'd love to hear your ideas. Help shape the future of Nexus UI.
                         </p>
-                        <button className="relative z-10 px-8 py-3 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transform duration-200">
-                            Submit Feature Request
-                        </button>
                     </div>
+
+                    <button className="flex-shrink-0 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-zinc-200 transition-colors flex items-center gap-2">
+                        Submit Request <ArrowRight size={18} />
+                    </button>
                 </div>
             </div>
         </div>
