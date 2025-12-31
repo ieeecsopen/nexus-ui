@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
-      <Navbar onNavigate={handleNavigate} onOpenSearch={() => setIsSearchOpen(true)} />
+      <Navbar onNavigate={handleNavigate} onOpenSearch={() => setIsSearchOpen(true)} currentView={view} />
 
       {/* Search Modal */}
       <SearchModal
@@ -176,10 +176,6 @@ function App() {
 
             {view === 'components' && (
               <div className="pt-24 min-h-screen animate-in fade-in duration-500 slide-in-from-bottom-4">
-                <div className="max-w-[1400px] mx-auto px-6 mb-8">
-                  <h1 className="text-4xl font-bold text-white mb-4">All Components</h1>
-                  <p className="text-zinc-400">Browse our complete collection of UI elements.</p>
-                </div>
                 <ComponentGrid onSelectComponent={handleSelectComponent} />
               </div>
             )}

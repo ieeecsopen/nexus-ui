@@ -86,7 +86,7 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
         </aside>
 
         {/* Mobile Filter Button */}
-        <div className="lg:hidden fixed bottom-6 right-6 z-40">
+        <div className="lg:hidden fixed bottom-6 right-6 z-[100]">
           <button
             onClick={() => setIsMobileFiltersOpen(true)}
             className="flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-medium shadow-2xl hover:bg-zinc-200 transition-colors"
