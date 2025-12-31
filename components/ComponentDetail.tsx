@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ComponentItem } from '../types';
+import { COMPONENT_ITEMS } from '../constants';
 import { ArrowLeft, Check, Copy, ExternalLink, Zap, Layers, Play, Monitor, Code, Palette, Share2, Download, ArrowRight, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ComponentPreview } from './Previews';
@@ -7,17 +8,32 @@ import { ComponentPreview } from './Previews';
 interface Props {
   item: ComponentItem;
   onBack: () => void;
+  onSelectComponent?: (item: ComponentItem) => void;
 }
 
-const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
+const ComponentDetail: React.FC<Props> = ({ item, onBack, onSelectComponent }) => {
   const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
   const [isCopied, setIsCopied] = useState(false);
+
+  // Logic to find similar components (same category, excluding current)
+  const similarComponents = useMemo(() => {
+    return COMPONENT_ITEMS.filter(
+      (c) => c.category === item.category && c.id !== item.id
+    ).slice(0, 4);
+  }, [item]);
 
   const handleCopyCode = () => {
     if (item.fullCode) {
       navigator.clipboard.writeText(item.fullCode);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
+    }
+  };
+
+  const handleSelectSimilar = (component: ComponentItem) => {
+    if (onSelectComponent) {
+      onSelectComponent(component);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -180,32 +196,41 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
 
         </div>
 
-        {/* Similar Components */}
-        <div className="mt-32 pt-24 border-t border-white/5">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <h2 className="text-3xl font-light text-white mb-2 tracking-tight">Similar Components</h2>
-              <p className="text-zinc-500 font-light">Explore other components in this category</p>
-            </div>
-            <button className="hidden md:flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group">
-              View all <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-
-          {/* Simple Grid Placeholder - In real app, would filter by category */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="aspect-video bg-zinc-900/30 border border-white/5 group-hover:border-white/20 transition-all duration-500 relative flex items-center justify-center overflow-hidden mb-4">
-                  <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px_16px]" />
-                  <span className="text-zinc-600 text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">View Component</span>
-                </div>
-                <h4 className="text-white font-medium text-sm mb-1 group-hover:text-zinc-300 transition-colors">Component Name {i}</h4>
-                <p className="text-zinc-600 text-xs">UI Element</p>
+        {/* Similar Components - Real Data */}
+        {similarComponents.length > 0 && (
+          <div className="mt-32 pt-24 border-t border-white/5">
+            <div className="flex items-end justify-between mb-12">
+              <div>
+                <h2 className="text-3xl font-light text-white mb-2 tracking-tight">Similar Components</h2>
+                <p className="text-zinc-500 font-light">Explore other components in the <span className="text-white">{item.category}</span> category</p>
               </div>
-            ))}
+              {/* <button className="hidden md:flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group">
+                    View all <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                 </button> */}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {similarComponents.map((comp) => (
+                <div
+                  key={comp.id}
+                  className="group cursor-pointer"
+                  onClick={() => handleSelectSimilar(comp)}
+                >
+                  <div className="aspect-video bg-zinc-900/30 border border-white/5 group-hover:border-white/20 transition-all duration-500 relative flex items-center justify-center overflow-hidden mb-4">
+                    <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px_16px]" />
+                    {/* Tiny Preview Logic if simple enough, otherwise icon */}
+                    <div className="scale-50 opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                      <ComponentPreview item={comp} small />
+                    </div>
+                    <span className="absolute bottom-3 right-3 text-zinc-600 text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">View</span>
+                  </div>
+                  <h4 className="text-white font-medium text-sm mb-1 group-hover:text-zinc-300 transition-colors">{comp.title}</h4>
+                  <p className="text-zinc-600 text-xs truncate">{comp.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
     </div>
