@@ -4,6 +4,7 @@ import {
     PenTool, Users
 } from 'lucide-react';
 import { GlowingEffect } from './ui/glowing-effect';
+import { FadeIn, FadeInStagger, FadeInItem } from './ui/fade-in';
 
 /* -------------------------------------------------------------------------- */
 /*                              Features Section                              */
@@ -15,22 +16,24 @@ export const FeaturesSection = () => {
             <div className="max-w-[1800px] mx-auto px-6 md:px-12 relative z-10">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
-                    <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-[0.9]">
-                        Uncompromising <br />
-                        <span className="text-zinc-600">performance.</span>
-                    </h2>
-                    <div className="flex items-end">
+                    <FadeIn>
+                        <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-[0.9]">
+                            Uncompromising <br />
+                            <span className="text-zinc-600">performance.</span>
+                        </h2>
+                    </FadeIn>
+                    <FadeIn delay={0.2} className="flex items-end">
                         <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-md">
                             Engineered for speed and accessibility.
                             Every component is built to be copy-pasted, customized, and shipped.
                         </p>
-                    </div>
+                    </FadeIn>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[350px]">
+                <FadeInStagger className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[350px]">
 
                     {/* Feature 1: TypeScript (Large) */}
-                    <div className="col-span-1 lg:col-span-2 relative h-full rounded-3xl p-[1px] group">
+                    <FadeInItem className="col-span-1 lg:col-span-2 relative h-full rounded-3xl p-[1px] group">
                         <GlowingEffect
                             blur={0}
                             borderWidth={1}
@@ -68,10 +71,10 @@ export const FeaturesSection = () => {
                             {/* Background Grid */}
                             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
                         </div>
-                    </div>
+                    </FadeInItem>
 
                     {/* Feature 2: Dark Mode */}
-                    <div className="relative h-full rounded-3xl p-[1px] group">
+                    <FadeInItem className="relative h-full rounded-3xl p-[1px] group">
                         <GlowingEffect
                             blur={0}
                             borderWidth={1}
@@ -88,10 +91,10 @@ export const FeaturesSection = () => {
                             <h3 className="text-2xl font-light text-white mb-2">Dark Mode</h3>
                             <p className="text-zinc-500">Automatic switching. Zero config.</p>
                         </div>
-                    </div>
+                    </FadeInItem>
 
                     {/* Feature 3: Accessible */}
-                    <div className="relative h-full rounded-3xl p-[1px] group">
+                    <FadeInItem className="relative h-full rounded-3xl p-[1px] group">
                         <GlowingEffect
                             blur={0}
                             borderWidth={1}
@@ -108,10 +111,10 @@ export const FeaturesSection = () => {
                             <h3 className="text-2xl font-light text-white mb-2">Accessible</h3>
                             <p className="text-zinc-500">WAI-ARIA compliant compliant. Always.</p>
                         </div>
-                    </div>
+                    </FadeInItem>
 
                     {/* Feature 4: Responsive (Large) */}
-                    <div className="col-span-1 lg:col-span-2 relative h-full rounded-3xl p-[1px] group">
+                    <FadeInItem className="col-span-1 lg:col-span-2 relative h-full rounded-3xl p-[1px] group">
                         <GlowingEffect
                             blur={0}
                             borderWidth={1}
@@ -139,9 +142,9 @@ export const FeaturesSection = () => {
                                 <div className="w-48 h-40 bg-zinc-800 rounded-t-md border border-zinc-700 border-b-0" />
                             </div>
                         </div>
-                    </div>
+                    </FadeInItem>
 
-                </div>
+                </FadeInStagger>
             </div>
         </div>
     );
@@ -155,7 +158,7 @@ export const CTASection = () => {
     return (
         <div className="py-40 bg-black relative overflow-hidden">
 
-            <div className="max-w-[1800px] mx-auto px-6 text-center relative z-10">
+            <FadeIn yOffset={100} duration={1.2} className="max-w-[1800px] mx-auto px-6 text-center relative z-10">
                 <h2 className="text-8xl md:text-[10rem] font-light text-white tracking-tighter leading-[0.8] mb-12 mix-blend-difference">
                     Start <br />
                     <span className="text-zinc-700">Building.</span>
@@ -169,7 +172,7 @@ export const CTASection = () => {
                         <Github size={20} /> Star on GitHub
                     </button>
                 </div>
-            </div>
+            </FadeIn>
         </div>
     );
 };
