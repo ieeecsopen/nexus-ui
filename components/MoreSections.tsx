@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Check, Zap, Moon, Smartphone, Shield, Globe,
-    ArrowRight, Github
+    ArrowRight, Github, Code, Command
 } from 'lucide-react';
 
 /* -------------------------------------------------------------------------- */
@@ -9,118 +9,89 @@ import {
 /* -------------------------------------------------------------------------- */
 export const FeaturesSection = () => {
     return (
-        <div className="py-24 bg-black border-b border-white/[0.08]">
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="mb-16">
-                    <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tighter mb-6">
-                        Everything you need <br />
-                        <span className="text-zinc-500">to build great interfaces.</span>
+        <div className="py-24 bg-black border-y border-white/5">
+            <div className="max-w-[1800px] mx-auto px-6 md:px-12">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
+                    <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter leading-[0.9]">
+                        Uncompromising <br />
+                        <span className="text-zinc-600">performance.</span>
                     </h2>
-                    <p className="text-lg text-zinc-400 max-w-2xl">
-                        Designed to be copy-pasted into your apps. customization is easy and the code is yours.
-                    </p>
+                    <div className="flex items-end">
+                        <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-md">
+                            Engineered for speed and accessibility.
+                            Every component is built to be copy-pasted, customized, and shipped.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-[350px]">
 
-                    {/* Feature 1: TypeScript */}
-                    <div className="col-span-1 md:col-span-2 p-8 rounded-xl border border-zinc-800 bg-zinc-900/20 flex flex-col justify-between group hover:border-zinc-700 transition-all min-h-[300px]">
-                        <div>
-                            <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-6">
-                                <Shield size={20} />
+                    {/* Feature 1: TypeScript (Large) */}
+                    <div className="col-span-1 lg:col-span-2 p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
+                        <div className="relative z-10 flex justify-between items-start">
+                            <div>
+                                <h3 className="text-3xl font-light text-white mb-2">TypeScript First</h3>
+                                <p className="text-zinc-500 max-w-md">World-class autocompletion and type safety out of the box.</p>
                             </div>
-                            <h3 className="text-xl font-medium text-white mb-2">TypeScript Ready</h3>
-                            <p className="text-zinc-400">
-                                Fully typed components. Catch errors early and get excellent autocomplete in your IDE.
-                            </p>
+                            <div className="w-12 h-12 bg-blue-500/10 flex items-center justify-center text-blue-500 rounded-full border border-blue-500/20">
+                                <Code size={24} />
+                            </div>
                         </div>
-                        <div className="mt-8 bg-black/50 rounded-lg p-4 border border-zinc-800 font-mono text-xs text-zinc-300 overflow-hidden">
+
+                        {/* Code Mock */}
+                        <div className="mt-8 font-mono text-sm text-zinc-400 bg-black/50 p-6 rounded-lg border border-white/5 relative z-10 group-hover:border-white/10 transition-colors">
                             <div className="flex gap-2 mb-2">
-                                <span className="text-blue-400">interface</span>
-                                <span className="text-yellow-400">ButtonProps</span>
-                                <span>{`{`}</span>
+                                <span className="text-purple-400">interface</span>
+                                <span className="text-yellow-200">ButtonProps</span>
+                                <span className="text-zinc-500">{`{`}</span>
                             </div>
-                            <div className="pl-4">
-                                <div className="flex gap-2">
-                                    <span>variant:</span>
-                                    <span className="text-green-400">'primary'</span>
-                                    <span>|</span>
-                                    <span className="text-green-400">'secondary'</span>;
-                                </div>
-                                <div className="flex gap-2">
-                                    <span>size:</span>
-                                    <span className="text-green-400">'sm'</span>
-                                    <span>|</span>
-                                    <span className="text-green-400">'md'</span>
-                                    <span>|</span>
-                                    <span className="text-green-400">'lg'</span>;
-                                </div>
+                            <div className="pl-6 space-y-1">
+                                <div><span className="text-blue-300">variant</span>: <span className="text-green-300">'primary'</span> | <span className="text-green-300">'ghost'</span>;</div>
+                                <div><span className="text-blue-300">size</span>: <span className="text-green-300">'sm'</span> | <span className="text-green-300">'lg'</span>;</div>
                             </div>
-                            <div>{`}`}</div>
+                            <div className="text-zinc-500">{`}`}</div>
                         </div>
+
+                        {/* Background Grid */}
+                        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
                     </div>
 
                     {/* Feature 2: Dark Mode */}
-                    <div className="p-8 rounded-xl border border-zinc-800 bg-zinc-900/20 flex flex-col group hover:border-zinc-700 transition-all min-h-[300px]">
-                        <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-6">
-                            <Moon size={20} />
+                    <div className="p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
+                        <div className="w-20 h-20 bg-zinc-800 rounded-full flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                            <Moon size={32} className="text-white fill-white" />
                         </div>
-                        <h3 className="text-xl font-medium text-white mb-2">Dark Mode Info</h3>
-                        <p className="text-zinc-400 mb-auto">
-                            Automatic dark mode support via Tailwind CSS. Toggle it with one class.
-                        </p>
-                        <div className="mt-6 flex justify-center">
-                            <div className="relative w-16 h-8 rounded-full bg-zinc-700 border border-zinc-600 flex items-center px-1">
-                                <div className="w-6 h-6 rounded-full bg-white shadow-lg transform translate-x-8 transition-transform"></div>
-                            </div>
-                        </div>
+                        <h3 className="text-2xl font-light text-white mb-2">Dark Mode</h3>
+                        <p className="text-zinc-500">Automatic switching. Zero config.</p>
                     </div>
 
                     {/* Feature 3: Accessible */}
-                    <div className="p-8 rounded-xl border border-zinc-800 bg-zinc-900/20 flex flex-col group hover:border-zinc-700 transition-all min-h-[300px]">
-                        <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6">
-                            <Check size={20} />
+                    <div className="p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col items-center justify-center text-center group hover:border-white/20 transition-all">
+                        <div className="w-20 h-20 bg-zinc-800 rounded-full flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                            <Check size={32} className="text-emerald-500" />
                         </div>
-                        <h3 className="text-xl font-medium text-white mb-2">Accessible</h3>
-                        <p className="text-zinc-400">
-                            Follows WAI-ARIA patterns. Keyboard navigation and screen reader support built-in.
-                        </p>
+                        <h3 className="text-2xl font-light text-white mb-2">Accessible</h3>
+                        <p className="text-zinc-500">WAI-ARIA compliant compliant. Always.</p>
                     </div>
 
-                    {/* Feature 4: Responsive */}
-                    <div className="col-span-1 md:col-span-2 p-8 rounded-xl border border-zinc-800 bg-zinc-900/20 flex flex-col md:flex-row gap-8 group hover:border-zinc-700 transition-all min-h-[300px]">
-                        <div className="flex-1">
-                            <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 mb-6">
-                                <Smartphone size={20} />
+                    {/* Feature 4: Responsive (Large) */}
+                    <div className="col-span-1 lg:col-span-2 p-10 rounded-sm border border-white/10 bg-zinc-900/10 flex flex-col justify-between group hover:border-white/20 transition-all relative">
+                        <div className="relative z-10 flex justify-between items-start">
+                            <div>
+                                <h3 className="text-3xl font-light text-white mb-2">Responsive</h3>
+                                <p className="text-zinc-500 max-w-md">Fluid layouts that adapt to any screen size instantly.</p>
                             </div>
-                            <h3 className="text-xl font-medium text-white mb-2">Responsive Design</h3>
-                            <p className="text-zinc-400">
-                                Mobile-first architecture. Components look great on any device, from phones to dedicated desktops.
-                            </p>
+                            <div className="w-12 h-12 bg-purple-500/10 flex items-center justify-center text-purple-500 rounded-full border border-purple-500/20">
+                                <Smartphone size={24} />
+                            </div>
                         </div>
-                        <div className="flex-1 flex items-center justify-center">
-                            <div className="relative w-48 h-32 bg-zinc-900 border border-zinc-800 rounded-lg shadow-2xl flex flex-col overflow-hidden">
-                                <div className="h-4 bg-zinc-800 border-b border-zinc-700 flex items-center px-2 gap-1">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>
-                                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-500"></div>
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
-                                </div>
-                                <div className="p-3 space-y-2">
-                                    <div className="h-2 w-3/4 bg-zinc-800 rounded"></div>
-                                    <div className="flex gap-2">
-                                        <div className="h-16 w-1/3 bg-zinc-800 rounded"></div>
-                                        <div className="h-16 w-2/3 bg-zinc-800 rounded"></div>
-                                    </div>
-                                </div>
 
-                                {/* Floating Mobile Mock */}
-                                <div className="absolute -bottom-4 -right-4 w-16 h-28 bg-black border border-zinc-700 rounded-lg shadow-xl p-1">
-                                    <div className="h-full w-full bg-zinc-900 rounded flex flex-col p-1 gap-1">
-                                        <div className="h-1 w-full bg-zinc-800 rounded-sm"></div>
-                                        <div className="h-8 w-full bg-zinc-800 rounded-sm"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        {/* Device Mock Animation */}
+                        <div className="flex gap-4 mt-8 items-end justify-center opacity-50 group-hover:opacity-80 transition-opacity">
+                            <div className="w-12 h-20 bg-zinc-800 rounded-md border border-zinc-700" />
+                            <div className="w-24 h-32 bg-zinc-800 rounded-md border border-zinc-700" />
+                            <div className="w-48 h-40 bg-zinc-800 rounded-t-md border border-zinc-700 border-b-0" />
                         </div>
                     </div>
 
@@ -136,25 +107,20 @@ export const FeaturesSection = () => {
 /* -------------------------------------------------------------------------- */
 export const CTASection = () => {
     return (
-        <div className="py-32 bg-black relative overflow-hidden">
-            {/* Grid Background */}
-            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+        <div className="py-40 bg-black relative overflow-hidden">
 
-            <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-                <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter mb-8">
-                    Build your next idea <br />
-                    <span className="text-zinc-500">even faster.</span>
+            <div className="max-w-[1800px] mx-auto px-6 text-center relative z-10">
+                <h2 className="text-8xl md:text-[10rem] font-light text-white tracking-tighter leading-[0.8] mb-12 mix-blend-difference">
+                    Start <br />
+                    <span className="text-zinc-700">Building.</span>
                 </h2>
-                <p className="text-xl text-zinc-400 mb-10 max-w-xl mx-auto">
-                    Beautifully designed components that you can copy and paste into your apps. Open Source. MIT License.
-                </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button className="h-12 px-8 rounded-md bg-white text-black font-semibold hover:bg-zinc-200 transition-colors flex items-center gap-2">
-                        Get Started <ArrowRight size={18} />
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-16">
+                    <button className="h-16 px-10 rounded-full bg-white text-black text-xl font-medium hover:bg-zinc-200 transition-colors flex items-center gap-3">
+                        Get Started <ArrowRight size={20} />
                     </button>
-                    <button className="h-12 px-8 rounded-md bg-zinc-900 border border-zinc-800 text-white font-semibold hover:bg-zinc-800 transition-colors flex items-center gap-2">
-                        <Github size={18} /> Star on GitHub
+                    <button className="h-16 px-10 rounded-full bg-transparent border border-white/20 text-white text-xl font-medium hover:bg-white/5 transition-colors flex items-center gap-3">
+                        <Github size={20} /> Star on GitHub
                     </button>
                 </div>
             </div>

@@ -137,8 +137,8 @@ function App() {
                 <div className="max-w-7xl mx-auto px-6 py-24">
                   <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
                     <div>
-                      <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Featured Components</h2>
-                      <p className="text-zinc-400 max-w-lg">Hand-picked premium components to help you build modern interfaces in minutes.</p>
+                      <h2 className="text-4xl md:text-5xl font-light text-white mb-4 tracking-tight">Featured Components</h2>
+                      <p className="text-zinc-400 max-w-lg text-lg font-light">Hand-picked premium components to help you build modern interfaces in minutes.</p>
                     </div>
                     <button
                       onClick={() => handleNavigate('components')}
