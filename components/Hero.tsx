@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Search, ArrowUpRight, Command, Layout, Box, Sparkles, MoveRight, ArrowRight } from 'lucide-react';
+import { Search, Command, Layout, Box, Sparkles, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { GlowingEffect } from './ui/glowing-effect';
 
 const Hero = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -71,7 +72,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Stats Row - High Contrast Cards */}
+        {/* Stats Row - High Contrast Cards with Glowing Effect */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,39 +80,72 @@ const Hero = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl"
         >
 
-          {/* Card 1: Components Count - Invert on Hover */}
-          <div className="bg-black border border-white/15 p-8 group cursor-pointer rounded-3xl flex flex-col items-center text-center md:items-start md:text-left hover:bg-white hover:text-black transition-all duration-500">
-            <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
-              <Box size={32} />
-            </div>
-            <div>
-              <div className="text-4xl font-light mb-1">500+</div>
-              <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">Components</div>
+          {/* Card 1: Components Count */}
+          <div className="relative h-full rounded-3xl p-[1px] group cursor-pointer">
+            <GlowingEffect
+              blur={0}
+              borderWidth={1}
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
+            <div className="relative flex flex-col items-center text-center md:items-start md:text-left h-full w-full bg-black p-8 rounded-3xl border border-white/10 hover:bg-white hover:text-black transition-colors duration-500 z-10">
+              <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
+                <Box size={32} />
+              </div>
+              <div>
+                <div className="text-4xl font-light mb-1">500+</div>
+                <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">Components</div>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: Templates - Invert on Hover */}
-          <div className="bg-black border border-white/15 p-8 group cursor-pointer rounded-3xl flex flex-col items-center text-center md:items-start md:text-left hover:bg-white hover:text-black transition-all duration-500">
-            <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
-              <Layout size={32} />
-            </div>
-            <div>
-              <div className="text-4xl font-light mb-1">20+</div>
-              <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">Templates</div>
+          {/* Card 2: Templates */}
+          <div className="relative h-full rounded-3xl p-[1px] group cursor-pointer">
+            <GlowingEffect
+              blur={0}
+              borderWidth={1}
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
+            <div className="relative flex flex-col items-center text-center md:items-start md:text-left h-full w-full bg-black p-8 rounded-3xl border border-white/10 hover:bg-white hover:text-black transition-colors duration-500 z-10">
+              <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
+                <Layout size={32} />
+              </div>
+              <div>
+                <div className="text-4xl font-light mb-1">20+</div>
+                <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">Templates</div>
+              </div>
             </div>
           </div>
 
-          {/* Card 3: Open Source - Invert on Hover */}
-          <div className="bg-black border border-white/15 p-8 group cursor-pointer rounded-3xl flex flex-col items-center text-center md:items-start md:text-left hover:bg-white hover:text-black transition-all duration-500 relative overflow-hidden">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <ArrowRight size={20} className="-rotate-45" />
-            </div>
-            <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
-              <Sparkles size={32} />
-            </div>
-            <div>
-              <div className="text-xl font-light mb-1">Open Source</div>
-              <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">MIT License</div>
+          {/* Card 3: Open Source */}
+          <div className="relative h-full rounded-3xl p-[1px] group cursor-pointer">
+            <GlowingEffect
+              blur={0}
+              borderWidth={1}
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+            />
+            <div className="relative flex flex-col items-center text-center md:items-start md:text-left h-full w-full bg-black p-8 rounded-3xl border border-white/10 hover:bg-white hover:text-black transition-colors duration-500 z-10 overflow-hidden">
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowRight size={20} className="-rotate-45" />
+              </div>
+              <div className="mb-4 text-zinc-500 group-hover:text-black transition-colors">
+                <Sparkles size={32} />
+              </div>
+              <div>
+                <div className="text-xl font-light mb-1">Open Source</div>
+                <div className="text-sm text-zinc-500 group-hover:text-zinc-600 uppercase tracking-widest">MIT License</div>
+              </div>
             </div>
           </div>
 
