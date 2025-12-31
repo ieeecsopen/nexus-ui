@@ -34,7 +34,7 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
 
         {/* Sticky Sidebar - WindUI Style */}
         <aside className="hidden lg:block w-64 flex-shrink-0">
-          <div className="sticky top-24 space-y-8">
+          <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2 space-y-8 custom-scrollbar">
             <div>
               <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-6 px-3">Components</h4>
               <ul className="space-y-1">
