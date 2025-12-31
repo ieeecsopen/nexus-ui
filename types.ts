@@ -22,12 +22,27 @@ export interface ComponentItem {
   isNew?: boolean;
   popular?: boolean;
   gridSpan?: string; // CSS class for grid spanning (e.g., "col-span-2")
-  
+
   // Documentation fields
   installation?: string;
   fullCode?: string;
   componentProps?: ComponentProp[];
   usageExamples?: UsageExample[];
+
+  // Rich Detail Fields
+  creator?: {
+    name: string;
+    avatar: string;
+    role: string;
+  };
+  techStack?: ('React' | 'Next.js' | 'Tailwind' | 'Framer Motion' | 'TypeScript')[];
+  detailedDescription?: string;
+  features?: {
+    title: string;
+    description: string;
+  }[];
+  perfectFor?: string[];
+  lastUpdated?: string;
 }
 
 export interface TemplateItem {

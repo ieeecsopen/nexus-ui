@@ -37,19 +37,19 @@ export const AnimatedGradient = () => {
   );
 };`,
     componentProps: [
-      { 
-        name: 'colors', 
-        type: 'string[]', 
-        default: 'Theme Defaults', 
-        description: 'Array of hex codes for the gradient.', 
-        example: "colors={['#ff0000', '#00ff00']}" 
+      {
+        name: 'colors',
+        type: 'string[]',
+        default: 'Theme Defaults',
+        description: 'Array of hex codes for the gradient.',
+        example: "colors={['#ff0000', '#00ff00']}"
       },
-      { 
-        name: 'speed', 
-        type: 'number', 
-        default: '20', 
-        description: 'Duration of one full rotation in seconds.', 
-        example: 'speed={15}' 
+      {
+        name: 'speed',
+        type: 'number',
+        default: '20',
+        description: 'Duration of one full rotation in seconds.',
+        example: 'speed={15}'
       },
     ],
     usageExamples: [
@@ -83,23 +83,86 @@ export default function Hero() {
   },
   {
     id: '4',
-    title: 'Glow Hover',
-    description: 'Interactive hover states that follow the cursor.',
+    title: 'Text Glow Hover',
+    description: 'The Text Glow Hover component brings life to your text with an interactive multi-layered blurred text shadow animation that follows your cursor.',
     category: 'animation',
-    price: 'pro',
+    price: 'free',
     imageGradient: 'from-cyan-500 to-blue-600',
     popular: true,
-    installation: 'npm install @nexus/ui',
-    fullCode: `// Requires mouse position hook
-<div className="group relative rounded-xl border border-white/10 bg-zinc-900 px-8 py-16">
-  <div 
-    className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
-    style={{
-      background: 'radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.1), transparent 40%)'
-    }}
-  />
-  <h3 className="text-lg font-semibold text-white">Hover me</h3>
-</div>`,
+    installation: 'npm install @nexus/ui framer-motion',
+    creator: {
+      name: 'June',
+      role: 'UI & Pattern Designer',
+      avatar: 'https://ui-avatars.com/api/?name=June&background=0D8ABC&color=fff' // Placeholder
+    },
+    techStack: ['React', 'Tailwind', 'Framer Motion', 'TypeScript'],
+    lastUpdated: 'December 2024',
+    detailedDescription: `The Text Glow Hover component allows you to create engaging text headers with interactive multi-layered blurred text shadow animations. 
+    
+    By stacking multiple layers of shadow, scaling, and offset that track the mouse position, existing text becomes a mesmerizing visual element. Perfect for landing pages, hero sections, and high-impact headlines.`,
+    features: [
+      {
+        title: 'Immersive Interactive Motion',
+        description: 'Cursor-tracking animation that creates a 3D depth effect. As you move around the text, shadows respond in real-time.'
+      },
+      {
+        title: 'Advanced Visual Customization',
+        description: 'Fine-tune blur amounts, colors, opacity, and layer counts. Controls allow you to match your brand aesthetic perfectly.'
+      },
+      {
+        title: 'Performance Optimized',
+        description: 'Uses CSS transforms and Framer Motion for smooth 60fps animations without layout thrashing.'
+      }
+    ],
+    perfectFor: [
+      'Hero headers with impact',
+      'Feature section titles',
+      'Creative portfolios',
+      'Dark mode designs'
+    ],
+    fullCode: `import React, { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+
+export const TextGlowHover = ({ text = "Glow" }: { text?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { left, top, width, height } = ref.current!.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / 25;
+    const y = (e.clientY - top - height / 2) / 25;
+    setPosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative cursor-default inline-block"
+    >
+      <motion.span
+        className="absolute inset-0 z-0 text-blue-500 blur-2xl opacity-50"
+        animate={{ x: position.x * 1.5, y: position.y * 1.5 }}
+      >
+        {text}
+      </motion.span>
+      <motion.span
+        className="absolute inset-0 z-10 text-cyan-400 blur-md opacity-80"
+        animate={{ x: position.x * 1.2, y: position.y * 1.2 }}
+      >
+        {text}
+      </motion.span>
+      <span className="relative z-20 text-white font-bold text-6xl md:text-9xl tracking-tighter mix-blend-overlay">
+        {text}
+      </span>
+    </motion.div>
+  );
+};`,
     componentProps: []
   },
   {
@@ -155,7 +218,7 @@ export const TextReveal = ({ text }) => {
   );
 };`,
     componentProps: [
-       { name: 'text', type: 'string', default: '', description: 'Text to reveal.', example: 'text="Scroll to reveal"' }
+      { name: 'text', type: 'string', default: '', description: 'Text to reveal.', example: 'text="Scroll to reveal"' }
     ]
   },
   {

@@ -129,26 +129,29 @@ We aim to respond to all inquiries within 5 business days.`,
     ];
 
     return (
-        <div className="min-h-screen pt-24 pb-16 bg-black">
-            <div className="max-w-3xl mx-auto px-6">
+        <div className="min-h-screen pt-24 pb-16 bg-black relative">
+            {/* Grid Background */}
+            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+
+            <div className="max-w-5xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-4">
+                <div className="mb-16 text-center md:text-left">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-6">
                         <FileText size={12} />
                         Legal
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h1 className="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-6">
                         Terms of Service
                     </h1>
-                    <div className="flex items-center gap-2 text-zinc-500 text-sm">
+                    <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-sm">
                         <Calendar size={14} />
                         Last updated: December 31, 2024
                     </div>
                 </div>
 
                 {/* Introduction */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 mb-8">
-                    <p className="text-zinc-400 leading-relaxed">
+                <div className="bg-black/50 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
+                    <p className="text-zinc-300 leading-relaxed text-lg">
                         Welcome to Nexus UI. These Terms of Service govern your use of our website, products,
                         and services. By using Nexus UI, you agree to these terms. Please read them carefully
                         before using our Service.
@@ -156,15 +159,16 @@ We aim to respond to all inquiries within 5 business days.`,
                 </div>
 
                 {/* Table of Contents */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 mb-8">
-                    <h3 className="text-white font-semibold mb-4">Table of Contents</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="bg-zinc-900/30 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
+                    <h3 className="text-white font-medium mb-6">Table of Contents</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {sections.map((section, index) => (
                             <a
                                 key={index}
                                 href={`#section-${index + 1}`}
-                                className="text-sm text-zinc-400 hover:text-indigo-400 transition-colors"
+                                className="text-sm text-zinc-400 hover:text-indigo-400 transition-colors flex items-center gap-2 group"
                             >
+                                <span className="w-1.5 h-1.5 rounded-full bg-zinc-700 group-hover:bg-indigo-400 transition-colors" />
                                 {section.title}
                             </a>
                         ))}
@@ -172,11 +176,13 @@ We aim to respond to all inquiries within 5 business days.`,
                 </div>
 
                 {/* Sections */}
-                <div className="space-y-8">
+                <div className="space-y-12">
                     {sections.map((section, index) => (
                         <section key={index} id={`section-${index + 1}`} className="scroll-mt-24">
-                            <h2 className="text-xl font-semibold text-white mb-4">{section.title}</h2>
-                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line">
+                            <h2 className="text-2xl font-medium tracking-tight text-white mb-6">
+                                {section.title}
+                            </h2>
+                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line border-l-2 border-zinc-800 pl-6">
                                 {section.content}
                             </div>
                         </section>

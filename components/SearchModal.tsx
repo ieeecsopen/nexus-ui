@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Search, Command, ArrowRight, File, Layout, X, CornerDownLeft } from 'lucide-react';
 import { ComponentItem, TemplateItem } from '../types';
 import { COMPONENT_ITEMS } from '../constants';
-import { TEMPLATES } from '../data/templates';
+import { TEMPLATE_ITEMS } from '../data/templates';
 
 type ViewType = 'home' | 'components' | 'templates' | 'showcase' | 'pricing' | 'about' | 'docs' | 'roadmap' | 'community' | 'help' | 'privacy' | 'terms' | 'license';
 
@@ -75,15 +75,15 @@ const SearchModal: React.FC<SearchModalProps> = ({
         });
 
         // Search templates
-        TEMPLATES.forEach((item) => {
+        TEMPLATE_ITEMS.forEach((item) => {
             if (
                 item.title.toLowerCase().includes(searchLower) ||
-                item.category.toLowerCase().includes(searchLower)
+                item.tags.some(tag => tag.toLowerCase().includes(searchLower))
             ) {
                 matches.push({
                     type: 'template',
                     title: item.title,
-                    description: item.category,
+                    description: item.tags[0] || 'Template',
                     id: item.id,
                 });
             }
@@ -153,7 +153,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
                 onSelectComponent(component);
             }
         } else if (result.type === 'template') {
-            const template = TEMPLATES.find((t) => t.id === result.id);
+            const template = TEMPLATE_ITEMS.find((t) => t.id === result.id);
             if (template) {
                 onSelectTemplate(template);
             }
@@ -218,8 +218,8 @@ const SearchModal: React.FC<SearchModalProps> = ({
                                     key={`${result.type}-${result.id || result.title}`}
                                     onClick={() => handleSelect(result)}
                                     className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${index === selectedIndex
-                                            ? 'bg-zinc-800'
-                                            : 'hover:bg-zinc-800/50'
+                                        ? 'bg-zinc-800'
+                                        : 'hover:bg-zinc-800/50'
                                         }`}
                                 >
                                     <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center flex-shrink-0">

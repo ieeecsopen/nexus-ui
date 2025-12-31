@@ -89,26 +89,29 @@ We will respond to your inquiry within 30 days.`,
     ];
 
     return (
-        <div className="min-h-screen pt-24 pb-16 bg-black">
-            <div className="max-w-3xl mx-auto px-6">
+        <div className="min-h-screen pt-24 pb-16 bg-black relative">
+            {/* Grid Background */}
+            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+
+            <div className="max-w-5xl mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="mb-12">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-4">
+                <div className="mb-16 text-center md:text-left">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-400 mb-6">
                         <Shield size={12} />
                         Legal
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                    <h1 className="text-4xl md:text-5xl font-medium tracking-tighter text-white mb-6">
                         Privacy Policy
                     </h1>
-                    <div className="flex items-center gap-2 text-zinc-500 text-sm">
+                    <div className="flex items-center justify-center md:justify-start gap-2 text-zinc-500 text-sm">
                         <Calendar size={14} />
                         Last updated: December 31, 2024
                     </div>
                 </div>
 
                 {/* Introduction */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 mb-8">
-                    <p className="text-zinc-400 leading-relaxed">
+                <div className="bg-black/50 border border-zinc-800 rounded-2xl p-8 mb-12 backdrop-blur-sm">
+                    <p className="text-zinc-300 leading-relaxed text-lg">
                         At Nexus UI, we take your privacy seriously. This Privacy Policy explains how we collect,
                         use, disclose, and safeguard your information when you use our website and services.
                         Please read this policy carefully to understand our practices regarding your personal data.
@@ -116,11 +119,16 @@ We will respond to your inquiry within 30 days.`,
                 </div>
 
                 {/* Sections */}
-                <div className="space-y-8">
+                <div className="space-y-12">
                     {sections.map((section, index) => (
                         <section key={index} className="scroll-mt-24" id={section.title.toLowerCase().replace(/\s+/g, '-')}>
-                            <h2 className="text-xl font-semibold text-white mb-4">{section.title}</h2>
-                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line">
+                            <h2 className="text-2xl font-medium tracking-tight text-white mb-6 flex items-center gap-3">
+                                <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 text-sm text-zinc-400 font-mono">
+                                    {index + 1}
+                                </span>
+                                {section.title}
+                            </h2>
+                            <div className="text-zinc-400 leading-relaxed whitespace-pre-line pl-11">
                                 {section.content}
                             </div>
                         </section>
