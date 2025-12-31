@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentItem } from '../types';
-import { ChevronLeft, Check, Copy, ExternalLink, Zap, Layers, Play, Monitor, Code, Palette, Share2, Download, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Check, Copy, ExternalLink, Zap, Layers, Play, Monitor, Code, Palette, Share2, Download, ArrowRight, Github } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ComponentPreview } from './Previews';
 
@@ -22,52 +22,60 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 pb-20 relative">
-      {/* Grid Background */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[center] [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none select-none"></div>
+    <div className="min-h-screen bg-black text-white pt-24 pb-20 relative">
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Navigation */}
         <button
           onClick={onBack}
-          className="group flex items-center gap-2 text-zinc-400 hover:text-white mb-8 transition-colors"
+          className="group flex items-center gap-3 text-zinc-500 hover:text-white mb-12 transition-all duration-300"
         >
-          <div className="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center group-hover:border-zinc-600 bg-zinc-900">
-            <ChevronLeft size={16} />
-          </div>
-          <span className="text-sm font-medium">Back to components</span>
+          <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+          <span className="text-sm font-medium tracking-wide">Back to components</span>
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 pt-0">
-          {/* LEFT COLUMN - Preview */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+
+          {/* LEFT COLUMN - Preview & Content */}
           <div className="lg:col-span-8">
-            <div className="rounded-3xl border border-zinc-800 bg-[#050505] relative aspect-[4/3] group">
-              <div className="absolute top-6 right-6 z-20 flex gap-2">
+
+            {/* Header */}
+            <div className="mb-10">
+              <h1 className="text-4xl md:text-6xl font-light text-white mb-6 tracking-tighter">{item.title}</h1>
+              <p className="text-xl text-zinc-400 font-light leading-relaxed max-w-2xl">{item.description}</p>
+            </div>
+
+            {/* Preview Section */}
+            <div className="border border-white/10 bg-zinc-900/10 rounded-none relative overflow-hidden group">
+              {/* Controls */}
+              <div className="absolute top-0 right-0 z-20 flex border-b border-l border-white/10 bg-black/50 backdrop-blur-sm">
                 <button
                   onClick={() => setActiveTab('preview')}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${activeTab === 'preview' ? 'bg-white text-black' : 'bg-black/50 text-white backdrop-blur-md border border-white/10 hover:bg-white/10'}`}
+                  className={`px-6 py-3 text-xs font-medium tracking-widest uppercase transition-all ${activeTab === 'preview' ? 'text-white bg-white/5' : 'text-zinc-500 hover:text-white hover:bg-white/5'}`}
                 >
                   Preview
                 </button>
+                <div className="w-px bg-white/10" />
                 <button
                   onClick={() => setActiveTab('code')}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${activeTab === 'code' ? 'bg-white text-black' : 'bg-black/50 text-white backdrop-blur-md border border-white/10 hover:bg-white/10'}`}
+                  className={`px-6 py-3 text-xs font-medium tracking-widest uppercase transition-all ${activeTab === 'code' ? 'text-white bg-white/5' : 'text-zinc-500 hover:text-white hover:bg-white/5'}`}
                 >
                   Code
                 </button>
               </div>
 
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Background Gradient Blob */}
-                <div className={`absolute w-[500px] h-[500px] bg-gradient-to-tr ${item.imageGradient || 'from-zinc-800 to-zinc-900'} opacity-20 blur-[120px] rounded-full pointer-events-none`}></div>
+              {/* Canvas */}
+              <div className="w-full aspect-[4/3] md:aspect-[16/9] relative flex items-center justify-center">
+                {/* Grid Background */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-                <div className="relative z-10 w-full h-full flex items-center justify-center p-12">
+                <div className="relative z-10 w-full h-full flex items-center justify-center p-8 md:p-16">
                   {activeTab === 'preview' ? (
-                    <div className="scale-100 transition-transform duration-500">
+                    <div className="transform transition-all duration-500">
                       <ComponentPreview item={item} />
                     </div>
                   ) : (
-                    <div className="w-full h-full overflow-auto custom-scrollbar bg-black/50 rounded-2xl border border-white/5 p-6 text-left backdrop-blur-sm">
+                    <div className="w-full h-full overflow-auto custom-scrollbar bg-black/80 border border-white/10 p-6 text-left backdrop-blur-md">
                       <pre className="text-sm font-mono text-zinc-300 leading-relaxed">
                         <code>{item.fullCode}</code>
                       </pre>
@@ -77,246 +85,125 @@ const ComponentDetail: React.FC<Props> = ({ item, onBack }) => {
               </div>
             </div>
 
-            {/* Description (Moved below preview for mobile, or keep here for flow) */}
-            <div className="mt-16 max-w-3xl space-y-12">
+            {/* Detailed Description */}
+            <div className="mt-20 max-w-3xl space-y-16">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-6">About this Component</h3>
-                <div className="prose prose-invert prose-lg text-zinc-400 leading-relaxed space-y-4">
+                <h3 className="text-2xl font-light text-white mb-8 tracking-tight">About this Component</h3>
+                <div className="prose prose-invert prose-lg text-zinc-400 font-light leading-loose space-y-6">
                   <p>{item.detailedDescription || item.description}</p>
                 </div>
-
-                {item.features && (
-                  <div className="mt-8">
-                    <h4 className="text-lg text-zinc-400 font-medium mb-4">Features:</h4>
-                    <ul className="space-y-3">
-                      {item.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-zinc-400">
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 mt-2.5 flex-shrink-0"></span>
-                          <span>{feature.title}: {feature.description}</span>
-                        </li>
-                      ))}
-                      {item.perfectFor && item.perfectFor.map((pf, idx) => (
-                        <li key={`pf-${idx}`} className="flex items-start gap-3 text-zinc-400">
-                          <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 mt-2.5 flex-shrink-0"></span>
-                          <span>{pf}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                <p className="text-zinc-500 leading-relaxed mt-8">
-                  Perfect for landing pages, hero banners, portfolios, and interactive UI elements.
-                </p>
               </div>
+
+              {item.features && (
+                <div>
+                  <h4 className="text-sm font-semibold text-white uppercase tracking-widest mb-8">Key Features</h4>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    {item.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-4 text-zinc-400 group">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-white transition-colors flex-shrink-0" />
+                        <span className="leading-relaxed"><strong className="text-zinc-200 font-medium">{feature.title}</strong>: {feature.description}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* RIGHT COLUMN - Sidebar Info */}
+          {/* RIGHT COLUMN - Sticky Sidebar */}
           <div className="lg:col-span-4">
-            <div className="sticky top-24 space-y-8">
-              {/* Action Card */}
-              <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-                {/* Quick Info */}
-                <div className="mb-6">
-                  <p className="text-zinc-400 text-sm mb-4 leading-relaxed">
-                    {item.description}
-                  </p>
+            <div className="sticky top-32 space-y-10">
 
-                  <button
-                    onClick={handleCopyCode}
-                    className="w-full py-3 bg-white text-black font-semibold rounded-xl hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2 mb-3"
-                  >
-                    {isCopied ? <Check size={18} /> : <Copy size={18} />}
-                    {isCopied ? 'Copied!' : 'Copy Component'}
+              {/* Actions */}
+              <div className="space-y-4">
+                <button
+                  onClick={handleCopyCode}
+                  className="w-full py-4 bg-white text-black font-medium border border-transparent hover:bg-zinc-200 transition-all flex items-center justify-center gap-3 tracking-wide"
+                >
+                  {isCopied ? <Check size={18} /> : <Copy size={18} />}
+                  {isCopied ? 'Copied to Clipboard' : 'Copy Code'}
+                </button>
+
+                <div className="flex gap-4">
+                  <button className="flex-1 py-3 text-zinc-400 border border-white/10 hover:text-white hover:border-white transition-all flex items-center justify-center gap-2 text-sm">
+                    <Github size={16} /> Source
                   </button>
-                  <div className="flex gap-2">
-                    <button className="flex-1 py-2.5 bg-zinc-800 text-white font-medium rounded-xl hover:bg-zinc-700 transition-colors flex items-center justify-center gap-2 border border-zinc-700">
-                      <Share2 size={16} /> Share
-                    </button>
-                    <button className="flex-1 py-2.5 bg-zinc-800 text-white font-medium rounded-xl hover:bg-zinc-700 transition-colors flex items-center justify-center gap-2 border border-zinc-700">
-                      <Code size={16} /> Source
-                    </button>
-                  </div>
+                  <button className="flex-1 py-3 text-zinc-400 border border-white/10 hover:text-white hover:border-white transition-all flex items-center justify-center gap-2 text-sm">
+                    <Share2 size={16} /> Share
+                  </button>
                 </div>
+              </div>
 
+              {/* Meta Data */}
+              <div className="border-t border-white/10 pt-8 space-y-6">
                 {/* Tech Stack */}
-                <div className="border-t border-zinc-800 pt-6">
-                  <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">Built With</h4>
+                <div>
+                  <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-4">Tech Stack</h4>
                   <div className="flex flex-wrap gap-2">
-                    {item.techStack?.map((tech) => (
-                      <span key={tech} className="px-2.5 py-1 rounded-md bg-black border border-zinc-800 text-xs text-zinc-300 font-medium">
+                    {(item.techStack || ['React', 'Tailwind', 'Framer Motion']).map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-zinc-900 border border-white/5 text-zinc-300 text-xs tracking-wide">
                         {tech}
                       </span>
-                    )) || (
-                        <>
-                          <span className="px-2.5 py-1 rounded-md bg-black border border-zinc-800 text-xs text-zinc-300 font-medium">React</span>
-                          <span className="px-2.5 py-1 rounded-md bg-black border border-zinc-800 text-xs text-zinc-300 font-medium">Tailwind</span>
-                        </>
-                      )}
+                    ))}
                   </div>
                 </div>
 
-                {/* Creator Info */}
-                {item.creator && (
-                  <div className="border-t border-zinc-800 pt-6 mt-6">
-                    <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">Created By</h4>
-                    <div className="flex items-center gap-3 group cursor-pointer">
-                      <img
-                        src={item.creator.avatar}
-                        alt={item.creator.name}
-                        className="w-10 h-10 rounded-full border border-zinc-800"
-                      />
-                      <div>
-                        <div className="text-white font-medium group-hover:text-indigo-400 transition-colors">{item.creator.name}</div>
-                        <div className="text-xs text-zinc-500">{item.creator.role}</div>
-                      </div>
+                {/* License & Updates */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">License</h4>
+                    <p className="text-white text-sm">MIT License</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">Updated</h4>
+                    <p className="text-white text-sm">{item.lastUpdated || 'Dec 2024'}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Creator */}
+              {item.creator && (
+                <div className="border-t border-white/10 pt-8">
+                  <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-4">Creator</h4>
+                  <div className="flex items-center gap-4">
+                    <img src={item.creator.avatar} alt={item.creator.name} className="w-10 h-10 rounded-full grayscale hover:grayscale-0 transition-all duration-500" />
+                    <div>
+                      <p className="text-white font-medium">{item.creator.name}</p>
+                      <p className="text-xs text-zinc-500">{item.creator.role}</p>
                     </div>
                   </div>
-                )}
-
-                {/* Meta Info */}
-                <div className="border-t border-zinc-800 pt-6 mt-6 space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-zinc-500">License</span>
-                    <span className="text-zinc-300 font-medium">MIT</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-zinc-500">Last Updated</span>
-                    <span className="text-zinc-300 font-medium">{item.lastUpdated || 'November 2024'}</span>
-                  </div>
                 </div>
-              </div>
-
-              {/* Support Links */}
-              <div>
-                <h4 className="text-sm font-bold text-white mb-4">Support</h4>
-                <ul className="space-y-4">
-                  <li>
-                    <button className="flex items-center gap-3 text-sm text-zinc-400 hover:text-white transition-colors group">
-                      <Zap size={16} className="text-zinc-500 group-hover:text-white transition-colors" />
-                      About Components
-                    </button>
-                  </li>
-                  <li>
-                    <button className="flex items-center gap-3 text-sm text-zinc-400 hover:text-white transition-colors group">
-                      <ExternalLink size={16} className="text-zinc-500 group-hover:text-white transition-colors" />
-                      Refund Policy
-                    </button>
-                  </li>
-                  <li>
-                    <button className="flex items-center gap-3 text-sm text-zinc-400 hover:text-white transition-colors group">
-                      <Share2 size={16} className="text-zinc-500 group-hover:text-white transition-colors" />
-                      Contact Creator
-                    </button>
-                  </li>
-                  <li>
-                    <button className="flex items-center gap-3 text-sm text-zinc-400 hover:text-white transition-colors group">
-                      <span className="text-zinc-500 text-lg leading-none">⚐</span>
-                      Report Component
-                    </button>
-                  </li>
-                </ul>
-              </div>
+              )}
 
             </div>
           </div>
+
         </div>
-        {/* CTA Section */}
-        {/* <div className="mt-32 mb-16 relative rounded-3xl overflow-hidden text-center py-20 bg-gradient-to-b from-zinc-900 to-black border border-zinc-800">
-          <div className="relative z-10 px-6">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Become a Framer Creator today</h2>
-            <p className="text-zinc-400 max-w-xl mx-auto mb-8 text-lg">
-              Sell products, make referrals, and build your earnings with the Nexus UI Creator component marketplace.
-            </p>
-            <button className="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-              Start Selling
+
+        {/* Similar Components */}
+        <div className="mt-32 pt-24 border-t border-white/5">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-3xl font-light text-white mb-2 tracking-tight">Similar Components</h2>
+              <p className="text-zinc-500 font-light">Explore other components in this category</p>
+            </div>
+            <button className="hidden md:flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors group">
+              View all <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 bg-indigo-500/20 blur-[120px] rounded-full pointer-events-none"></div>
-        </div> */}
-
-        {/* SUGGESTED COMPONENTS SECTION */}
-        <div className="mt-32 space-y-24 pb-24">
-          {/* Section 1: More from Creator */}
-          <div>
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-xl font-bold text-white">More from {item.creator?.name || 'Nexus Team'}</h3>
-              <button className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
-                See All <ArrowRight size={16} />
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="group cursor-pointer">
-                  <div className="aspect-video rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden relative mb-4 group-hover:border-zinc-700 transition-colors">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${i === 1 ? 'from-purple-900/50 to-blue-900/30' :
-                      i === 2 ? 'from-emerald-900/50 to-teal-900/30' :
-                        i === 3 ? 'from-orange-900/50 to-red-900/30' :
-                          'from-pink-900/50 to-rose-900/30'
-                      }`}></div>
-                    {/* Mock UI Elements */}
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      {i % 2 === 0 ? (
-                        <div className="grid grid-cols-2 gap-2 w-full opacity-50">
-                          <div className="h-8 bg-zinc-700/50 rounded-md"></div>
-                          <div className="h-8 bg-zinc-700/50 rounded-md"></div>
-                          <div className="h-8 bg-zinc-700/50 rounded-md"></div>
-                          <div className="h-8 bg-zinc-700/50 rounded-md"></div>
-                        </div>
-                      ) : (
-                        <div className="w-16 h-16 rounded-full bg-zinc-700/50 flex items-center justify-center">
-                          <Zap size={24} className="text-white/20" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold text-base mb-1 group-hover:text-indigo-400 transition-colors">
-                      {i === 1 ? 'reCAPTCHA v2' : i === 2 ? 'DualTone Icons' : i === 3 ? 'File Types' : 'ProductViewer360'}
-                    </h4>
-                    <p className="text-zinc-500 text-sm">
-                      {i % 2 === 0 ? 'Vector Set · Free' : 'Component · $3'}
-                    </p>
-                  </div>
+          {/* Simple Grid Placeholder - In real app, would filter by category */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="group cursor-pointer">
+                <div className="aspect-video bg-zinc-900/30 border border-white/5 group-hover:border-white/20 transition-all duration-500 relative flex items-center justify-center overflow-hidden mb-4">
+                  <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:16px_16px]" />
+                  <span className="text-zinc-600 text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">View Component</span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Section 2: More Components */}
-          <div>
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-xl font-bold text-white">More Components</h3>
-              <button className="text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-1">
-                See All <ArrowRight size={16} />
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[5, 6, 7, 8].map((i) => (
-                <div key={i} className="group cursor-pointer">
-                  <div className="aspect-video rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden relative mb-4 group-hover:border-zinc-700 transition-colors">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${i === 5 ? 'from-indigo-900/50 to-purple-900/30' :
-                      i === 6 ? 'from-blue-900/50 to-cyan-900/30' :
-                        i === 7 ? 'from-green-900/50 to-lime-900/30' :
-                          'from-yellow-900/50 to-orange-900/30'
-                      }`}></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-zinc-600 font-mono text-xs tracking-widest uppercase">Preview</div>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold text-base mb-1 group-hover:text-indigo-400 transition-colors">
-                      {i === 5 ? 'Scramble Text Cycle' : i === 6 ? 'Forex Rate Card' : i === 7 ? 'Live Stock Chart' : 'FormFieldsValidation'}
-                    </h4>
-                    <p className="text-zinc-500 text-sm">
-                      {i === 5 ? '$4' : i === 6 ? '$6' : i === 7 ? '$6' : '$10'}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                <h4 className="text-white font-medium text-sm mb-1 group-hover:text-zinc-300 transition-colors">Component Name {i}</h4>
+                <p className="text-zinc-600 text-xs">UI Element</p>
+              </div>
+            ))}
           </div>
         </div>
 
