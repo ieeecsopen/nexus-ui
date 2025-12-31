@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '../lib/utils';
-import { CountUp } from './Typewriter'; // Assuming we can reuse Typewriter or make a new counter.
-// Actually Typewriter is string based. I'll make a simple numeric counter here.
+// import { CountUp } from './Typewriter'; 
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
 
 export const Statistic = ({ label, value, prefix, suffix, className }: { label: string; value: number; prefix?: string; suffix?: string; className?: string }) => {
