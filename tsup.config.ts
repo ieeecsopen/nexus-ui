@@ -6,6 +6,7 @@ export default defineConfig({
     dts: true,
     clean: true,
     external: ['react', 'react-dom', 'framer-motion', 'motion'],
+    tsconfig: 'tsconfig.lib.json',
     sourcemap: true,
     minify: false,
 });
