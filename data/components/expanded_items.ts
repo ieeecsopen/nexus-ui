@@ -1,8 +1,8 @@
 import { ComponentItem } from '../../types';
 
-const COMMON_INSTALLATION = `npm install @nexus-ui/react
+const COMMON_INSTALLATION = `npm install nexus-kit
 # or
-yarn add @nexus-ui/react`;
+yarn add nexus-kit`;
 
 export const expandedComponents: ComponentItem[] = [
     // Accordions
@@ -703,7 +703,7 @@ export function SimpleDropdown() {
         price: 'free',
         imageGradient: 'from-zinc-500/20 to-gray-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Dialog, DialogContent, DialogTrigger } from '@nexus-ui/react';\n\n<Dialog>\n  <DialogTrigger>Open</DialogTrigger>\n  <DialogContent>Hello</DialogContent>\n</Dialog>`,
+        fullCode: `import { Dialog, DialogContent, DialogTrigger } from 'nexus-kit';\n\n<Dialog>\n  <DialogTrigger>Open</DialogTrigger>\n  <DialogContent>Hello</DialogContent>\n</Dialog>`,
     },
     {
         id: 'modal-2',
