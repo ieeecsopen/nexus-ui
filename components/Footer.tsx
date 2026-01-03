@@ -25,7 +25,7 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
               <span className="text-lg font-medium text-white">Nexus Kit</span>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed">
-              Premium UI library for React developers. Built with Tailwind CSS and Framer Motion.
+              Premium UI library for React developers. Built with Tailwind CSS and NexusUI.
             </p>
           </div>
 

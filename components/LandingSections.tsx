@@ -86,9 +86,9 @@ export const CommunityGridSection = () => (
          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
 
             {/* Left: Text Content */}
-            <div className="lg:col-span-4 sticky top-32 self-start">
+            <div className="lg:col-span-4 lg:sticky lg:top-32 self-start">
                <FadeIn>
-                  <h2 className="text-6xl md:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.9]">
+                  <h2 className="text-5xl md:text-6xl lg:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.9]">
                      Community <br />
                      <span className="text-zinc-600">Driven.</span>
                   </h2>
@@ -120,7 +120,7 @@ export const CommunityGridSection = () => (
 
                   {/* Figma Kit - Tall */}
                   <FadeInItem className="md:row-span-2 h-full">
-                     <div className="h-full rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
+                     <div className="h-full rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-all relative overflow-hidden">
                         <div className="relative z-10">
                            <div className="w-12 h-12 bg-white/5 flex items-center justify-center mb-6 rounded-2xl border border-white/10 text-white">
                               <PenTool size={24} />
@@ -128,7 +128,7 @@ export const CommunityGridSection = () => (
                            <h3 className="text-3xl font-light text-white mb-2">Figma Kit</h3>
                            <p className="text-zinc-500 max-w-xs">Pixel perfect components ready for your design system.</p>
                         </div>
-                        <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-zinc-800 rounded-tl-3xl border-t border-l border-white/10 opacity-30 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500 grayscale group-hover:grayscale-0">
+                        <div className="absolute right-0 bottom-0 w-3/4 h-1/2 md:h-3/4 bg-zinc-800 rounded-tl-3xl border-t border-l border-white/10 opacity-30 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500 grayscale group-hover:grayscale-0">
                            {/* Abstract mock */}
                            <div className="p-6 grid gap-4 opacity-50">
                               <div className="h-4 w-1/2 bg-zinc-600 rounded-full" />
@@ -140,7 +140,7 @@ export const CommunityGridSection = () => (
 
                   {/* GitHub - Square */}
                   <FadeInItem className="h-full">
-                     <div className="h-full rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-10 flex flex-col justify-between group hover:border-white/20 transition-all">
+                     <div className="h-full rounded-3xl bg-zinc-900/40 backdrop-blur-xl border border-white/10 p-6 md:p-10 flex flex-col justify-between group hover:border-white/20 transition-all">
                         <div className="flex justify-between items-start">
                            <Github size={40} className="text-zinc-500 group-hover:text-white transition-colors" />
                            <span className="px-3 py-1 border border-white/10 text-xs uppercase tracking-widest text-zinc-500 rounded-full">Open Source</span>
@@ -154,7 +154,7 @@ export const CommunityGridSection = () => (
 
                   {/* Contributors - Square */}
                   <FadeInItem className="h-full">
-                     <div className="h-full rounded-3xl bg-white text-black p-10 flex flex-col justify-between group hover:bg-zinc-200 transition-all border border-transparent">
+                     <div className="h-full rounded-3xl bg-white text-black p-6 md:p-10 flex flex-col justify-between group hover:bg-zinc-200 transition-all border border-transparent">
                         <div className="flex justify-between items-start">
                            <Users size={40} />
                            <ArrowUpRight />

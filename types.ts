@@ -35,7 +35,7 @@ export interface ComponentItem {
     avatar: string;
     role: string;
   };
-  techStack?: ('React' | 'Next.js' | 'Tailwind' | 'Framer Motion' | 'TypeScript')[];
+  techStack?: ('React' | 'Next.js' | 'Tailwind' | 'NexusUI' | 'TypeScript')[];
   detailedDescription?: string;
   features?: {
     title: string;
