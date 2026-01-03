@@ -14,7 +14,7 @@ const CommunityPage: React.FC = () => {
         {
             title: 'GitHub Discussions',
             description: 'Ask questions, share ideas, and connect with other developers.',
-            link: 'https://github.com/nexus-ui/nexus-ui/discussions',
+            link: 'https://github.com/nexus-kit/nexus-kit/discussions',
         },
         {
             title: 'Discord Server',
@@ -23,8 +23,8 @@ const CommunityPage: React.FC = () => {
         },
         {
             title: 'Contributing Guide',
-            description: 'Learn how to contribute to Nexus UI and help us grow.',
-            link: 'https://github.com/nexus-ui/nexus-ui/blob/main/CONTRIBUTING.md',
+            description: 'Learn how to contribute to Nexus Kit and help us grow.',
+            link: 'https://github.com/nexus-kit/nexus-kit/blob/main/CONTRIBUTING.md',
         },
     ];
 
@@ -57,7 +57,7 @@ const CommunityPage: React.FC = () => {
                             Open source, open minds.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://github.com/nexus-ui/nexus-ui" target="_blank" rel="noreferrer" className="px-6 py-3 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full flex items-center gap-2">
+                            <a href="https://github.com/nexus-kit/nexus-kit" target="_blank" rel="noreferrer" className="px-6 py-3 border border-white/20 hover:bg-white hover:text-black transition-all rounded-full flex items-center gap-2">
                                 <Github size={18} /> GitHub
                             </a>
                             <a href="https://discord.gg/nexusui" target="_blank" rel="noreferrer" className="px-6 py-3 border border-indigo-500/50 text-indigo-400 hover:bg-indigo-500 hover:text-white transition-all rounded-full flex items-center gap-2">

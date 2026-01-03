@@ -20,15 +20,15 @@ const DocumentationPage: React.FC = () => {
     const codeExamples = [
         {
             title: 'Install via npm',
-            code: 'npm install nexus-ui',
+            code: 'npm install nexus-kit',
         },
         {
             title: 'Install via yarn',
-            code: 'yarn add nexus-ui',
+            code: 'yarn add nexus-kit',
         },
         {
             title: 'Import component',
-            code: `import { Button, Card, Modal } from 'nexus-ui';`,
+            code: `import { Button, Card, Modal } from 'nexus-kit';`,
         },
     ];
 
@@ -77,7 +77,7 @@ const DocumentationPage: React.FC = () => {
                             </h2>
                             <div className="prose prose-invert max-w-none">
                                 <p className="text-lg text-zinc-400 leading-relaxed mb-12">
-                                    Nexus UI is designed to be plug-and-play. We've handled the hard parts—accessibility, responsiveness, and dark mode—so you can focus on building unique experiences.
+                                    Nexus Kit is designed to be plug-and-play. We've handled the hard parts—accessibility, responsiveness, and dark mode—so you can focus on building unique experiences.
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     {[
@@ -150,7 +150,7 @@ const DocumentationPage: React.FC = () => {
                                 </div>
                                 <div className="p-6 overflow-x-auto">
                                     <pre className="text-zinc-300 font-mono text-sm leading-relaxed">
-                                        <code>{`import { Button, Card } from 'nexus-ui';
+                                        <code>{`import { Button, Card } from 'nexus-kit';
 
 function App() {
   return (

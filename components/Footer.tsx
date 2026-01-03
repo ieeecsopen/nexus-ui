@@ -22,7 +22,7 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
               <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-zinc-200 to-white flex items-center justify-center text-black">
                 <Command size={14} strokeWidth={3} />
               </div>
-              <span className="text-lg font-medium text-white">Nexus UI</span>
+              <span className="text-lg font-medium text-white">Nexus Kit</span>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed">
               Premium UI library for React developers. Built with Tailwind CSS and Framer Motion.
@@ -86,7 +86,7 @@ const Footer: React.FC<Props> = ({ onNavigate }) => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-zinc-600">© 2024 Nexus UI Inc. All rights reserved.</p>
+          <p className="text-xs text-zinc-600">© 2024 Nexus Kit Inc. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a
               href={SOCIAL_LINKS.github}

@@ -107,9 +107,9 @@ const PricingPage: React.FC = () => {
                     <div className="space-y-6">
                         {[
                             { q: "Is this a recurring subscription?", a: "No. You pay once and get lifetime access to all current and future components and templates." },
-                            { q: "Can I use this for client projects?", a: "Yes! You can use Nexus UI for unlimited personal and commercial projects, including those for clients." },
+                            { q: "Can I use this for client projects?", a: "Yes! You can use Nexus Kit for unlimited personal and commercial projects, including those for clients." },
                             { q: "Do you offer refunds?", a: "We offer a 14-day money-back guarantee if you're not satisfied with your purchase." },
-                            { q: "What technologies are used?", a: "Nexus UI is built with React, Tailwind CSS, and Framer Motion." }
+                            { q: "What technologies are used?", a: "Nexus Kit is built with React, Tailwind CSS, and Framer Motion." }
                         ].map((item, i) => (
                             <div key={i} className="bg-[#0A0A0A] border border-white/5 p-8 rounded-[32px] hover:border-white/10 transition-colors group">
                                 <h3 className="text-lg font-bold text-white mb-3 flex items-start gap-4">

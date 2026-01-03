@@ -40,7 +40,7 @@ const SearchModal: React.FC<SearchModalProps> = ({
         { type: 'page', title: 'Templates', description: 'Premium page templates', page: 'templates' },
         { type: 'page', title: 'Showcase', description: 'See what others built', page: 'showcase' },
         { type: 'page', title: 'Pricing', description: 'Plans and pricing', page: 'pricing' },
-        { type: 'page', title: 'About', description: 'Learn about Nexus UI', page: 'about' },
+        { type: 'page', title: 'About', description: 'Learn about Nexus Kit', page: 'about' },
         { type: 'page', title: 'Documentation', description: 'Getting started guide', page: 'docs' },
         { type: 'page', title: 'Roadmap', description: 'What\'s coming next', page: 'roadmap' },
         { type: 'page', title: 'Community', description: 'Join our community', page: 'community' },

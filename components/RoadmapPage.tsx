@@ -62,7 +62,7 @@ const RoadmapPage: React.FC = () => {
         },
         {
             title: 'Vue & Svelte Ports',
-            description: 'Expand Nexus UI to Vue.js and Svelte frameworks.',
+            description: 'Expand Nexus Kit to Vue.js and Svelte frameworks.',
             status: 'planned',
             version: 'v4.0',
             date: 'Q4 2025',
@@ -131,7 +131,7 @@ const RoadmapPage: React.FC = () => {
                             <div key={index} className="relative pl-16 group">
                                 {/* Dot on timeline */}
                                 <div className={`absolute left-0 top-6 w-12 h-12 rounded-full border flex items-center justify-center transition-colors z-10 bg-black ${item.status === 'completed' ? 'border-white text-white' :
-                                        item.status === 'in-progress' ? 'border-zinc-700 text-zinc-400' : 'border-zinc-800 text-zinc-600'
+                                    item.status === 'in-progress' ? 'border-zinc-700 text-zinc-400' : 'border-zinc-800 text-zinc-600'
                                     }`}>
                                     {getStatusIcon(item.status)}
                                 </div>
@@ -178,7 +178,7 @@ const RoadmapPage: React.FC = () => {
                     <div>
                         <h3 className="text-3xl font-light text-white mb-2">Have a feature request?</h3>
                         <p className="text-zinc-400 font-light text-lg">
-                            We'd love to hear your ideas. Help shape the future of Nexus UI.
+                            We'd love to hear your ideas. Help shape the future of Nexus Kit.
                         </p>
                     </div>
 

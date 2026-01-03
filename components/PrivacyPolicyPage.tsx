@@ -110,7 +110,7 @@ We will respond to your inquiry within 30 days.`,
                 {/* Introduction */}
                 <div className="border border-white/10 rounded-3xl p-10 mb-20 bg-zinc-900/20">
                     <p className="text-zinc-300 leading-relaxed text-lg font-light">
-                        At Nexus UI, we take your privacy seriously. This Privacy Policy explains how we collect,
+                        At Nexus Kit, we take your privacy seriously. This Privacy Policy explains how we collect,
                         use, disclose, and safeguard your information when you use our website and services.
                     </p>
                 </div>

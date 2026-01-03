@@ -15,7 +15,7 @@ export const expandedComponents: ComponentItem[] = [
         imageGradient: 'from-blue-500/20 to-cyan-500/20',
         creator: { name: 'Nexus Team', avatar: 'https://github.com/shadcn.png', role: 'Team' },
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nexus-ui/react';
+        fullCode: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from 'nexus-kit';
 
 export function BasicAccordion() {
   return (
@@ -40,7 +40,7 @@ export function BasicAccordion() {
         price: 'free',
         imageGradient: 'from-indigo-500/20 to-purple-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Accordion, AccordionItem } from '@nexus-ui/react';
+        fullCode: `import { Accordion, AccordionItem } from 'nexus-kit';
 
 export function BorderedAccordion() {
   return (
@@ -99,7 +99,7 @@ export function BorderedAccordion() {
         price: 'free',
         imageGradient: 'from-green-500/20 to-emerald-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Alert, AlertDescription, AlertTitle } from '@nexus-ui/react';
+        fullCode: `import { Alert, AlertDescription, AlertTitle } from 'nexus-kit';
 import { CheckCircle } from 'lucide-react';
 
 export function SuccessAlert() {
@@ -150,7 +150,7 @@ export function SuccessAlert() {
         price: 'pro',
         imageGradient: 'from-violet-500/20 to-purple-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { useToast } from '@nexus-ui/react';\n\nconst { toast } = useToast();\ntoast({ title: "Scheduled: Catch up" });`,
+        fullCode: `import { useToast } from 'nexus-kit';\n\nconst { toast } = useToast();\ntoast({ title: "Scheduled: Catch up" });`,
     },
 
     // Avatars
@@ -162,7 +162,7 @@ export function SuccessAlert() {
         price: 'free',
         imageGradient: 'from-zinc-500/20 to-gray-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Avatar, AvatarImage, AvatarFallback } from '@nexus-ui/react';
+        fullCode: `import { Avatar, AvatarImage, AvatarFallback } from 'nexus-kit';
 
 export function CircleAvatar() {
   return (
@@ -223,7 +223,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-blue-500/20 to-indigo-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Badge } from '@nexus-ui/react';\n\n<Badge>New</Badge>`,
+        fullCode: `import { Badge } from 'nexus-kit';\n\n<Badge>New</Badge>`,
     },
     {
         id: 'badge-2',
@@ -275,7 +275,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-indigo-600/20 to-blue-600/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Button } from '@nexus-ui/react';\n\n<Button>Click me</Button>`,
+        fullCode: `import { Button } from 'nexus-kit';\n\n<Button>Click me</Button>`,
     },
     {
         id: 'button-2',
@@ -327,7 +327,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-zinc-500/20 to-gray-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@nexus-ui/react';\n\n<Breadcrumb>\n  <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>\n</Breadcrumb>`,
+        fullCode: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from 'nexus-kit';\n\n<Breadcrumb>\n  <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>\n</Breadcrumb>`,
     },
     {
         id: 'breadcrumb-2',
@@ -379,7 +379,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-zinc-500/20 to-gray-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Card, CardContent } from '@nexus-ui/react';\n\n<Card>\n  <CardContent>Hello World</CardContent>\n</Card>`,
+        fullCode: `import { Card, CardContent } from 'nexus-kit';\n\n<Card>\n  <CardContent>Hello World</CardContent>\n</Card>`,
     },
     {
         id: 'card-2',
@@ -431,7 +431,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-indigo-500/20 to-blue-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { Checkbox } from '@nexus-ui/react';\n\n<Checkbox id="terms" />`,
+        fullCode: `import { Checkbox } from 'nexus-kit';\n\n<Checkbox id="terms" />`,
     },
     {
         id: 'checkbox-2',
@@ -483,7 +483,7 @@ export function CircleAvatar() {
         price: 'free',
         imageGradient: 'from-zinc-500/20 to-gray-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@nexus-ui/react';
+        fullCode: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from 'nexus-kit';
 
 export function SimpleDropdown() {
   return (
@@ -525,7 +525,7 @@ export function SimpleDropdown() {
         price: 'pro',
         imageGradient: 'from-purple-500/20 to-pink-500/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from '@nexus-ui/react';\n\n<ContextMenu>\n  <ContextMenuTrigger>Right click here</ContextMenuTrigger>\n  <ContextMenuContent>...</ContextMenuContent>\n</ContextMenu>`,
+        fullCode: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from 'nexus-kit';\n\n<ContextMenu>\n  <ContextMenuTrigger>Right click here</ContextMenuTrigger>\n  <ContextMenuContent>...</ContextMenuContent>\n</ContextMenu>`,
     },
     {
         id: 'dropdown-5',
@@ -547,7 +547,7 @@ export function SimpleDropdown() {
         price: 'free',
         imageGradient: 'from-zinc-800/20 to-zinc-700/20',
         installation: COMMON_INSTALLATION,
-        fullCode: `<footer className="py-4 border-t">\n  <div className="container mx-auto">© 2024 Nexus UI</div>\n</footer>`,
+        fullCode: `<footer className="py-4 border-t">\n  <div className="container mx-auto">© 2024 Nexus Kit</div>\n</footer>`,
     },
     {
         id: 'footer-2',

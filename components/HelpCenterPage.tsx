@@ -14,13 +14,13 @@ const HelpCenterPage: React.FC = () => {
     const faqs: FAQItem[] = [
         {
             category: 'Getting Started',
-            question: 'How do I install Nexus UI?',
-            answer: 'You can install Nexus UI via npm with `npm install nexus-ui` or via yarn with `yarn add nexus-ui`. After installation, import the components you need and start building!',
+            question: 'How do I install Nexus Kit?',
+            answer: 'You can install Nexus Kit via npm with `npm install nexus-kit` or via yarn with `yarn add nexus-kit`. After installation, import the components you need and start building!',
         },
         {
             category: 'Getting Started',
             question: 'What are the peer dependencies?',
-            answer: 'Nexus UI requires React 18+, Tailwind CSS 3+, and optionally Framer Motion for animations. Make sure these are installed in your project.',
+            answer: 'Nexus Kit requires React 18+, Tailwind CSS 3+, and optionally Framer Motion for animations. Make sure these are installed in your project.',
         },
         {
             category: 'Components',
@@ -30,12 +30,12 @@ const HelpCenterPage: React.FC = () => {
         {
             category: 'Components',
             question: 'Are the components accessible?',
-            answer: 'Yes, we follow WAI-ARIA guidelines and ensure all components are keyboard navigable and screen reader friendly. Accessibility is a core priority for Nexus UI.',
+            answer: 'Yes, we follow WAI-ARIA guidelines and ensure all components are keyboard navigable and screen reader friendly. Accessibility is a core priority for Nexus Kit.',
         },
         {
             category: 'Licensing',
-            question: 'Can I use Nexus UI in commercial projects?',
-            answer: 'Yes! Nexus UI is available under the MIT license for the open-source version. Commercial licenses are available for premium components and templates.',
+            question: 'Can I use Nexus Kit in commercial projects?',
+            answer: 'Yes! Nexus Kit is available under the MIT license for the open-source version. Commercial licenses are available for premium components and templates.',
         },
         {
             category: 'Licensing',

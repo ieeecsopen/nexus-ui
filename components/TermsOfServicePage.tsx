@@ -5,13 +5,13 @@ const TermsOfServicePage: React.FC = () => {
     const sections = [
         {
             title: '1. Acceptance of Terms',
-            content: `By accessing or using Nexus UI ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.
+            content: `By accessing or using Nexus Kit ("the Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.
 
 These Terms apply to all visitors, users, and others who access or use the Service. By using the Service, you represent that you are at least 18 years of age or have parental/guardian consent.`,
         },
         {
             title: '2. Description of Service',
-            content: `Nexus UI provides a library of React UI components, templates, and related resources for web development. The Service includes:
+            content: `Nexus Kit provides a library of React UI components, templates, and related resources for web development. The Service includes:
 
 • Access to open-source UI components
 • Premium component packages (for paid users)
@@ -48,7 +48,7 @@ All licenses are subject to full payment and compliance with these Terms.`,
         },
         {
             title: '5. Intellectual Property',
-            content: `The Service and its original content, features, and functionality are owned by Nexus UI and are protected by international copyright, trademark, and other intellectual property laws.
+            content: `The Service and its original content, features, and functionality are owned by Nexus Kit and are protected by international copyright, trademark, and other intellectual property laws.
 
 You may not:
 • Reproduce, distribute, or create derivative works without authorization
@@ -92,13 +92,13 @@ We do not warrant that:
         },
         {
             title: '9. Limitation of Liability',
-            content: `IN NO EVENT SHALL NEXUS UI, ITS DIRECTORS, EMPLOYEES, PARTNERS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
+            content: `IN NO EVENT SHALL NEXUS KIT, ITS DIRECTORS, EMPLOYEES, PARTNERS, OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
 
 Our total liability for any claims under these Terms shall not exceed the amount you paid us in the twelve (12) months preceding the claim.`,
         },
         {
             title: '10. Indemnification',
-            content: `You agree to defend, indemnify, and hold harmless Nexus UI and its affiliates from and against any claims, damages, obligations, losses, liabilities, costs, or debt arising from:
+            content: `You agree to defend, indemnify, and hold harmless Nexus Kit and its affiliates from and against any claims, damages, obligations, losses, liabilities, costs, or debt arising from:
 
 • Your use of the Service
 • Your violation of these Terms
@@ -121,7 +121,7 @@ Your continued use of the Service after changes become effective constitutes acc
             title: '13. Contact Information',
             content: `If you have any questions about these Terms, please contact us:
 
-Email: legal@nexusui.com
+Email: legal@nexuskit.com
 Address: 123 Tech Street, San Francisco, CA 94105
 
 We aim to respond to all inquiries within 5 business days.`,
@@ -150,8 +150,8 @@ We aim to respond to all inquiries within 5 business days.`,
                 {/* Introduction */}
                 <div className="border border-white/10 rounded-3xl p-10 mb-20 bg-zinc-900/20">
                     <p className="text-zinc-300 leading-relaxed text-lg font-light">
-                        Welcome to Nexus UI. These Terms of Service govern your use of our website, products,
-                        and services. By using Nexus UI, you agree to these terms.
+                        Welcome to Nexus Kit. These Terms of Service govern your use of our website, products,
+                        and services. By using Nexus Kit, you agree to these terms.
                     </p>
                 </div>
 

@@ -53,7 +53,7 @@ const GENERAL_FAQS = [
 const LEGAL_FAQS = [
   { q: "Can I use these for client work?", a: "Yes, the commercial license allows you to build and sell websites to your clients using our templates." },
   { q: "Is there a recurring fee?", a: "No, it's a one-time payment. You get lifetime access to the template and future updates." },
-  { q: "Do I need to attribute Nexus UI?", a: "No attribution is required, though it is appreciated!" },
+  { q: "Do I need to attribute Nexus Kit?", a: "No attribution is required, though it is appreciated!" },
   { q: "What about taxes?", a: "VAT and other taxes are calculated at checkout based on your location." },
   { q: "Can I resell the templates?", a: "No, you cannot resell or redistribute the templates as standalone products." }
 ];

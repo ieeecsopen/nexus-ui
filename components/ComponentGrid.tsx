@@ -73,8 +73,8 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
                       <button
                         onClick={() => handleCategorySelect(link.name)}
                         className={`w-full text-left text-sm transition-all duration-300 flex items-center justify-between group ${isActive
-                            ? 'text-white font-medium'
-                            : 'text-zinc-500 hover:text-white'
+                          ? 'text-white font-medium'
+                          : 'text-zinc-500 hover:text-white'
                           }`}
                       >
                         <span className="tracking-wide">{link.name}</span>
@@ -142,7 +142,7 @@ const ComponentGrid: React.FC<Props> = ({ onSelectComponent }) => {
           {/* Header - Editorial Style */}
           <div className="mb-24 text-center lg:text-left">
             <h1 className="text-6xl md:text-8xl font-light text-white mb-8 tracking-tighter leading-[0.85]">
-              Nexus UI <br />
+              Nexus Kit <br />
               <span className="text-zinc-600">Components.</span>
             </h1>
             <p className="text-zinc-400 text-xl font-light max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">

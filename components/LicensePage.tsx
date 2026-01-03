@@ -111,7 +111,7 @@ const LicensePage: React.FC = () => {
                         <pre className="text-sm text-zinc-400 whitespace-pre-wrap font-mono leading-relaxed group-hover:text-zinc-300 transition-colors">
                             {`MIT License
 
-Copyright (c) 2024 Nexus UI
+Copyright (c) 2024 Nexus Kit
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -32,7 +32,7 @@ export const FOOTER_LINKS = {
 };
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/nexus-ui/nexus-ui',
+  github: 'https://github.com/nexus-kit/nexus-kit',
   twitter: 'https://twitter.com/nexusui',
   discord: 'https://discord.gg/nexusui',
 };
