@@ -9,9 +9,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['"GT Walsheim"', 'sans-serif'],
-                primary: ['"GT Walsheim"', 'sans-serif'],
-                walsheim: ['"GT Walsheim"', 'sans-serif'],
+                sans: ['"Manrope"', 'sans-serif'],
+                primary: ['"Manrope"', 'sans-serif'],
+                walsheim: ['"Manrope"', 'sans-serif'],
             },
         },
     },

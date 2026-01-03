@@ -16,18 +16,18 @@ const Hero = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-zinc-900/50 mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-zinc-900/50 mb-8 backdrop-blur-md"
         >
-          <span className="flex h-1.5 w-1.5 rounded-full bg-white"></span>
+          <span className="flex h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"></span>
           <span className="text-xs font-medium text-white uppercase tracking-wider">v2.0 Released</span>
         </motion.div>
 
-        {/* Main Heading - Stark White */}
+        {/* Main Heading - Stark White & Light Font */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-7xl md:text-9xl font-light tracking-tighter text-white mb-8 leading-[0.85]"
+          className="text-7xl md:text-9xl font-medium tracking-tighter text-white mb-8 leading-[0.85]"
         >
           Ship <br className="md:hidden" />
           <span className="md:whitespace-nowrap">faster. </span>
@@ -38,7 +38,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-xl md:text-2xl text-zinc-400 font-light max-w-2xl leading-relaxed mb-12"
+          className="text-xl md:text-2xl text-zinc-400 font-normal max-w-2xl leading-relaxed mb-12"
         >
           A premium component library for the next generation of web applications.
           Meticulously crafted, accessible, and performant.

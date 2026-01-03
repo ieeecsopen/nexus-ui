@@ -88,7 +88,7 @@ export const CommunityGridSection = () => (
             {/* Left: Text Content */}
             <div className="lg:col-span-4 sticky top-32 self-start">
                <FadeIn>
-                  <h2 className="text-6xl md:text-8xl font-light text-white mb-8 tracking-tighter leading-[0.9]">
+                  <h2 className="text-6xl md:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.9]">
                      Community <br />
                      <span className="text-zinc-600">Driven.</span>
                   </h2>

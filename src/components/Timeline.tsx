@@ -19,7 +19,7 @@ export const Timeline = ({ items, className }: { items: TimelineItemProps[], cla
     );
 };
 
-const TimelineItem = ({ title, description, date, icon }: TimelineItemProps) => {
+const TimelineItem: React.FC<TimelineItemProps> = ({ title, description, date, icon }) => {
     return (
         <div className="relative pl-8 md:pl-12">
             <span className="absolute -left-[9px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-zinc-950 ring-4 ring-zinc-900 border border-zinc-700">

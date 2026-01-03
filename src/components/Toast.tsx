@@ -56,7 +56,7 @@ export const useToast = () => {
     return context;
 };
 
-const ToastItem = ({ toast, onRemove }: { toast: Toast; onRemove: (id: string) => void }) => {
+const ToastItem: React.FC<{ toast: Toast; onRemove: (id: string) => void }> = ({ toast, onRemove }) => {
     const icons = {
         success: <CheckCircle className="w-5 h-5 text-green-500" />,
         error: <AlertCircle className="w-5 h-5 text-red-500" />,

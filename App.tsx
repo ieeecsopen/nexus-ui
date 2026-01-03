@@ -171,6 +171,7 @@ function App() {
             item={selectedTemplate}
             onBack={handleBack}
             onViewDemo={() => setIsTemplateDemoMode(true)}
+            onSelectTemplate={handleSelectTemplate}
           />
         )}
 

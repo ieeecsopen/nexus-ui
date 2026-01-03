@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus UI Launch Flyer</title>
+    <style>
+        @font-face {
+            font-family: 'GT Walsheim';
+            src: url('/fonts/GT-Walsheim-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'GT Walsheim';
+            src: url('/fonts/GT-Walsheim-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'GT Walsheim';
+            src: url('/fonts/GT-Walsheim-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'GT Walsheim', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+        }
+
+        .flyer-container {
+            width: 1080px;
+            height: 1350px;
+            background-color: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Centered vertically */
+            padding: 60px;
+        }
+
+        /* Background Elements */
+        .bg-dots {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+
+
+        .top-glow {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(ellipse at center, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Top Navigation */
+        .nav-header {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+        }
+
+        .nav-version {
+            opacity: 0.7;
+        }
+
+        /* Main Content */
+        /* Main Content */
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            gap: 40px;
+            margin-bottom: 200px;
+            /* Shifted up further */
+        }
+
+        /* Pill Badge */
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 24px 60px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            font-size: 42px;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 30px;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pill-badge::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+            filter: blur(8px);
+        }
+
+        .pill-emoji {
+            font-size: 18px;
+        }
+
+        /* Headline */
+        .headline {
+            font-size: 72px;
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 900px;
+        }
+
+        .headline strong {
+            background: linear-gradient(135deg, #fff 30%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 500;
+            display: block;
+        }
+
+        /* Terminal Block */
+        .terminal {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            /* Pill shape for terminal too based on styles */
+            padding: 24px 32px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            margin-top: 20px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-prompt {
+            color: rgba(255, 255, 255, 0.4);
+            margin-right: 12px;
+            user-select: none;
+        }
+
+        .terminal-command {
+            color: #fff;
+        }
+
+        .terminal-command .cmd {
+            color: #a78bfa;
+        }
+
+        /* purple */
+        .terminal-command .pkg {
+            color: #60a5fa;
+        }
+
+        /* blue */
+        .terminal-command .action {
+            color: #facc15;
+        }
+
+        /* yellow */
+
+        /* Bottom Assets */
+        .bottom-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 400px;
+            background: linear-gradient(to top, #000 0%, transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .bottom-image {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .float-card {
+            position: absolute;
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-card-1 {
+            top: 250px;
+            left: 120px;
+            width: 160px;
+            height: 90px;
+            animation-delay: 0s;
+            transform: rotate(-6deg);
+            padding: 16px;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .float-line {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .float-line.short {
+            width: 60%;
+        }
+
+        .float-card-2 {
+            top: 380px;
+            right: 140px;
+            padding: 12px 20px;
+            gap: 10px;
+            border-radius: 50px;
+            animation-delay: 2s;
+            transform: rotate(8deg);
+        }
+
+        .float-card-3 {
+            bottom: 350px;
+            left: 180px;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            animation-delay: 1s;
+            transform: rotate(-10deg);
+        }
+
+        .float-toggle {
+            width: 36px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .float-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(var(--r, 0deg));
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(var(--r, 0deg));
+            }
+        }
+
+        /* Refined Floating Elements */
+        .float-card-base {
+            background: rgba(30, 30, 30, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: absolute;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* Ambient Glow */
+        .ambient-glow-2 {
+            position: absolute;
+            bottom: 20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Terminal Dots */
+
+
+        /* 1. Card (Top Left) */
+        .ui-card {
+            top: 220px;
+            left: 80px;
+            width: 140px;
+            padding: 16px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transform: rotate(-8deg);
+            animation-delay: 0s;
+        }
+
+        .skeleton-header {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .skeleton-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .skeleton-title {
+            width: 60%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .skeleton-line {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .skeleton-line.w-60 {
+            width: 60%;
+        }
+
+        /* 2. Button (Top Right) */
+        .ui-button {
+            top: 260px;
+            right: 100px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: #fff;
+            color: #000;
+            font-size: 13px;
+            font-weight: 600;
+            transform: rotate(12deg);
+            animation-delay: 2s;
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            border: 2px solid #000;
+            border-top: none;
+            border-right: none;
+            transform: rotate(-45deg);
+            margin-left: 2px;
+        }
+
+        /* 3. Toggle (Bottom Leftish) */
+        .ui-toggle {
+            bottom: 380px;
+            left: 120px;
+            width: 72px;
+            height: 40px;
+            border-radius: 20px;
+            background: #22c55e;
+            /* Green active state */
+            border: none;
+            display: flex;
+            align-items: center;
+            padding: 4px;
+            transform: rotate(-5deg);
+            animation-delay: 1.5s;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .toggle-thumb {
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateX(32px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 4. Accordion (Bottom Rightish) */
+        .ui-accordion {
+            bottom: 420px;
+            right: 100px;
+            width: 160px;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transform: rotate(6deg);
+            animation-delay: 3s;
+        }
+
+        .acc-item {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            gap: 8px;
+        }
+
+        .acc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .acc-line {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .acc-icon {
+            width: 8px;
+            height: 8px;
+            border-left: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(-45deg);
+        }
+
+        .acc-item.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .acc-content {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .acc-item.active .acc-content {
+            display: flex;
+        }
+
+        .acc-text-line {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            width: 100%;
+        }
+
+        .acc-text-line.short {
+            width: 70%;
+        }
+
+        .acc-item.active .acc-icon {
+            transform: rotate(135deg);
+            margin-top: 2px;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flyer-container">
+        <!-- Decoration -->
+        <div class="bg-dots"></div>
+        <div class="top-glow"></div>
+        <div class="ambient-glow-2"></div>
+
+        <!-- Floating UI Components -->
+        <div class="floating-elements">
+            <!-- Card -->
+            <div class="float-card-base ui-card" style="--r: -8deg">
+                <div class="skeleton-header">
+                    <div class="skeleton-avatar"></div>
+                    <div class="skeleton-title"></div>
+                </div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line w-60"></div>
+            </div>
+
+            <!-- Button -->
+            <div class="float-card-base ui-button" style="--r: 12deg">
+                Get Started <div class="btn-icon"></div>
+            </div>
+
+            <!-- Toggle -->
+            <div class="float-card-base ui-toggle" style="--r: -5deg">
+                <div class="toggle-thumb"></div>
+            </div>
+
+            <!-- Accordion -->
+            <div class="float-card-base ui-accordion" style="--r: 6deg">
+                <div class="acc-item active">
+                    <div class="acc-header">
+                        <div class="acc-line"></div>
+                        <div class="acc-icon"></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="acc-text-line"></div>
+                        <div class="acc-text-line short"></div>
+                    </div>
+                </div>
+                <!-- Simplified other items -->
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <div class="acc-line"></div>
+                        <div class="acc-icon"></div>
+                    </div>
+                </div>
+                <div class="acc-item">
+                    <div class="acc-header">
+                        <div class="acc-line"></div>
+                        <div class="acc-icon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Nav -->
+        <div class="nav-header">
+            <div class="nav-brand">Nexus Kit</div>
+            <div class="nav-version">v0.0.2</div>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="pill-badge">
+                <span class="text-glow">NexusUI</span>
+            </div>
+
+            <h1 class="headline">
+                <strong>Build stunning UIs</strong>
+                with clean & modern components
+            </h1>
+
+            <div class="terminal">
+                <span class="terminal-prompt">$</span>
+                <span class="terminal-command">
+                    <span class="cmd">npx</span>
+                    <span class="pkg">nexus-kit@latest</span>
+                    <span class="action">init</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <img src="./bottom-image.png" alt="3D Blue Crystal" class="bottom-image">
+        <div class="bottom-gradient"></div>
+    </div>
+</body>
+
+</html>
