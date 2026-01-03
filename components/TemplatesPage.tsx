@@ -94,7 +94,7 @@ const TemplatesPage: React.FC<Props> = ({ onSelectTemplate, onViewDemo }) => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8 leading-[1.1]">
-            Modern and Optimized Framer <br />
+            Modern and Optimized NexusUI <br />
             <span className="text-white">Website Templates</span>
           </h1>
 
@@ -275,7 +275,7 @@ const TemplatesPage: React.FC<Props> = ({ onSelectTemplate, onViewDemo }) => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-medium text-white mb-16 max-w-3xl mx-auto">
-            We are a Small but Mighty Team of Design and Framer Experts
+            We are a Small but Mighty Team of Design and NexusUI Experts
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
