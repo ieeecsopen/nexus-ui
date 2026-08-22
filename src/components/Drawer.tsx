@@ -4,7 +4,7 @@ import { cn } from '../lib/utils';
 import { Button } from './Button';
 import { X } from 'lucide-react';
 
-interface DrawerProps {
+interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     children: React.ReactNode;
@@ -12,7 +12,7 @@ interface DrawerProps {
     className?: string;
 }
 
-export const Drawer = ({ open, onOpenChange, children, direction = 'right', className }: DrawerProps) => {
+export const Drawer = ({ open, onOpenChange, children, direction = 'right', className, ...rest }: DrawerProps) => {
     // Simple Drawer using Sheet logic but generic direction
     const variants = {
         left: { x: '-100%', y: 0 },
@@ -36,6 +36,7 @@ export const Drawer = ({ open, onOpenChange, children, direction = 'right', clas
                         className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
                     />
                     <motion.div
+                        {...rest}
                         initial={variants[direction]}
                         animate={{ x: 0, y: 0 }}
                         exit={variants[direction]}
