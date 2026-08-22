@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 
-interface AnimatedTabsProps {
+interface AnimatedTabsProps extends React.HTMLAttributes<HTMLDivElement> {
     tabs: string[];
     defaultTab?: string;
     onChange?: (tab: string) => void;
     className?: string;
 }
 
-export const AnimatedTabs = ({ tabs, defaultTab, onChange, className }: AnimatedTabsProps) => {
+export const AnimatedTabs = ({ tabs, defaultTab, onChange, className, ...rest }: AnimatedTabsProps) => {
     const [active, setActive] = useState(defaultTab || tabs[0]);
 
     const handleTabClick = (tab: string) => {
@@ -18,7 +18,7 @@ export const AnimatedTabs = ({ tabs, defaultTab, onChange, className }: Animated
     };
 
     return (
-        <div className={cn("flex space-x-1 rounded-full bg-zinc-900/50 p-1 w-fit border border-white/5", className)}>
+        <div {...rest} className={cn("flex space-x-1 rounded-full bg-zinc-900/50 p-1 w-fit border border-white/5", className)}>
             {tabs.map((tab) => (
                 <button
                     key={tab}
