@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export const TextGlowHover = ({ text = "Glow", className = "" }: { text?: string; className?: string }) => {
+export const TextGlowHover = ({ text = "Glow", className = "", ...rest }: { text?: string; className?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -19,6 +19,7 @@ export const TextGlowHover = ({ text = "Glow", className = "" }: { text?: string
 
     return (
         <motion.div
+            {...rest}
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

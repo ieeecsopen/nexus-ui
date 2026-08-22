@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { cn } from '../lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const Tooltip = ({ text, children, className }: { text: string; children: React.ReactNode; className?: string }) => {
+export const Tooltip = ({ text, children, className, ...rest }: { text: string; children: React.ReactNode; className?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <div
+            {...rest}
             className="relative inline-block"
             onMouseEnter={() => setIsVisible(true)}
             onMouseLeave={() => setIsVisible(false)}
