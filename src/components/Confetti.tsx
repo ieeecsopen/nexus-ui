@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from 'react';
+import { useReducedMotion } from '../lib/use-reduced-motion';
 
 export const Confetti = ({ active = false }: { active?: boolean }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    // Falling, spinning particles are exactly the motion reduce-motion users opt
+    // out of: the celebration renders nothing rather than moving.
+    const reducedMotion = useReducedMotion();
 
     useEffect(() => {
-        if (!active || !canvasRef.current) return;
+        if (!active || reducedMotion || !canvasRef.current) return;
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
@@ -62,7 +66,7 @@ export const Confetti = ({ active = false }: { active?: boolean }) => {
         loop();
 
         return () => cancelAnimationFrame(animationId);
-    }, [active]);
+    }, [active, reducedMotion]);
 
     if (!active) return null;
 
