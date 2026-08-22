@@ -3,7 +3,7 @@ import { cn } from '../lib/utils';
 // import { CountUp } from './Typewriter'; 
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
 
-export const Statistic = ({ label, value, prefix, suffix, className }: { label: string; value: number; prefix?: string; suffix?: string; className?: string }) => {
+export const Statistic = ({ label, value, prefix, suffix, className, ...rest }: { label: string; value: number; prefix?: string; suffix?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     const ref = React.useRef<HTMLSpanElement>(null);
     const motionValue = useMotionValue(0);
     const springValue = useSpring(motionValue, { stiffness: 50, damping: 20 });
@@ -24,7 +24,7 @@ export const Statistic = ({ label, value, prefix, suffix, className }: { label: 
     }, [springValue]);
 
     return (
-        <div className={cn("flex flex-col items-center justify-center p-4 rounded-xl bg-zinc-900/50 border border-white/5", className)}>
+        <div {...rest} className={cn("flex flex-col items-center justify-center p-4 rounded-xl bg-zinc-900/50 border border-white/5", className)}>
             <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-400">
                 {prefix}<span ref={ref}>0</span>{suffix}
             </div>
