@@ -43,5 +43,14 @@
     "tsup": "^8.0.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ieeecsopen/nexus-ui.git"
+  },
+  "homepage": "https://github.com/ieeecsopen/nexus-ui#readme",
+  "bugs": {
+    "url": "https://github.com/ieeecsopen/nexus-ui/issues"
+  },
+  "license": "MIT"
 }
