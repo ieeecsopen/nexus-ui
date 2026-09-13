@@ -2,16 +2,17 @@ import React from 'react';
 import { cn } from '../lib/utils';
 import { motion } from 'framer-motion';
 
-export interface SwitchProps {
+export interface SwitchProps extends React.HTMLAttributes<HTMLButtonElement> {
     checked?: boolean;
     onCheckedChange?: (checked: boolean) => void;
     className?: string;
     disabled?: boolean;
 }
 
-export const Switch = ({ checked, onCheckedChange, className, disabled }: SwitchProps) => {
+export const Switch = ({ checked, onCheckedChange, className, disabled, ...rest }: SwitchProps) => {
     return (
         <button
+            {...rest}
             type="button"
             role="switch"
             aria-checked={checked}

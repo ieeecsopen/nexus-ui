@@ -1,19 +1,19 @@
 import React from 'react';
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-interface TiltCardProps {
+interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
     className?: string;
 }
 
-export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "" }) => {
+export const TiltCard: React.FC<TiltCardProps> = ({ children, className = "", ...rest }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     return (
-        <div style={{ perspective: 2000 }} className={`w-full h-full flex items-center justify-center ${className}`}>
+        <div {...rest} style={{ perspective: 2000 }} className={`w-full h-full flex items-center justify-center ${className}`}>
             <motion.div
                 style={{ x, y, rotateX, rotateY, z: 100 }}
                 drag

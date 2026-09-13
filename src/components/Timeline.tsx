@@ -9,9 +9,9 @@ interface TimelineItemProps {
     icon?: React.ReactNode;
 }
 
-export const Timeline = ({ items, className }: { items: TimelineItemProps[], className?: string }) => {
+export const Timeline = ({ items, className, ...rest }: { items: TimelineItemProps[] } & React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <div className={cn("relative border-l border-zinc-800 ml-3 space-y-10", className)}>
+        <div {...rest} className={cn("relative border-l border-zinc-800 ml-3 space-y-10", className)}>
             {items.map((item, index) => (
                 <TimelineItem key={index} {...item} />
             ))}

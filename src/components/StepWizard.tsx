@@ -8,9 +8,9 @@ interface Step {
     description?: string;
 }
 
-export const StepWizard = ({ steps, currentStep, className }: { steps: Step[]; currentStep: number; className?: string }) => {
+export const StepWizard = ({ steps, currentStep, className, ...rest }: { steps: Step[]; currentStep: number } & React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <div className={cn("w-full py-4", className)}>
+        <div {...rest} className={cn("w-full py-4", className)}>
             <div className="relative flex items-center justify-between">
                 {/* Connecting Lines */}
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[1px] bg-zinc-800 -z-10" />

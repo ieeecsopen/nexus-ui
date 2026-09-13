@@ -2,7 +2,7 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-export interface RatingStarsProps {
+export interface RatingStarsProps extends React.HTMLAttributes<HTMLDivElement> {
     max?: number;
     value: number;
     onChange?: (value: number) => void;
@@ -10,11 +10,11 @@ export interface RatingStarsProps {
     className?: string;
 }
 
-export const RatingStars = ({ max = 5, value, onChange, readOnly = false, className }: RatingStarsProps) => {
+export const RatingStars = ({ max = 5, value, onChange, readOnly = false, className, ...rest }: RatingStarsProps) => {
     const [hoverValue, setHoverValue] = React.useState<number | null>(null);
 
     return (
-        <div className={cn("flex space-x-1", className)}>
+        <div {...rest} className={cn("flex space-x-1", className)}>
             {Array.from({ length: max }).map((_, i) => {
                 const rating = i + 1;
                 const isAuthCore = rating <= (hoverValue ?? value);

@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export const AnimatedGradient = () => {
+export const AnimatedGradient = ({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
     return (
-        <div className="relative w-full h-full overflow-hidden bg-black">
+        <div {...rest} className={`relative w-full h-full overflow-hidden bg-black ${className ?? ''}`}>
             <motion.div
                 className="absolute -inset-[50%] opacity-50 blur-[100px]"
                 animate={{

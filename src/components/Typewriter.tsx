@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-interface TypewriterProps {
+interface TypewriterProps extends React.HTMLAttributes<HTMLDivElement> {
     words: string[];
     delay?: number;
     className?: string;
@@ -13,7 +13,8 @@ export const Typewriter: React.FC<TypewriterProps> = ({
     delay = 3000,
     className = "",
     textClassName = "",
-    cursorClassName = ""
+    cursorClassName = "",
+    ...rest
 }) => {
     const [text, setText] = useState('');
     const [wordIndex, setWordIndex] = useState(0);
@@ -41,7 +42,7 @@ export const Typewriter: React.FC<TypewriterProps> = ({
     }, [text, isDeleting, wordIndex, words, delay]);
 
     return (
-        <div className={`relative inline-block ${className}`}>
+        <div {...rest} className={`relative inline-block ${className}`}>
             <span className={textClassName}>{text}</span>
             <span className={`animate-pulse border-r-2 border-indigo-500 ml-1 h-[1em] inline-block align-middle ${cursorClassName}`}></span>
         </div>

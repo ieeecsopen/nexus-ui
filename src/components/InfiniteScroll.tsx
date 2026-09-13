@@ -6,13 +6,14 @@ export const InfiniteScroll = ({
     fetchData,
     renderItem,
     className,
-    loader = <Loader2 className="animate-spin" />
+    loader = <Loader2 className="animate-spin" />,
+    ...rest
 }: {
     fetchData: () => Promise<any[]>;
     renderItem: (item: any, index: number) => React.ReactNode;
     className?: string;
     loader?: React.ReactNode;
-}) => {
+} & React.HTMLAttributes<HTMLDivElement>) => {
     const [items, setItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
@@ -53,7 +54,7 @@ export const InfiniteScroll = ({
     };
 
     return (
-        <div className={cn("space-y-4", className)}>
+        <div {...rest} className={cn("space-y-4", className)}>
             {items.map((item, index) => renderItem(item, index))}
             <div ref={observerTarget} className="flex justify-center p-4">
                 {loading && hasMore && <div className="text-zinc-500">{loader}</div>}

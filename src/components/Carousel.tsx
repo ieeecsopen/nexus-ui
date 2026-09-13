@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { Button } from './Button';
 
-export const Carousel = ({ items, className }: { items: React.ReactNode[]; className?: string }) => {
+export const Carousel = ({ items, className, ...rest }: { items: React.ReactNode[]; className?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(0);
 
@@ -41,7 +41,7 @@ export const Carousel = ({ items, className }: { items: React.ReactNode[]; class
     };
 
     return (
-        <div className={cn("relative h-64 w-full flex items-center justify-center overflow-hidden", className)}>
+        <div {...rest} className={cn("relative h-64 w-full flex items-center justify-center overflow-hidden", className)}>
             <AnimatePresence initial={false} custom={direction}>
                 <motion.div
                     key={index}

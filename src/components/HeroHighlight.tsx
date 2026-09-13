@@ -6,11 +6,12 @@ export const HeroHighlight = ({
     children,
     className,
     containerClassName,
+    ...rest
 }: {
     children?: React.ReactNode;
     className?: string;
     containerClassName?: string;
-}) => {
+} & React.HTMLAttributes<HTMLDivElement>) => {
     let mouseX = useMotionValue(0);
     let mouseY = useMotionValue(0);
 
@@ -27,6 +28,7 @@ export const HeroHighlight = ({
 
     return (
         <div
+            {...rest}
             className={cn(
                 "relative h-[40rem] flex items-center bg-black justify-center w-full group",
                 containerClassName

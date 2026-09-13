@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "../lib/utils"
 import { Button } from "./Button"
 
-interface CollapsibleProps {
+interface CollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
     open?: boolean
     onOpenChange?: (open: boolean) => void
     disabled?: boolean
@@ -20,7 +20,8 @@ export const Collapsible = ({
     disabled,
     title,
     children,
-    className
+    className,
+    ...rest
 }: CollapsibleProps) => {
     const [isOpen, setIsOpen] = React.useState(open || false)
 
@@ -36,7 +37,7 @@ export const Collapsible = ({
     }
 
     return (
-        <div className={cn("w-[350px] space-y-2", className)}>
+        <div {...rest} className={cn("w-[350px] space-y-2", className)}>
             <div className="flex items-center justify-between space-x-4 px-4">
                 <h4 className="text-sm font-semibold text-zinc-200">
                     {title}

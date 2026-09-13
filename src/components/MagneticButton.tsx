@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
+import { useReducedMotion } from '../lib/use-reduced-motion';
 import { ButtonProps } from './Button';
 
 interface MagneticButtonProps extends ButtonProps {
@@ -11,8 +12,12 @@ export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButton
     ({ children, className, springConfig = { stiffness: 150, damping: 15, mass: 0.1 }, ...props }, ref) => {
         const localRef = useRef<HTMLButtonElement>(null);
         const [position, setPosition] = useState({ x: 0, y: 0 });
+        // Magnetic pull is pointer-driven movement; reduce-motion users get a
+        // plain stationary button.
+        const reducedMotion = useReducedMotion();
 
         const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+            if (reducedMotion) return;
             const { clientX, clientY } = e;
             const rect = localRef.current?.getBoundingClientRect();
             if (rect) {

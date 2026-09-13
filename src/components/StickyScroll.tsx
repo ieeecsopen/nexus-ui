@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { cn } from '../lib/utils';
+import { useReducedMotion } from '../lib/use-reduced-motion';
 
 export const StickyScroll = ({ content, contentClassName }: { content: { title: string; description: string; content?: React.ReactNode }[]; contentClassName?: string }) => {
     const [activeCard, setActiveCard] = React.useState(0);
+    const reducedMotion = useReducedMotion();
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -37,6 +39,7 @@ export const StickyScroll = ({ content, contentClassName }: { content: { title: 
                             <motion.h2
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: activeCard === index ? 1 : 0.3 }}
+                                transition={reducedMotion ? { duration: 0 } : undefined}
                                 className="text-2xl font-bold text-slate-100"
                             >
                                 {item.title}
@@ -44,6 +47,7 @@ export const StickyScroll = ({ content, contentClassName }: { content: { title: 
                             <motion.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: activeCard === index ? 1 : 0.3 }}
+                                transition={reducedMotion ? { duration: 0 } : undefined}
                                 className="text-kg text-slate-300 max-w-sm mt-10"
                             >
                                 {item.description}

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { cn } from '../lib/utils';
 
-export const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255,255,255,0.15)" }: { children: React.ReactNode; className?: string; spotlightColor?: string }) => {
+export const SpotlightCard = ({ children, className = "", spotlightColor = "rgba(255,255,255,0.15)", ...rest }: { children: React.ReactNode; className?: string; spotlightColor?: string } & React.HTMLAttributes<HTMLDivElement>) => {
     const divRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
@@ -19,6 +19,7 @@ export const SpotlightCard = ({ children, className = "", spotlightColor = "rgba
 
     return (
         <div
+            {...rest}
             ref={divRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

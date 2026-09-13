@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-interface AccordionItemProps {
+interface AccordionItemProps extends React.HTMLAttributes<HTMLDivElement> {
     value: string;
     trigger: React.ReactNode;
     children: React.ReactNode;
@@ -12,9 +12,9 @@ interface AccordionItemProps {
     className?: string;
 }
 
-export const AccordionItem = ({ value, trigger, children, isOpen, onToggle, className }: AccordionItemProps) => {
+export const AccordionItem = ({ value, trigger, children, isOpen, onToggle, className, ...rest }: AccordionItemProps) => {
     return (
-        <div className={cn("border-b border-white/10", className)}>
+        <div {...rest} className={cn("border-b border-white/10", className)}>
             <button
                 onClick={onToggle}
                 className="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline w-full text-left text-white"
